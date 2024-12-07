@@ -1,19 +1,60 @@
 // import {*} from "react";
 import facebook from "../../assets/facebook-icone.svg";
 import Footer from "../subComponents/FooterComponent";
-import { useForm } from "react-hook-form";
+// import React from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 // import * as React from "react";
 import Input from "../subComponents/InputComp";
 // import { useState } from "react";
 
-function RegisterComponent() {
-  // const [formDate, setFormDate] = useState({
-  //   jour: "",
-  //   mois: "",
-  //   annee: "",
-  // });
+// Étape 1 : Définir les types des données
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  gender: string;
+  gender_custom_select: string;
+  gender_custom: string;
+  birthday: {
+    day: number;
+    month: number;
+    year: number;
+  };
+}
 
+// Étape 2 : Définir les règles de validation
+const schema = yup.object({
+  firstName: yup.string().required("Prénom obligatoire"),
+  lastName: yup.string().required("Nom obligatoire"),
+  email: yup.string().email("Email invalide").required("Email obligatoire"),
+  password: yup
+    .string()
+    .min(6, "Le mot de passe doit contenir au moins 6 caractères")
+    .matches(/[A-Z]/, "Le mot de passe doit contenir une majuscule")
+    .matches(/[0-9]/, "Le mot de passe doit contenir un chiffre")
+    .required("Mot de passe obligatoire"),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password")], "Les mots de passe ne correspondent pas")
+    .required("Confirmation obligatoire"),
+  gender: yup.string().required("Veuillez sélectionner un genre"),
+  birthday: yup.object({
+    day: yup.number().min(1).max(31).required("Jour obligatoire"),
+    month: yup.number().min(0).max(11).required("Mois obligatoire"),
+    year: yup
+      .number()
+      .min(1925)
+      .max(new Date().getFullYear())
+      .required("Année obligatoire"),
+  }),
+});
+
+function RegisterComponent() {
   // const calculateDate = () => {
   //   // Créer la date obtenue
   //   const obtainedDate = new Date(
@@ -41,20 +82,14 @@ function RegisterComponent() {
   //   return age >= 18 ? obtainedDate : false;
   // };
 
-  const { register, handleSubmit } = useForm({
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      date: "",
-      password: "",
-      gender: "",
-      checkbox_gender: [],
-      radio_gender: "",
-    },
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({ resolver: yupResolver(schema) });
 
-  const onsubmit = (data: any) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    console.log("Données du formulaire : ", data);
   };
 
   return (
@@ -88,35 +123,31 @@ function RegisterComponent() {
                 <form
                   role="form"
                   className="px-4  w-full"
-                  onSubmit={handleSubmit(onsubmit)}
+                  onSubmit={handleSubmit(onSubmit)}
                 >
                   {/* <!-- Partie Nom complet  --> */}
                   <div className="lg:mb-3 flex items-center justify-center gap-3">
                     <Input
-                      classLabel={""}
-                      id={"firstName"}
-                      type={"text"}
-                      name={"firstName"}
-                      label={""}
-                      placeholder={"Prénom"}
+                      id="input_firstName"
+                      type="text"
+                      placeholder="Prénom"
                       statusLabel={false}
-                      classInput={
+                      {...register("firstName")}
+                      errorMessage={errors.firstName?.message}
+                      className={
                         "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                       }
-                      ref={register}
                     ></Input>
                     <Input
-                      id={"lastName"}
-                      type={"text"}
-                      name={"lastName"}
-                      label={""}
-                      placeholder={"Nom de famille"}
+                      id="input_lastName"
+                      type="text"
+                      placeholder="Nom de famille"
                       statusLabel={false}
-                      classInput={
+                      {...register("lastName")}
+                      errorMessage={errors.firstName?.message}
+                      className={
                         "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                       }
-                      classLabel={""}
-                      ref={register}
                     ></Input>
                   </div>
                   <div>
@@ -124,180 +155,143 @@ function RegisterComponent() {
                     <label>Date de naissance</label>
                     <div className="lg:mb-3 flex items-center justify-center gap-3">
                       <Input
-                        id={"lastName"}
-                        type={"select"}
-                        name={"lastName"}
-                        label={""}
-                        placeholder={"Nom de famille"}
+                        id="input_date_day"
+                        type="select"
+                        {...register("birthday.day")}
+                        options={[...Array(31)].map((_, i) => ({
+                          label: String(i + 1),
+                          value: i + 1,
+                        }))}
+                        errorMessage={errors.birthday?.day?.message}
                         statusLabel={false}
-                        classInput={
-                          "w-full px-6 py-1 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
+                        className={
+                          "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                         }
-                        ref={register}
-                        classLabel={""}
                       ></Input>
                       <Input
-                        id={"lastName"}
-                        type={"select"}
-                        name={"lastName"}
-                        label={""}
-                        placeholder={"Nom de famille"}
+                        id="input_date_month"
+                        type="select"
+                        {...register("birthday.month")}
+                        options={[
+                          { label: "Janvier", value: 0 },
+                          { label: "Février", value: 1 },
+                          { label: "Mars", value: 2 },
+                          { label: "Avril", value: 3 },
+                          { label: "Mai", value: 4 },
+                          { label: "Juin", value: 5 },
+                          { label: "Juillet", value: 6 },
+                          { label: "Août", value: 7 },
+                          { label: "Septembre", value: 8 },
+                          { label: "Octobre", value: 9 },
+                          { label: "Novembre", value: 10 },
+                          { label: "Décembre", value: 11 },
+                          // Ajouter les autres mois
+                        ]}
+                        errorMessage={errors.birthday?.month?.message}
                         statusLabel={false}
-                        classInput={
-                          "w-full px-6 py-1 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
+                        className={
+                          "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                         }
-                        ref={register}
-                        classLabel={""}
                       ></Input>
                       <Input
-                        id={"lastName"}
-                        type={"select"}
-                        name={"lastName"}
-                        label={""}
-                        placeholder={"Nom de famille"}
+                        id="input_date_year"
+                        type="select"
+                        {...register("birthday.year")}
+                        options={Array.from({ length: 100 }, (_, i) => {
+                          const year = new Date().getFullYear() - i;
+                          return { label: String(year), value: year };
+                        })}
+                        errorMessage={errors.birthday?.day?.message}
                         statusLabel={false}
-                        classInput={
-                          "w-full px-6 py-1 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
+                        className={
+                          "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                         }
-                        ref={register}
-                        classLabel={""}
                       ></Input>
                     </div>
                   </div>
                   <div>
                     <label>Genre</label>
-
-                    <div>
-                      <ul className=" w-full text-sm font-medium text-gray-900 bg-white   flex justify-center items-center  gap-4">
-                        <li
-                          className="w-full transition duration-300 border border-gray-300 
-                   outline-none hover:border-blue-500 
-                   focus:border-blue-600 rounded "
-                        >
-                          <div className="flex items-center px-2">
-                            <Input
-                              id={"radio-female"}
-                              type={"radio"}
-                              name={"radio-female"}
-                              label={"Female"}
-                              statusLabel={true}
-                              classLabel={
-                                "w-full py-1 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                              }
-                              classInput={
-                                "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 outline-none"
-                              }
-                              ref={register}
-                            ></Input>
-                          </div>
-                        </li>
-                        <li
-                          className="w-full transition duration-300 border border-gray-300 
-                   outline-none hover:border-blue-500 
-                   focus:border-blue-600 roundedborder rounded-md"
-                        >
-                          <div className="flex items-center justify-between  px-2 ">
-                            <Input
-                              id={"radio-male"}
-                              type={"radio"}
-                              name={"radio-male"}
-                              label={"Male"}
-                              statusLabel={true}
-                              classLabel={
-                                "w-full py-1 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                              }
-                              classInput={
-                                "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 outline-none"
-                              }
-                              ref={register}
-                            ></Input>
-                          </div>
-                        </li>
-                        <li
-                          className="w-full border-b transition duration-300 border border-gray-300 
-                   outline-none hover:border-blue-500 
-                   focus:border-blue-600 rounded  "
-                        >
-                          <div className="flex items-center  px-2">
-                            <Input
-                              id={"radio-custom"}
-                              type={"radio"}
-                              name={"radio-custom"}
-                              label={"Custom"}
-                              statusLabel={true}
-                              classLabel={
-                                "w-full py-1 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                              }
-                              classInput={
-                                "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 outline-none"
-                              }
-                              ref={register}
-                            ></Input>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
+                    <Input
+                      id="input_gender"
+                      label="Genre"
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 outline-none"
+                      type="radio"
+                      {...register("gender")}
+                      options={[
+                        { label: "Homme", value: "male" },
+                        { label: "Femme", value: "female" },
+                        { label: "Personnalisé", value: "custom" },
+                      ]}
+                      errorMessage={errors.gender?.message}
+                    />
                   </div>
                   <div>
                     <Input
-                      id={"select-type-gender"}
-                      type={"select"}
-                      name={"select-type-gender"}
+                      id="select_type_gender"
                       statusLabel={false}
-                      classInput={
-                        "w-full px-6 py-1 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
+                      className={
+                        "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                       }
-                      ref={register}
-                      label={""}
-                      classLabel={""}
+                      type="select"
+                      {...register("gender_custom_select")}
+                      options={[
+                        {
+                          label: "She : which her a happy birthday!",
+                          value: "she",
+                        },
+                        {
+                          label: "He : which him a happy birthday!",
+                          value: "he",
+                        },
+                        {
+                          label: "They: which them a happy birthday!",
+                          value: "they",
+                        },
+                      ]}
                     ></Input>
-
                     <p className="text-xs">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Veritatis eos praesentium.
                     </p>
+
+                    <div className="lg:mb-3">
+                      <Input
+                        id="input_gender_custom"
+                        type="text"
+                        placeholder="gender (custom)"
+                        statusLabel={false}
+                        {...register("gender_custom")}
+                        errorMessage={errors.gender_custom?.message}
+                        className={
+                          "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
+                        }
+                      ></Input>
+                    </div>
+                  </div>
+                  <div className="lg:mb-3">
                     <Input
-                      id={"input_gender"}
-                      type={"text"}
-                      name={"input_gender"}
-                      placeholder={"Gender (optional)"}
+                      id="input_email"
+                      type="text"
+                      placeholder="numero mobile ou email"
                       statusLabel={false}
-                      classInput={
+                      {...register("email")}
+                      errorMessage={errors.email?.message}
+                      className={
                         "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                       }
-                      ref={register}
-                      label={""}
-                      classLabel={""}
                     ></Input>
                   </div>
-                  <div className="w-full">
+                  <div className="lg:mb-3">
                     <Input
-                      id={"input_email"}
-                      type={"text"}
-                      name={"input_email"}
-                      label={""}
-                      placeholder={"Mobile number or email"}
+                      id="input_password"
+                      type="password"
+                      placeholder="password"
                       statusLabel={false}
-                      classInput={
+                      {...register("password")}
+                      errorMessage={errors.password?.message}
+                      className={
                         "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                       }
-                      ref={register}
-                      classLabel={""}
-                    ></Input>
-                  </div>
-                  <div className="w-full">
-                    <Input
-                      id={"input_password"}
-                      type={"text"}
-                      name={"input_password"}
-                      label={""}
-                      placeholder={"New password"}
-                      statusLabel={false}
-                      classInput={
-                        "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
-                      }
-                      ref={register}
-                      classLabel={""}
                     ></Input>
                   </div>
                   <div className="text-xs">
@@ -331,6 +325,7 @@ function RegisterComponent() {
                   <div className="pt-2 my-2 flex justify-center">
                     <button
                       id="btn-submit"
+                      onClick={handleSubmit(onSubmit)}
                       type="submit"
                       className="bg-[#00a400] text-white rounded px-12 text-center shadow-sm py-1 font-semibold"
                     >
@@ -360,6 +355,3 @@ function RegisterComponent() {
 }
 
 export default RegisterComponent;
-// function useForm(arg0: { defaultValues: { firstName: string; lastName: string; date: string; password: string; gender: string; checkbox_gender: never[]; radio_gender: string; }; }): { register: any; handleSubmit: any; } {
-//   throw new Error("Function not implemented.");
-// }
