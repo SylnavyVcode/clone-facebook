@@ -14,7 +14,7 @@ interface InputProps {
   label?: string;
   type?: "text" | "email" | "password" | "radio" | "checkbox" | "select";
   placeholder?: string;
-  options?: any[]; // Utilisé pour "select" et "radio"
+  options?: Option[]; // Utilisé pour "select" et "radio"
   errorMessage?: string; // Affiche les erreurs
   className?: string; // Styles personnalisés
   statusLabel?: boolean;
@@ -45,22 +45,52 @@ const Input = React.forwardRef<
     return (
       <>
         {(type == "text" || type == "email" || type == "password") && (
-          <div>
+          <div className="relative">
             {statusLabel && (
               <label htmlFor={id} className="text-sm font-medium text-gray-700">
                 {label} {required && <span className="text-red-500">*</span>}
               </label>
             )}
-
-            <input
-              id={id}
-              name={name}
-              type={type}
-              placeholder={placeholder}
-              ref={ref as React.Ref<HTMLInputElement>}
-              className={`border rounded-md p-2 ${className}`}
-              {...rest}
-            />
+            <div
+              className={`flex justify-between border rounded-md ${
+                errorMessage ? `${className} border-red-800` : `${className}`
+              }`}
+            >
+              <input
+                id={id}
+                name={name}
+                type={type}
+                placeholder={placeholder}
+                ref={ref as React.Ref<HTMLInputElement>}
+                className="w-[90%]  outline-none"
+                {...rest}
+              />
+              {errorMessage && (
+                <span className=" flex justify-end items-end">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    className="size-6 text-white font-semibold"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      fill="#b50b0b"
+                      stroke-linejoin="round"
+                      d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+                    />
+                  </svg>
+                </span>
+              )}
+              {/* Pop-up d'erreur */}
+            </div>
+            {/* {errorMessage && (
+              <div className="absolute right-0 top-0 z-20 ml-3 bg-red-500 text-white text-sm p-2 rounded shadow-lg">
+                {errorMessage}
+              </div>
+            )} */}
           </div>
         )}
         {type === "select" && (
@@ -68,7 +98,9 @@ const Input = React.forwardRef<
             id={id}
             name={name}
             ref={ref as React.Ref<HTMLSelectElement>}
-            className={className}
+            className={`${
+              errorMessage ? `${className} border-red-800` : `${className}`
+            }`}
             {...rest}
           >
             <option value="">-- Sélectionner --</option>
@@ -86,13 +118,20 @@ const Input = React.forwardRef<
               options.map((option) => (
                 <div
                   key={option.value}
-                  className="w-full transition duration-300 border border-gray-300 
+                  className={`${
+                    errorMessage
+                      ? `w-full transition duration-300 border  
                    outline-none hover:border-blue-500 
-                   focus:border-blue-600 rounded  py-1"
+                   focus:border-blue-600 rounded  py-1 border-red-800`
+                      : `w-full transition duration-300 border border-gray-300 
+                   outline-none hover:border-blue-500 
+                   focus:border-blue-600 rounded  py-1`
+                  }`}
                 >
                   <div className="flex items-center px-2">
                     <label
                       key={option.value}
+                      htmlFor={`select-${option.value}`}
                       className="w-full py-1 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                     >
                       <span>{option.label}</span>
