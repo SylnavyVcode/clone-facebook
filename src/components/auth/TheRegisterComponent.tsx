@@ -1,14 +1,12 @@
-// import {*} from "react";
-import facebook from "../../assets/facebook-icone.svg";
-import Footer from "../subComponents/FooterComponent";
-// import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 import * as yup from "yup";
 
-// import * as React from "react";
+import facebook from "../../assets/facebook-icone.svg";
+import Footer from "../subComponents/FooterComponent";
 import Input from "../subComponents/InputComp";
-// import { useState } from "react";
+import Politique from "../subComponents/ThePolitiqueComponent";
 
 // Étape 1 : Définir les types des données
 interface FormData {
@@ -30,7 +28,7 @@ interface FormData {
 // Étape 2 : Définir les règles de validation
 const schema = yup.object({
   firstName: yup.string().required("Prénom obligatoire"),
-  lastName: yup.string().required("Nom obligatoire"),
+  lastName: yup.string().required("Nom de famille obligatoire"),
   email: yup.string().email("Email invalide").required("Email obligatoire"),
   password: yup
     .string()
@@ -38,10 +36,6 @@ const schema = yup.object({
     .matches(/[A-Z]/, "Le mot de passe doit contenir une majuscule")
     .matches(/[0-9]/, "Le mot de passe doit contenir un chiffre")
     .required("Mot de passe obligatoire"),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password")], "Les mots de passe ne correspondent pas")
-    .required("Confirmation obligatoire"),
   gender: yup.string().required("Veuillez sélectionner un genre"),
   birthday: yup.object({
     day: yup.number().min(1).max(31).required("Jour obligatoire"),
@@ -55,38 +49,19 @@ const schema = yup.object({
 });
 
 function RegisterComponent() {
-  // const calculateDate = () => {
-  //   // Créer la date obtenue
-  //   const obtainedDate = new Date(
-  //     Number(formDate.annee),
-  //     Number(formDate.mois),
-  //     Number(formDate.jour)
-  //   );
-
-  //   // Obtenir la date actuelle
-  //   const today = new Date();
-
-  //   // Calculer la différence d'années
-  //   let age = today.getFullYear() - obtainedDate.getFullYear();
-
-  //   // Ajuster si l'anniversaire de cette année n'est pas encore passé
-  //   const hasHadBirthdayThisYear =
-  //     today.getMonth() > obtainedDate.getMonth() ||
-  //     (today.getMonth() === obtainedDate.getMonth() &&
-  //       today.getDate() >= obtainedDate.getDate());
-
-  //   if (!hasHadBirthdayThisYear) {
-  //     age -= 1;
-  //   }
-
-  //   return age >= 18 ? obtainedDate : false;
-  // };
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({ resolver: yupResolver(schema) });
+
+  const [showCustomGender, setShowCustomGender] = useState(false);
+
+  // Fonction pour gérer les changements du champ gender
+  const handleGenderChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = event.target.value;
+    setShowCustomGender(value === "custom");
+  };
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     console.log("Données du formulaire : ", data);
@@ -95,8 +70,6 @@ function RegisterComponent() {
   return (
     <>
       <div className="relative w-full h-full bg-[#f2f4f7]">
-        {/* <!-- Section gerant la partie de droite --> */}
-
         {/* <!-- Premiere Section --> */}
         <section className="flex justify-center items-center bg-[#f2f4f7]">
           {/* <!-- Partie Principale --> */}
@@ -120,6 +93,8 @@ function RegisterComponent() {
                   <p className="text-center">C'est simple et rapide.</p>
                 </div>
                 <hr className="my-2" />
+
+                {/* Fourmulaire d'inscription de facebook */}
                 <form
                   role="form"
                   className="px-4  w-full"
@@ -135,7 +110,7 @@ function RegisterComponent() {
                       {...register("firstName")}
                       errorMessage={errors.firstName?.message}
                       className={
-                        "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
+                        "w-full px-3 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                       }
                     ></Input>
                     <Input
@@ -144,14 +119,15 @@ function RegisterComponent() {
                       placeholder="Nom de famille"
                       statusLabel={false}
                       {...register("lastName")}
-                      errorMessage={errors.firstName?.message}
+                      errorMessage={errors.lastName?.message}
                       className={
-                        "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
+                        "w-full px-3 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                       }
                     ></Input>
                   </div>
+
+                  {/* <!-- Partie Date de naissance  --> */}
                   <div>
-                    {/* <!-- Partie Date de naissance  --> */}
                     <label>Date de naissance</label>
                     <div className="lg:mb-3 flex items-center justify-center gap-3">
                       <Input
@@ -165,7 +141,7 @@ function RegisterComponent() {
                         errorMessage={errors.birthday?.day?.message}
                         statusLabel={false}
                         className={
-                          "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
+                          "w-full px-3 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                         }
                       ></Input>
                       <Input
@@ -190,7 +166,7 @@ function RegisterComponent() {
                         errorMessage={errors.birthday?.month?.message}
                         statusLabel={false}
                         className={
-                          "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
+                          "w-full px-3 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                         }
                       ></Input>
                       <Input
@@ -204,11 +180,13 @@ function RegisterComponent() {
                         errorMessage={errors.birthday?.day?.message}
                         statusLabel={false}
                         className={
-                          "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
+                          "w-full px-3 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                         }
                       ></Input>
                     </div>
                   </div>
+
+                  {/* <!-- Partie Genre  --> */}
                   <div>
                     <label>Genre</label>
                     <Input
@@ -217,6 +195,7 @@ function RegisterComponent() {
                       className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 outline-none"
                       type="radio"
                       {...register("gender")}
+                      onChange={handleGenderChange}
                       options={[
                         { label: "Homme", value: "male" },
                         { label: "Femme", value: "female" },
@@ -225,49 +204,53 @@ function RegisterComponent() {
                       errorMessage={errors.gender?.message}
                     />
                   </div>
-                  <div>
-                    <Input
-                      id="select_type_gender"
-                      statusLabel={false}
-                      className={
-                        "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
-                      }
-                      type="select"
-                      {...register("gender_custom_select")}
-                      options={[
-                        {
-                          label: "She : which her a happy birthday!",
-                          value: "she",
-                        },
-                        {
-                          label: "He : which him a happy birthday!",
-                          value: "he",
-                        },
-                        {
-                          label: "They: which them a happy birthday!",
-                          value: "they",
-                        },
-                      ]}
-                    ></Input>
-                    <p className="text-xs">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Veritatis eos praesentium.
-                    </p>
 
-                    <div className="lg:mb-3">
+                  {showCustomGender && (
+                    <div>
                       <Input
-                        id="input_gender_custom"
-                        type="text"
-                        placeholder="gender (custom)"
+                        id="select_type_gender"
                         statusLabel={false}
-                        {...register("gender_custom")}
-                        errorMessage={errors.gender_custom?.message}
                         className={
-                          "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
+                          "w-full px-3 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                         }
+                        type="select"
+                        {...register("gender_custom_select")}
+                        options={[
+                          {
+                            label: "She : which her a happy birthday!",
+                            value: "she",
+                          },
+                          {
+                            label: "He : which him a happy birthday!",
+                            value: "he",
+                          },
+                          {
+                            label: "They: which them a happy birthday!",
+                            value: "they",
+                          },
+                        ]}
                       ></Input>
+                      <p className="text-xs">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Veritatis eos praesentium.
+                      </p>
+
+                      <div className="lg:mb-3">
+                        <Input
+                          id="input_gender_custom"
+                          type="text"
+                          placeholder="gender (custom)"
+                          statusLabel={false}
+                          {...register("gender_custom")}
+                          errorMessage={errors.gender_custom?.message}
+                          className={
+                            "w-full px-3 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
+                          }
+                        ></Input>
+                      </div>
                     </div>
-                  </div>
+                  )}
+                  {/* <!-- Partie email  --> */}
                   <div className="lg:mb-3">
                     <Input
                       id="input_email"
@@ -277,10 +260,11 @@ function RegisterComponent() {
                       {...register("email")}
                       errorMessage={errors.email?.message}
                       className={
-                        "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
+                        "w-full px-3 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                       }
                     ></Input>
                   </div>
+                  {/* <!-- Partie Password  --> */}
                   <div className="lg:mb-3">
                     <Input
                       id="input_password"
@@ -290,42 +274,16 @@ function RegisterComponent() {
                       {...register("password")}
                       errorMessage={errors.password?.message}
                       className={
-                        "w-full px-6 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
+                        "w-full px-3 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                       }
                     ></Input>
                   </div>
-                  <div className="text-xs">
-                    <p className="mb-3">
-                      Les personnes qui utilisent notre service ont pu importr
-                      vos coordonnées sur Facebook.
-                      <a
-                        id="password-forgot"
-                        className="text-sm text-blue-800 font-semibold cursor-pointer focus:text-blue-800 pointer text-center mx-1"
-                      >
-                        En savoir plus.
-                      </a>
-                    </p>
-                    <p className="mb-3">
-                      En cliquant sur S'incrire. Vous acceptez nos
-                      <a className="text-sm text-blue-800 font-semibold cursor-pointer focus:text-blue-800 pointer text-center mx-1">
-                        Conditions générales,
-                      </a>
-                      notre
-                      <a className="text-sm text-blue-800 font-semibold cursor-pointer focus:text-blue-800 pointer text-center mx-1">
-                        Politique de confidentialité
-                      </a>
-                      et notre
-                      <a className="text-sm text-blue-800 font-semibold cursor-pointer focus:text-blue-800 pointer text-center mx-1">
-                        Politique d'utilisation des cookies.
-                      </a>
-                      Vous recevrez peut-être des notifications par texto de
-                      notre part et vous pouvez à tout moment vous désabonner.
-                    </p>
-                  </div>
+                  {/* <!-- Partie Politique  --> */}
+                  <Politique></Politique>
+                  {/* <!-- Partie Bouton inscription et autres  --> */}
                   <div className="pt-2 my-2 flex justify-center">
                     <button
                       id="btn-submit"
-                      onClick={handleSubmit(onSubmit)}
                       type="submit"
                       className="bg-[#00a400] text-white rounded px-12 text-center shadow-sm py-1 font-semibold"
                     >
@@ -341,13 +299,12 @@ function RegisterComponent() {
                     </a>
                   </div>
                 </form>
+                {/* <!-- Partie cloture formulaire  --> */}
               </div>
             </div>
           </main>
         </section>
-
-        {/* <!-- Fin de la partie section --> */}
-
+        {/* <!-- Partie Pied de page  --> */}
         <Footer></Footer>
       </div>
     </>
