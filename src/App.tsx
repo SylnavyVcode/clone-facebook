@@ -1,6 +1,7 @@
 // import { useState } from "react";
 
-import RegisterComponent from "./components/auth/TheRegisterComponent";
+// import RegisterComponent from "./components/auth/TheRegisterComponent";
+import Routeur from "./routes/router";
 
 // import reactLogo from "./assets/react.svg";
 
@@ -11,7 +12,7 @@ function App() {
 
   return (
     <>
-      <RegisterComponent></RegisterComponent>
+      <Routeur></Routeur>
     </>
   );
 }

@@ -27,16 +27,19 @@ interface FormData {
 
 // Étape 2 : Définir les règles de validation
 const schema = yup.object({
-  firstName: yup.string().required("Prénom obligatoire"),
-  lastName: yup.string().required("Nom de famille obligatoire"),
-  email: yup.string().email("Email invalide").required("Email obligatoire"),
+  firstName: yup.string().required("Saisissez votre prénom"),
+  lastName: yup.string().required("Saisissez votre nom de famille"),
+  email: yup
+    .string()
+    .email("Saisissez un email correct")
+    .required("Saisissez votre Email"),
   password: yup
     .string()
     .min(6, "Le mot de passe doit contenir au moins 6 caractères")
     .matches(/[A-Z]/, "Le mot de passe doit contenir une majuscule")
     .matches(/[0-9]/, "Le mot de passe doit contenir un chiffre")
     .required("Mot de passe obligatoire"),
-  gender: yup.string().required("Veuillez sélectionner un genre"),
+  gender: yup.string().required("Veuillez sélectionner votre genre"),
   birthday: yup.object({
     day: yup.number().min(1).max(31).required("Jour obligatoire"),
     month: yup.number().min(0).max(11).required("Mois obligatoire"),
@@ -192,7 +195,7 @@ function RegisterComponent() {
                     <Input
                       id="input_gender"
                       label="Genre"
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 outline-none"
+                      className="w-4 h-4 text-blue-600 is-invalid bg-gray-100 border-gray-300 focus:ring-blue-500 outline-none"
                       type="radio"
                       {...register("gender")}
                       onChange={handleGenderChange}
@@ -203,6 +206,11 @@ function RegisterComponent() {
                       ]}
                       errorMessage={errors.gender?.message}
                     />
+                    {errors.gender?.message && (
+                      <div className="invalid-feedback text-red-600 text-xs">
+                        {errors.gender?.message}
+                      </div>
+                    )}
                   </div>
 
                   {showCustomGender && (
