@@ -53,7 +53,7 @@ const Input = React.forwardRef<
             )}
             <div
               className={`flex justify-between border rounded-md ${
-                errorMessage ? `${className} border-red-800` : `${className}`
+                errorMessage ? `${className} border-red-600` : `${className}`
               }`}
             >
               <input
@@ -62,7 +62,7 @@ const Input = React.forwardRef<
                 type={type}
                 placeholder={placeholder}
                 ref={ref as React.Ref<HTMLInputElement>}
-                className="w-[90%]  outline-none"
+                className="w-[90%] form-control  outline-none is-invalid"
                 {...rest}
               />
               {errorMessage && (
@@ -86,11 +86,11 @@ const Input = React.forwardRef<
               )}
               {/* Pop-up d'erreur */}
             </div>
-            {/* {errorMessage && (
-              <div className="absolute right-0 top-0 z-20 ml-3 bg-red-500 text-white text-sm p-2 rounded shadow-lg">
+            {errorMessage && (
+              <div className="invalid-feedback text-red-600 text-xs">
                 {errorMessage}
               </div>
-            )} */}
+            )}
           </div>
         )}
         {type === "select" && (
@@ -99,7 +99,7 @@ const Input = React.forwardRef<
             name={name}
             ref={ref as React.Ref<HTMLSelectElement>}
             className={`${
-              errorMessage ? `${className} border-red-800` : `${className}`
+              errorMessage ? `${className} border-red-600` : `${className}`
             }`}
             {...rest}
           >
@@ -122,7 +122,7 @@ const Input = React.forwardRef<
                     errorMessage
                       ? `w-full transition duration-300 border  
                    outline-none hover:border-blue-500 
-                   focus:border-blue-600 rounded  py-1 border-red-800`
+                   focus:border-blue-600 rounded  py-1 border-red-600`
                       : `w-full transition duration-300 border border-gray-300 
                    outline-none hover:border-blue-500 
                    focus:border-blue-600 rounded  py-1`
