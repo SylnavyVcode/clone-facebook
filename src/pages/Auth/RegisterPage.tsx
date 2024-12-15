@@ -1,8 +1,8 @@
 // import LoginComponent from "../components/auth/TheLoginComponent";
-import RegisterComponent from "../components/auth/TheRegisterComponent";
+import RegisterComponent from "../../components/auth/TheRegisterComponent";
 
 
-const Auth = () => {
+const Register = () => {
   return (
     <>
       <RegisterComponent></RegisterComponent>
@@ -10,4 +10,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default Register;

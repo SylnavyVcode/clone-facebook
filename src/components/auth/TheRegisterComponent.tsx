@@ -1,12 +1,14 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import * as yup from "yup";
 
 import facebook from "../../assets/facebook-icone.svg";
-import Footer from "../subComponents/FooterComponent";
-import Input from "../subComponents/InputComp";
-import Politique from "../subComponents/ThePolitiqueComponent";
+import Footer from "../utils/FooterComponent";
+import Input from "../utils/InputComponent";
+import Politique from "../utils/ThePolitiqueComponent";
 
 // Étape 1 : Définir les types des données
 interface FormData {
@@ -14,10 +16,9 @@ interface FormData {
   lastName: string;
   email: string;
   password: string;
-  confirmPassword: string;
   gender: string;
-  gender_custom_select: string;
-  gender_custom: string;
+  gender_custom_select?: string;
+  gender_custom?: string;
   birthday: {
     day: number;
     month: number;
@@ -40,6 +41,10 @@ const schema = yup.object({
     .matches(/[0-9]/, "Le mot de passe doit contenir un chiffre")
     .required("Mot de passe obligatoire"),
   gender: yup.string().required("Veuillez sélectionner votre genre"),
+  // gender_custom_select: yup
+  //   .string()
+  //   .required("Veuillez sélectionner votre genre"),
+  // gender_custom: yup.string().required("Saisissez votre Genre"),
   birthday: yup.object({
     day: yup.number().min(1).max(31).required("Jour obligatoire"),
     month: yup.number().min(0).max(11).required("Mois obligatoire"),
@@ -293,7 +298,7 @@ function RegisterComponent() {
                     <button
                       id="btn-submit"
                       type="submit"
-                      className="bg-[#00a400] text-white rounded px-12 text-center shadow-sm py-1 font-semibold"
+                      className=" px-12 py-2 text-base font-bold text-white transition-colors duration-300 bg-[#42b72a] rounded shadow"
                     >
                       S'inscrire
                     </button>
@@ -303,7 +308,7 @@ function RegisterComponent() {
                       id="password-forgot"
                       className=" text-[#1877f2] font-semibold cursor-pointer focus:text-blue-800 pointer mt-2 text-center"
                     >
-                      Vous avez déjà un compte ?
+                      <Link to={"/auth/login"}>Vous avez déjà un compte ?</Link>
                     </a>
                   </div>
                 </form>

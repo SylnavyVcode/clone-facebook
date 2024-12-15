@@ -1,7 +1,7 @@
 // import { useState } from "react";
 
 // import RegisterComponent from "./components/auth/TheRegisterComponent";
-import Routeur from "./routes/router";
+import Routeur from "./routes/routes";
 
 // import reactLogo from "./assets/react.svg";
 
