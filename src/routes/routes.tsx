@@ -60,3 +60,30 @@ const Routeur = () => {
 };
 
 export default Routeur;
+
+// import { createBrowserRouter } from "react-router-dom";
+// import MainLayout from "./layouts/MainLayout";
+// import Home from "./pages/Home";
+// import HomeChild1 from "./pages/HomeChild1";
+// import HomeChild2 from "./pages/HomeChild2";
+// import About from "./pages/About";
+// import ErrorPage from "./pages/ErrorPage";
+
+// export const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <MainLayout />, // Layout principal
+//     errorElement: <ErrorPage />,
+//     children: [
+//       {
+//         path: "home", // Route parent
+//         element: <Home />,
+//         children: [
+//           { path: "child1", element: <HomeChild1 /> }, // Enfant 1
+//           { path: "child2", element: <HomeChild2 /> }, // Enfant 2
+//         ],
+//       },
+//       { path: "about", element: <About /> },
+//     ],
+//   },
+// ]);

@@ -13,6 +13,7 @@ interface InputProps {
   name: string;
   label?: string;
   type?: "text" | "email" | "password" | "radio" | "checkbox" | "select";
+  selectMessage?: string;
   placeholder?: string;
   options?: Option[]; // Utilisé pour "select" et "radio"
   errorMessage?: string; // Affiche les erreurs
@@ -37,6 +38,7 @@ const Input = React.forwardRef<
       statusLabel = false,
       errorMessage,
       className = "",
+      selectMessage = "",
       required = false,
       ...rest
     },
@@ -103,7 +105,7 @@ const Input = React.forwardRef<
             }`}
             {...rest}
           >
-            <option value="">-- Sélectionner --</option>
+            {/* <option value="">{selectMessage}</option> */}
             {options.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -113,7 +115,7 @@ const Input = React.forwardRef<
         )}
 
         {type === "radio" && (
-          <div className=" w-full text-sm font-medium text-gray-900 bg-white   flex justify-center items-center py-2  gap-4">
+          <div className=" w-full font-medium text-gray-900 bg-white flex justify-center items-center py-2  gap-4">
             {type === "radio" &&
               options.map((option) => (
                 <div
@@ -122,17 +124,17 @@ const Input = React.forwardRef<
                     errorMessage
                       ? `w-full transition duration-300 border  
                    outline-none hover:border-blue-500 
-                   focus:border-blue-600 rounded  py-1 border-red-600`
+                   focus:border-blue-600 rounded-lg py-1 border-red-600`
                       : `w-full transition duration-300 border border-gray-300 
                    outline-none hover:border-blue-500 
-                   focus:border-blue-600 rounded  py-1`
+                   focus:border-blue-600 rounded-lg py-1`
                   }`}
                 >
-                  <div className="flex items-center px-2">
+                  <div className="flex  text-xl items-center px-2">
                     <label
                       key={option.value}
                       htmlFor={`select-${option.value}`}
-                      className="w-full py-1 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                      className="w-full py-2 ms-2 text-gray-700 dark:text-gray-300"
                     >
                       <span>{option.label}</span>
                     </label>
