@@ -83,11 +83,11 @@ function RegisterComponent() {
           {/* <!-- Partie Principale --> */}
           <main className="justify-center mx-4 mb-4 p-4">
             {/* <!-- Partie Formulaires comprenant tout type de formulaires  --> */}
-            <h1 className="text-blue-500 text-center flex justify-center items-center font-semibold w-full">
-              <img className="w-[50vh]" src={facebook} alt="logo de facebook" />
+            <h1 className="text-blue-500 text-center flex justify-center items-center font-semibold w-full mb-4">
+              <img className="w-[30vh]" src={facebook} alt="logo de facebook" />
             </h1>
             <div
-              className="flex justify-center py-4  w-[432px] items-center border border-[#dddfe2] bg-white rounded-md "
+              className="flex justify-center py-4 mb-12 w-[435px] items-center border border-[#dddfe2] bg-white rounded-xl "
               style={{
                 boxShadow:
                   "0px 2px 4px rgba(0, 0, 0, 0.1), 0px 8px 16px rgba(0, 0, 0, 0.1)",
@@ -95,21 +95,23 @@ function RegisterComponent() {
             >
               <div>
                 <div>
-                  <p className=" text-center text-2xl font-bold">
+                  <p className=" text-center text-4xl  font-bold">
                     Créer un compte
                   </p>
-                  <p className="text-center">C'est simple et rapide.</p>
+                  <p className="text-center py-2 text-[15px] text-gray-600">
+                    C'est simple et rapide.
+                  </p>
                 </div>
                 <hr className="my-2" />
 
                 {/* Fourmulaire d'inscription de facebook */}
                 <form
                   role="form"
-                  className="px-4  w-full"
+                  className="px-6 text-[15px] text-gray-600 w-full"
                   onSubmit={handleSubmit(onSubmit)}
                 >
                   {/* <!-- Partie Nom complet  --> */}
-                  <div className="lg:mb-3 flex items-center justify-center gap-3">
+                  <div className="lg:mb-3 flex items-center justify-center gap-3 w-full">
                     <Input
                       id="input_firstName"
                       type="text"
@@ -136,7 +138,7 @@ function RegisterComponent() {
 
                   {/* <!-- Partie Date de naissance  --> */}
                   <div>
-                    <label>Date de naissance</label>
+                    <label className="text-lg">Date de naissance</label>
                     <div className="lg:mb-3 flex items-center justify-center gap-3">
                       <Input
                         id="input_date_day"
@@ -196,7 +198,7 @@ function RegisterComponent() {
 
                   {/* <!-- Partie Genre  --> */}
                   <div>
-                    <label>Genre</label>
+                    <label className="text-lg">Genre</label>
                     <Input
                       id="input_gender"
                       label="Genre"
@@ -205,8 +207,8 @@ function RegisterComponent() {
                       {...register("gender")}
                       onChange={handleGenderChange}
                       options={[
-                        { label: "Homme", value: "male" },
                         { label: "Femme", value: "female" },
+                        { label: "Homme", value: "male" },
                         { label: "Personnalisé", value: "custom" },
                       ]}
                       errorMessage={errors.gender?.message}
@@ -273,12 +275,12 @@ function RegisterComponent() {
                       {...register("email")}
                       errorMessage={errors.email?.message}
                       className={
-                        "w-full px-3 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
+                        "w-full px-3 py-3 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                       }
                     ></Input>
                   </div>
                   {/* <!-- Partie Password  --> */}
-                  <div className="lg:mb-3">
+                  <div className="mb-6">
                     <Input
                       id="input_password"
                       type="password"
@@ -287,7 +289,7 @@ function RegisterComponent() {
                       {...register("password")}
                       errorMessage={errors.password?.message}
                       className={
-                        "w-full px-3 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
+                        "w-full px-3 py-3 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                       }
                     ></Input>
                   </div>
@@ -298,7 +300,7 @@ function RegisterComponent() {
                     <button
                       id="btn-submit"
                       type="submit"
-                      className=" px-12 py-2 text-base font-bold text-white transition-colors duration-300 bg-[#42b72a] rounded shadow"
+                      className=" px-24 py-4 text-[18px] text-base font-bold text-white transition-colors duration-300 bg-[#00a400] rounded-lg shadow"
                     >
                       S'inscrire
                     </button>
@@ -306,7 +308,7 @@ function RegisterComponent() {
                   <div className="flex items-center justify-center">
                     <a
                       id="password-forgot"
-                      className=" text-[#1877f2] font-semibold cursor-pointer focus:text-blue-800 pointer mt-2 text-center"
+                      className=" text-[#1877f2] font-semibold cursor-pointer focus:text-blue-800 pointer my-4 mb-6 text-center"
                     >
                       <Link to={"/auth/login"}>Vous avez déjà un compte ?</Link>
                     </a>
@@ -317,9 +319,9 @@ function RegisterComponent() {
             </div>
           </main>
         </section>
-        {/* <!-- Partie Pied de page  --> */}
-        <Footer></Footer>
       </div>
+      {/* <!-- Partie Pied de page  --> */}
+      <Footer></Footer>
     </>
   );
 }

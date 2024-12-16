@@ -122,17 +122,17 @@ const Input = React.forwardRef<
                     errorMessage
                       ? `w-full transition duration-300 border  
                    outline-none hover:border-blue-500 
-                   focus:border-blue-600 rounded  py-1 border-red-600`
+                   focus:border-blue-600 rounded-lg py-1 border-red-600`
                       : `w-full transition duration-300 border border-gray-300 
                    outline-none hover:border-blue-500 
-                   focus:border-blue-600 rounded  py-1`
+                   focus:border-blue-600 rounded-lg py-1`
                   }`}
                 >
-                  <div className="flex items-center px-2">
+                  <div className="flex  text-xl items-center px-2">
                     <label
                       key={option.value}
                       htmlFor={`select-${option.value}`}
-                      className="w-full py-1 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                      className="w-full py-2 ms-2 text-gray-700 dark:text-gray-300"
                     >
                       <span>{option.label}</span>
                     </label>
