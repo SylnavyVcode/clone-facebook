@@ -52,10 +52,10 @@ const links = [
 
 const Footer: React.FC = () => {
   return (
-    <footer className=" bg-white text-gray-600 text-lg flex items-center justify-center py-4 px-2 sm:px-8 w-full ">
-      <div className="mx-auto  w-full px-10 sm:px-20 md:px-[20px] lg:px-[50px] xl:px-[139px] space-y-4 text-lg mt-20">
+    <footer className=" bg-white text-[#8a8d91] text-[12px] flex items-center justify-center py-4 px-2 sm:px-8 w-full font-sans">
+      <div className="mx-auto  w-full px-10 sm:px-20 md:px-[20px] lg:px-[50px] xl:px-[139px] space-y-4 mt-20">
         {/* Section des langues */}
-        <div className="flex flex-wrap  gap-2">
+        <div className="flex flex-wrap gap-2">
           {languages.map((language, index) => (
             <a
               key={index}
@@ -83,8 +83,8 @@ const Footer: React.FC = () => {
           ))}
         </div>
         {/* Copyright */}
-        <div className="text-right text-gray-700 mt-4">
-          © {new Date().getFullYear()} Meta. Tous droits réservés by sv_code
+        <div className="text-right text-[#737373] mt-8">
+         Meta © {new Date().getFullYear()}. Tous droits réservé - sv_code
           (Sylnavy Mabika)
         </div>
       </div>

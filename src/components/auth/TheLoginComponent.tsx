@@ -38,7 +38,7 @@ function LoginComponent() {
 
   return (
     <>
-      <div className="relative w-full h-full bg-[#f2f4f7]">
+      <div className="relative w-full h-full bg-[#f2f4f7] font-sans">
         {/* <!-- Section gerant la partie de droite --> */}
 
         {/* <!-- Premiere Section --> */}
@@ -50,7 +50,7 @@ function LoginComponent() {
               <img className="w-[26vh]" src={facebook} alt="logo de facebook" />
             </h1>
             <div
-              className="px-4 flex justify-center py-3  w-[395px] items-center border border-[#dddfe2] bg-white rounded-xl mb-20"
+              className="px-4 flex justify-center py-3  w-[396px] items-center border border-[#dddfe2] bg-white rounded-xl mb-20"
               style={{
                 boxShadow:
                   "0px 2px 4px rgba(0, 0, 0, 0.1), 0px 8px 16px rgba(0, 0, 0, 0.1)",

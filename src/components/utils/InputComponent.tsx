@@ -13,6 +13,7 @@ interface InputProps {
   name: string;
   label?: string;
   type?: "text" | "email" | "password" | "radio" | "checkbox" | "select";
+  selectMessage?: string;
   placeholder?: string;
   options?: Option[]; // Utilisé pour "select" et "radio"
   errorMessage?: string; // Affiche les erreurs
@@ -37,6 +38,7 @@ const Input = React.forwardRef<
       statusLabel = false,
       errorMessage,
       className = "",
+      selectMessage = "",
       required = false,
       ...rest
     },
@@ -103,7 +105,7 @@ const Input = React.forwardRef<
             }`}
             {...rest}
           >
-            <option value="">-- Sélectionner --</option>
+            {/* <option value="">{selectMessage}</option> */}
             {options.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -113,7 +115,7 @@ const Input = React.forwardRef<
         )}
 
         {type === "radio" && (
-          <div className=" w-full text-sm font-medium text-gray-900 bg-white   flex justify-center items-center py-2  gap-4">
+          <div className=" w-full font-medium text-gray-900 bg-white flex justify-center items-center py-2  gap-4">
             {type === "radio" &&
               options.map((option) => (
                 <div

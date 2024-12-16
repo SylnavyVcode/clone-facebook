@@ -77,7 +77,7 @@ function RegisterComponent() {
 
   return (
     <>
-      <div className="relative w-full h-full bg-[#f2f4f7]">
+      <div className="relative w-full h-full bg-[#f2f4f7] font-sans">
         {/* <!-- Premiere Section --> */}
         <section className="flex justify-center items-center bg-[#f2f4f7]">
           {/* <!-- Partie Principale --> */}
@@ -111,7 +111,7 @@ function RegisterComponent() {
                   onSubmit={handleSubmit(onSubmit)}
                 >
                   {/* <!-- Partie Nom complet  --> */}
-                  <div className="lg:mb-3 flex items-center justify-center gap-3 w-full">
+                  <div className="lg:mb-3 flex items-center justify-between gap-3 w-full">
                     <Input
                       id="input_firstName"
                       type="text"
@@ -120,7 +120,7 @@ function RegisterComponent() {
                       {...register("firstName")}
                       errorMessage={errors.firstName?.message}
                       className={
-                        "w-full px-3 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
+                        " px-3 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded-lg w-full"
                       }
                     ></Input>
                     <Input
@@ -131,7 +131,7 @@ function RegisterComponent() {
                       {...register("lastName")}
                       errorMessage={errors.lastName?.message}
                       className={
-                        "w-full px-3 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
+                        "w-full px-3 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded-lg"
                       }
                     ></Input>
                   </div>
@@ -300,7 +300,7 @@ function RegisterComponent() {
                     <button
                       id="btn-submit"
                       type="submit"
-                      className=" px-24 py-4 text-[18px] text-base font-bold text-white transition-colors duration-300 bg-[#00a400] rounded-lg shadow"
+                      className=" px-24 py-2 text-[18px] font-bold text-white transition-colors duration-300 bg-[#00a400] rounded-lg shadow"
                     >
                       S'inscrire
                     </button>
@@ -308,7 +308,7 @@ function RegisterComponent() {
                   <div className="flex items-center justify-center">
                     <a
                       id="password-forgot"
-                      className=" text-[#1877f2] font-semibold cursor-pointer focus:text-blue-800 pointer my-4 mb-6 text-center"
+                      className=" text-[#1877f2] text-2xl cursor-pointer focus:text-blue-800 pointer my-4 mb-6 text-center"
                     >
                       <Link to={"/auth/login"}>Vous avez déjà un compte ?</Link>
                     </a>
