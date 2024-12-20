@@ -306,12 +306,12 @@ function RegisterComponent() {
                     </button>
                   </div>
                   <div className="flex items-center justify-center">
-                    <a
+                    <span
                       id="password-forgot"
                       className=" text-[#1877f2] text-2xl cursor-pointer focus:text-blue-800 pointer my-4 mb-6 text-center"
                     >
                       <Link to={"/auth/login"}>Vous avez déjà un compte ?</Link>
-                    </a>
+                    </span>
                   </div>
                 </form>
                 {/* <!-- Partie cloture formulaire  --> */}

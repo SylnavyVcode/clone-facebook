@@ -56,6 +56,9 @@ function LoginComponent() {
                   "0px 2px 4px rgba(0, 0, 0, 0.1), 0px 8px 16px rgba(0, 0, 0, 0.1)",
               }}
             >
+              <div className="w-full">
+
+              
               <form
                 role="form"
                 className=" w-full px-4"
@@ -95,7 +98,7 @@ function LoginComponent() {
                 </div>
                 <div className="pt-2 my-2">
                   <button
-                    id="btn-submit"
+                    id="btn-submit-login"
                     className="bg-[#1877f2] text-white rounded-lg w-full text-center text-3xl shadow-sm px-4 py-4 font-semibold"
                   >
                     Se connecter
@@ -110,6 +113,7 @@ function LoginComponent() {
                   </a>
                 </div>
 
+              </form>
                 <div className="flex text-lg flex-col space-y-2">
                   <span className="flex items-center justify-center space-x-2">
                     <span className="h-px  mt-2 bg-gray-400 w-1/2"></span>
@@ -117,15 +121,15 @@ function LoginComponent() {
                     <span className="h-px  mt-2 bg-gray-400 w-1/2"></span>
                   </span>
                   <div className="pt-2 my-2 text-center lg:mb-3">
-                    <button
-                      id="btn-submit"
-                      className=" px-6 py-4 text-2xl pb-6 mb-6  font-bold text-white transition-colors duration-300 bg-[#42b72a] rounded-lg shadow"
+                    <p
+                     
+                      className="mt-4 mb-12"
                     >
-                      <Link to={"/auth/register"}>Créer nouveau compte</Link>
-                    </button>
+                      <Link  id="btn-go-register" className=" px-6 py-4 text-2xl pb-6 mb-6  font-bold text-white transition-colors duration-300 bg-[#42b72a] rounded-lg shadow cursor-pointer" to={"/auth/register"}>Créer nouveau compte</Link>
+                    </p>
                   </div>
                 </div>
-              </form>
+                </div>
             </div>
           </main>
         </section>
