@@ -3,6 +3,7 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 import Register from "../pages/Auth/RegisterPage";
 import Home from "../pages/home/HomePage";
 import Login from "../pages/Auth/LoginPage";
+import User from "../pages/user/UserPage";
 
 export const routeur = createBrowserRouter([
   // Redirection par défaut vers la page de login
@@ -24,6 +25,10 @@ export const routeur = createBrowserRouter([
   {
     path: "home",
     element: <Home />,
+  },
+  {
+    path: "user",
+    element: <User />,
   },
 
   // Gestion des routes inconnues
