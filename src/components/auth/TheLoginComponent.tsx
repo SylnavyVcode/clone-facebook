@@ -1,4 +1,3 @@
-import React from "react";
 import facebook from "../../assets/facebook-icone.svg";
 import Footer from "../utils/FooterComponent";
 import { Link } from "react-router-dom";
@@ -47,7 +46,7 @@ function LoginComponent() {
           <main className="justify-center m-4 p-4">
             {/* <!-- Partie Formulaires comprenant tout type de formulaires  --> */}
             <h1 className="text-blue-500 text-[40px] mt-4 text-center flex justify-center items-center font-semibold w-full">
-              <img className="w-[26vh]" src={facebook} alt="logo de facebook" />
+              <img className="w-[34vh]" src={facebook} alt="logo de facebook" />
             </h1>
             <div
               className="px-4 flex justify-center py-3  w-[396px] items-center border border-[#dddfe2] bg-white rounded-xl mb-20"
@@ -57,79 +56,79 @@ function LoginComponent() {
               }}
             >
               <div className="w-full">
+                <form
+                  role="form"
+                  className=" w-full "
+                  onSubmit={handleSubmit(onSubmit)}
+                >
+                  <p className=" text-center text-xl py-2 ">
+                    Se connecter à facebook
+                  </p>
+                  {/* <!-- Partie email  --> */}
+                  <div className="lg:mb-3">
+                    <Input
+                      id="input_email"
+                      type="text"
+                      placeholder="Adresse e-mail ou numéro de tél."
+                      statusLabel={false}
+                      {...register("email")}
+                      errorMessage={errors.email?.message}
+                      className={
+                        "w-full p-3 my-3 transition text-[17px] duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black focus:border-black rounded-lg"
+                      }
+                    ></Input>
+                  </div>
 
-              
-              <form
-                role="form"
-                className=" w-full px-4"
-                onSubmit={handleSubmit(onSubmit)}
-              >
-                <p className=" text-center text-3xl py-2 mt-4">
-                  se connecter à facebook
-                </p>
-                {/* <!-- Partie email  --> */}
-                <div className="lg:mb-3">
-                  <Input
-                    id="input_email"
-                    type="text"
-                    placeholder="Adresse e-mail ou numéro de tél."
-                    statusLabel={false}
-                    {...register("email")}
-                    errorMessage={errors.email?.message}
-                    className={
-                      "w-full p-[14px] my-4 mt-6 transition text-2xl duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded-lg"
-                    }
-                  ></Input>
-                </div>
-
-                {/* <!-- Partie Password  --> */}
-                <div className="lg:mb-3">
-                  <Input
-                    id="input_password"
-                    type="password"
-                    placeholder="Mot de passe"
-                    statusLabel={false}
-                    {...register("password")}
-                    errorMessage={errors.password?.message}
-                    className={
-                      "w-full px-3 py-4 my-2 transition text-2xl duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded-lg"
-                    }
-                  ></Input>
-                </div>
-                <div className="pt-2 my-2">
-                  <button
-                    id="btn-submit-login"
-                    className="bg-[#1877f2] text-white rounded-lg w-full text-center text-3xl shadow-sm px-4 py-4 font-semibold"
-                  >
-                    Se connecter
-                  </button>
-                </div>
-                <div className="flex items-center justify-center">
-                  <a
-                    id="password-forgot"
-                    className="text-xl text-[#1877f2]  cursor-pointer focus:text-[#1877f2] hover:underline  pointer my-4 text-center"
-                  >
-                    Informations de compte oubliées ?
-                  </a>
-                </div>
-
-              </form>
-                <div className="flex text-lg flex-col space-y-2">
+                  {/* <!-- Partie Password  --> */}
+                  <div className="lg:mb-3">
+                    <Input
+                      id="input_password"
+                      type="password"
+                      placeholder="Mot de passe"
+                      statusLabel={false}
+                      {...register("password")}
+                      errorMessage={errors.password?.message}
+                      className={
+                        "w-full p-3 my-3 transition text-[17px] duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black focus:border-black rounded-lg"
+                      }
+                    ></Input>
+                  </div>
+                  <div className="pt-2 my-2">
+                    <button
+                      id="btn-submit-login"
+                      className="bg-[#1877f2] text-white rounded-lg w-full text-center text-[20px] shadow-sm px-4 py-3 font-semibold"
+                    >
+                      Se connecter
+                    </button>
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <a
+                      id="password-forgot"
+                      className="text-sm text-[#1877f2]  cursor-pointer focus:text-[#1877f2] hover:underline  pointer mt-2 text-center"
+                    >
+                      Informations de compte oubliées ?
+                    </a>
+                  </div>
+                </form>
+                <div className="flex text-sm flex-col space-y-2">
                   <span className="flex items-center justify-center space-x-2">
-                    <span className="h-px  mt-2 bg-gray-400 w-1/2"></span>
-                    <span className=" font-normal text-gray-500 mt-2">ou</span>
-                    <span className="h-px  mt-2 bg-gray-400 w-1/2"></span>
+                    <span className="h-px mt-2 bg-gray-300 w-1/2"></span>
+                    <span className=" font-normal text-gray-400 mt-2">ou</span>
+                    <span className="h-px mt-2 bg-gray-300 w-1/2"></span>
                   </span>
                   <div className="pt-2 my-2 text-center lg:mb-3">
-                    <p
-                     
-                      className="mt-4 mb-12"
-                    >
-                      <Link  id="btn-go-register" className=" px-6 py-4 text-2xl pb-6 mb-6  font-bold text-white transition-colors duration-300 bg-[#42b72a] rounded-lg shadow cursor-pointer" to={"/auth/register"}>Créer nouveau compte</Link>
+                    <p className="mt-2 mb-6">
+                      <Link
+                        id="btn-go-register"
+                        className="px-6 py-[14px] text-[17px] mb-2 font-bold text-white transition-colors duration-300 bg-[#42b72a] rounded-lg shadow cursor-pointer"
+                        to={"/auth/register"}
+                      >
+                        Créer nouveau compte
+                      </Link>
                     </p>
                   </div>
                 </div>
-                </div>
+              </div>
             </div>
           </main>
         </section>
