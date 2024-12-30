@@ -1,5 +1,11 @@
+import HomeComponent from "../../components/home/TheHomeComponent";
+
 const Home = () => {
-  return <h1 className="text-2xl">Bienvenue sur la page d'accueil !</h1>;
+  return (
+    <>
+      <HomeComponent></HomeComponent>
+    </>
+  );
 };
 
 export default Home;
