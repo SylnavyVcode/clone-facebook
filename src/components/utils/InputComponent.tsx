@@ -34,7 +34,7 @@ const Input = React.forwardRef<
       label,
       type = "text",
       placeholder,
-      options = [],
+      options,
       statusLabel = false,
       errorMessage,
       className = "",
@@ -64,7 +64,7 @@ const Input = React.forwardRef<
                 type={type}
                 placeholder={placeholder}
                 ref={ref as React.Ref<HTMLInputElement>}
-                className="w-[90%] form-control  outline-none is-invalid"
+                className="w-[90%] form-control  outline-none  is-invalid"
                 {...rest}
               />
               {errorMessage && (
@@ -106,7 +106,7 @@ const Input = React.forwardRef<
             {...rest}
           >
             {/* <option value="">{selectMessage}</option> */}
-            {options.map((option) => (
+            {options.map((option: any) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
@@ -117,7 +117,7 @@ const Input = React.forwardRef<
         {type === "radio" && (
           <div className=" w-full font-medium text-gray-900 bg-white flex justify-center items-center py-2  gap-4">
             {type === "radio" &&
-              options.map((option) => (
+              options.map((option: any) => (
                 <div
                   key={option.value}
                   className={`${
@@ -130,7 +130,7 @@ const Input = React.forwardRef<
                    focus:border-blue-600 rounded-lg py-1`
                   }`}
                 >
-                  <div className="flex  text-xl items-center px-2">
+                  <div className="flex  text-lg items-center px-2">
                     <label
                       key={option.value}
                       htmlFor={`select-${option.value}`}
