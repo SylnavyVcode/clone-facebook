@@ -8,7 +8,7 @@ const ThePostCreate = () => {
           <div className="flex items-center py-3 border-b w-full">
             <a href="" className="mr-2">
               <img
-                src="#"
+                src="https://picsum.photos/id/147/300/300"
                 alt="alt"
                 className="rounded-full ml-1 min-w-[36px] max-w-[36px]"
               />

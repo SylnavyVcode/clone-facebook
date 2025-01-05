@@ -6,7 +6,7 @@ const TheFluxElements = () => {
           <button className="mr-2">
             <img
               className="rounded-full min-w-[42px] maw-h-[42px]"
-              src=""
+              src="https://picsum.photos/id/147/300/300"
               alt="alt"
             />
           </button>
@@ -105,7 +105,7 @@ const TheFluxElements = () => {
           <button className="mr-2">
             <img
               className="rounded-full min-w-[42px] maw-h-[42px]"
-              src=""
+              src="https://picsum.photos/id/147/300/300"
               alt="alt"
             />
           </button>
@@ -204,7 +204,7 @@ const TheFluxElements = () => {
           <button className="mr-2">
             <img
               className="rounded-full min-w-[42px] maw-h-[42px]"
-              src=""
+              src="https://picsum.photos/id/147/300/300"
               alt="alt"
             />
           </button>
