@@ -1,4 +1,6 @@
+import ThePostCreate from "../home/create_post/ThePostComponent";
 import TheNavBar from "../home/navbar/TheNavbarComponent";
+
 
 const UserComponent = () => {
   return (
@@ -7,7 +9,7 @@ const UserComponent = () => {
       <div className="w-full min-h-[100vh] pb-20 bg-[#F1F2F5]">
         <div className="w-full bg-white">
           <div className="max-w-[1100px] pt-[56px] mx-auto pb-1">
-            <img src="#" alt="alt" className="rounded-b-xl" />
+            <img src="https://picsum.photos/id/147/300/300" alt="alt" className="rounded-b-xl" />
             <div
               id="fb_infos_profil"
               className="flex md:flex-row flex-col items-center justify-between px-4"
@@ -15,7 +17,7 @@ const UserComponent = () => {
               <div className="flex md:flex-row flex-col gap-4 md:-mt-6 -mt-16 items-center ">
                 <div className="relative">
                   <img
-                    src="#"
+                    src="https://picsum.photos/id/147/300/300"
                     alt="alt"
                     className="rounded-full w-[165px] border-white border-4"
                   />
@@ -32,27 +34,27 @@ const UserComponent = () => {
                   </div>
                   <div className="flex md:justify-start justify-center md:-ml-1">
                     <img
-                      src="#"
+                      src="https://picsum.photos/id/147/300/300"
                       alt="img"
                       className="rounded-full -ml-1 z-10 w-[40px]  h-[40px] border-white border-2"
                     />
                     <img
-                      src="#"
+                      src="https://picsum.photos/id/147/300/300"
                       alt="img"
                       className="rounded-full -ml-3 z-9 w-[40px]  h-[40px] border-white border-2"
                     />
                     <img
-                      src="#"
+                      src="https://picsum.photos/id/147/300/300"
                       alt="img"
                       className="rounded-full -ml-3 z-8 w-[40px]  h-[40px] border-white border-2"
                     />
                     <img
-                      src="#"
+                      src="https://picsum.photos/id/147/300/300"
                       alt="img"
                       className="rounded-full -ml-3 z-7 w-[40px]  h-[40px] border-white border-2"
                     />
                     <img
-                      src="#"
+                      src="https://picsum.photos/id/147/300/300"
                       alt="img"
                       className="rounded-full -ml-3 z-6 w-[40px]  h-[40px] border-white border-2"
                     />
@@ -94,7 +96,84 @@ const UserComponent = () => {
           </div>
         </div>
         <div className="flex-cols md:flex w-full justify-between h-[calc(100%-56px)] md:px-0 px-2 mx-auto">
-          <div id="fb_section_aside_left" className=""></div>
+          <div
+            id="fb_section_aside_left"
+            className="w-full md:w-5/12 mt-4 mr-4"
+          >
+            <div className="bg-white p-3 rounded-lg shadow-lg">
+              <div className="font-extrabld pb-2 text-xl">Intro</div>
+              <div className="pb-5">
+                <button className="w-full bg-gray-200 hover:bg-gray-300 rounded-lg p-2 font-bold">
+                  Add bio
+                </button>
+              </div>
+              <div className="pb-5">
+                <button className="w-full bg-gray-200 hover:bg-gray-300 rounded-lg p-2 font-bold">
+                  Edit details
+                </button>
+              </div>
+              <div className="pb-5">
+                <button className="w-full bg-gray-200 hover:bg-gray-300 rounded-lg p-2 font-bold">
+                  Add hobbies
+                </button>
+              </div>
+              <div className="pb-5">
+                <button className="w-full bg-gray-200 hover:bg-gray-300 rounded-lg p-2 font-bold">
+                  Add feature
+                </button>
+              </div>
+            </div>
+            <div className="bg-white p-3 mt-4 rounded-lg shadow-lg">
+              <div className="font-extrabld pb-2 text-xl">Photos</div>
+              <div className="flex flex-wrap items-center justify-start w-full">
+                <span className="w-1/3">
+                  <img
+                    src="https://picsum.photos/id/78/300/300"
+                    alt=""
+                    className="aspect-square object-cover p-1 rounded-lg cursor-pointer"
+                  />
+                  <img
+                    src="https://picsum.photos/id/78/300/300"
+                    alt=""
+                    className="aspect-square object-cover p-1 rounded-lg cursor-pointer"
+                  />
+                  <img
+                    src="https://picsum.photos/id/78/300/300"
+                    alt=""
+                    className="aspect-square object-cover p-1 rounded-lg cursor-pointer"
+                  />
+                  <img
+                    src="https://picsum.photos/id/78/300/300"
+                    alt=""
+                    className="aspect-square object-cover p-1 rounded-lg cursor-pointer"
+                  />
+                  <img
+                    src="https://picsum.photos/id/78/300/300"
+                    alt=""
+                    className="aspect-square object-cover p-1 rounded-lg cursor-pointer"
+                  />
+                  <img
+                    src="https://picsum.photos/id/78/300/300"
+                    alt=""
+                    className="aspect-square object-cover p-1 rounded-lg cursor-pointer"
+                  />
+                  <img
+                    src="https://picsum.photos/id/78/300/300"
+                    alt=""
+                    className="aspect-square object-cover p-1 rounded-lg cursor-pointer"
+                  />
+                  <img
+                    src="https://picsum.photos/id/78/300/300"
+                    alt=""
+                    className="aspect-square object-cover p-1 rounded-lg cursor-pointer"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+          <div id="fb_posts_section" className="w-full md:w-7/12 overflow-auto">
+          <ThePostCreate></ThePostCreate>
+          </div>
         </div>
       </div>
     </>
