@@ -30,13 +30,13 @@ Avant de commencer, assurez-vous d'avoir installé les outils suivants sur votre
 1. Clonez le repository sur votre machine locale :
 
 ```bash
-git clone https://github.com/votre-utilisateur/facebook-clone-frontend.git
+git clone [https://github.com/votre-utilisateur/facebook-clone-frontend.git](https://github.com/SylnavyVcode/clone-facebook.git)
 ```
 
 2. Accédez au dossier du projet :
 
 ```bash
-cd facebook-clone-frontend
+cd clone-facebook
 ```
 
 3. Installez les dépendances :
@@ -53,7 +53,7 @@ Pour démarrer le serveur de développement, exécutez la commande suivante :
 npm run dev
 ```
 
-Cela ouvrira l'application dans votre navigateur à l'adresse `http://localhost:3000`.
+Cela ouvrira l'application dans votre navigateur à l'adresse `http://localhost:5173`.
 
 ## Structure du projet
 
