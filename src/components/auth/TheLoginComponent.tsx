@@ -9,6 +9,8 @@ import Input from "../utils/input";
 import ErrorInput from "../utils/errorInput";
 import ButtonElement from "../utils/button";
 import FooterForm from "../utils/footerForm";
+import { Auth } from "../../services/auth/auth";
+import { useNavigate } from "react-router-dom";
 
 interface FormData {
   email: string;
@@ -32,9 +34,17 @@ function LoginComponent() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({ resolver: yupResolver(schema) });
+  const navigate = useNavigate(); // Hook pour la navigation
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log("Données du formulaire : ", data);
+    const response = await Auth.login(data);
+    if (response && response.access_token) {
+      localStorage.setItem("token", response.access_token);
+      localStorage.setItem("from", "");
+      navigate("/home");
+    }
+    console.log(">>>>>>>>>", response);
   };
 
   return (

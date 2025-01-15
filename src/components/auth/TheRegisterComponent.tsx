@@ -15,18 +15,18 @@ import Input from "../utils/input";
 import HeaderRegister from "../utils/headerRegister";
 import ButtonElement from "../utils/button";
 import FooterForm from "../utils/footerForm";
-
+import { Auth } from "../../services/auth/auth";
 
 // Étape 1 : Définir les types des données
 interface FormData {
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   email: string;
   password: string;
   gender: string;
   gender_custom_select?: string;
   gender_custom?: string;
-  birthday: {
+  anniversaire: {
     day: number;
     month: number;
     year: number;
@@ -35,8 +35,8 @@ interface FormData {
 
 // Étape 2 : Définir les règles de validation
 const schema = yup.object({
-  firstName: yup.string().required("Saisissez votre prénom"),
-  lastName: yup.string().required("Saisissez votre nom de famille"),
+  firstname: yup.string().required("Saisissez votre prénom"),
+  lastname: yup.string().required("Saisissez votre nom de famille"),
   email: yup
     .string()
     .email("Saisissez un email correct")
@@ -48,7 +48,7 @@ const schema = yup.object({
     .matches(/[0-9]/, "Le mot de passe doit contenir un chiffre")
     .required("Mot de passe obligatoire"),
   gender: yup.string().required("Veuillez sélectionner votre genre"),
-  birthday: yup.object({
+  anniversaire: yup.object({
     day: yup.number().min(1).max(31).required("Jour obligatoire"),
     month: yup.number().min(0).max(11).required("Mois obligatoire"),
     year: yup
@@ -74,8 +74,30 @@ function RegisterComponent() {
     setShowCustomGender(value === "custom");
   };
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log("Données du formulaire : ", data);
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    const date = new Date(
+      data.anniversaire.year,
+      data.anniversaire.month,
+      data.anniversaire.day
+    );
+
+    const dataSend = {
+      email: data.email,
+      firstname: data.firstname,
+      lastname: data.lastname,
+      telephone: "064716613",
+      genre: data.gender,
+      anniversaire: date,
+      profilePic: "",
+      profilCoverPic: "",
+      type_account: "PUBLIC",
+    };
+
+    const register = await Auth.createAccount(dataSend);
+    if (register) {
+      
+    }
+    console.log("Données du formulaire engéristré : ", register);
   };
 
   return (
@@ -104,32 +126,32 @@ function RegisterComponent() {
               <div className=" flex items-start justify-between gap-3 w-full my-3">
                 <div className="w-full">
                   <Input
-                    id="input_firstName"
+                    id="input_firstname"
                     placeholder="Prénom"
-                    {...register("firstName")}
-                    errorMessage={errors.firstName?.message}
+                    {...register("firstname")}
+                    errorMessage={errors.firstname?.message}
                     className={
                       "w-full p-2  transition text-[17px] duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded"
                     }
                   ></Input>
                   <ErrorInput
-                    id="input_firstName_error"
-                    message={errors.firstName?.message}
+                    id="input_firstname_error"
+                    message={errors.firstname?.message}
                   ></ErrorInput>
                 </div>
                 <div className="w-full">
                   <Input
-                    id="input_lastName"
+                    id="input_lastname"
                     placeholder="Nom de famille"
-                    {...register("lastName")}
-                    errorMessage={errors.lastName?.message}
+                    {...register("lastname")}
+                    errorMessage={errors.lastname?.message}
                     className={
                       "w-full p-2  transition text-[17px] duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded"
                     }
                   ></Input>
                   <ErrorInput
-                    id="input_lastName_error"
-                    message={errors.lastName?.message}
+                    id="input_lastname_error"
+                    message={errors.lastname?.message}
                   ></ErrorInput>
                 </div>
               </div>
@@ -140,19 +162,19 @@ function RegisterComponent() {
                 <div className=" flex items-center justify-center gap-3">
                   <InputSelect
                     id="input_date_day"
-                    {...register("birthday.day")}
+                    {...register("anniversaire.day")}
                     options={[...Array(31)].map((_, i) => ({
                       label: String(i + 1),
                       value: i + 1,
                     }))}
-                    errorMessage={errors.birthday?.day?.message}
+                    errorMessage={errors.anniversaire?.day?.message}
                     className={
                       "w-full px-2 py-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                     }
                   ></InputSelect>
                   <InputSelect
                     id="input_date_month"
-                    {...register("birthday.month")}
+                    {...register("anniversaire.month")}
                     options={[
                       { label: "Janvier", value: 0 },
                       { label: "Février", value: 1 },
@@ -168,19 +190,19 @@ function RegisterComponent() {
                       { label: "Décembre", value: 11 },
                       // Ajouter les autres mois
                     ]}
-                    errorMessage={errors.birthday?.month?.message}
+                    errorMessage={errors.anniversaire?.month?.message}
                     className={
                       "w-full px-2 py-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                     }
                   ></InputSelect>
                   <InputSelect
                     id="input_date_year"
-                    {...register("birthday.year")}
+                    {...register("anniversaire.year")}
                     options={Array.from({ length: 100 }, (_, i) => {
                       const year = new Date().getFullYear() - i;
                       return { label: String(year), value: year };
                     })}
-                    errorMessage={errors.birthday?.day?.message}
+                    errorMessage={errors.anniversaire?.day?.message}
                     className={
                       "w-full px-2 py-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                     }
@@ -221,15 +243,15 @@ function RegisterComponent() {
                     errorMessage={errors.gender_custom_select?.message}
                     options={[
                       {
-                        label: "She : which her a happy birthday!",
+                        label: "She : which her a happy anniversaire!",
                         value: "she",
                       },
                       {
-                        label: "He : which him a happy birthday!",
+                        label: "He : which him a happy anniversaire!",
                         value: "he",
                       },
                       {
-                        label: "They: which them a happy birthday!",
+                        label: "They: which them a happy anniversaire!",
                         value: "they",
                       },
                     ]}
