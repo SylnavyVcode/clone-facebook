@@ -4,7 +4,7 @@ import { config } from "../config";
 
 export class Auth {
   static async createAccount(accountData: any) {
-    console.log(accountData);
+    console.log(">>>>>>ACCOUNT>>>>>", accountData);
 
     try {
       const response = await axios.post(
@@ -16,6 +16,8 @@ export class Auth {
           },
         }
       );
+      console.log(response);
+
       return response.data;
     } catch (error) {
       console.error("Erreur lors de la création du compte :", error);
