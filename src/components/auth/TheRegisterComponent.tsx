@@ -16,6 +16,7 @@ import HeaderRegister from "../utils/headerRegister";
 import ButtonElement from "../utils/button";
 import FooterForm from "../utils/footerForm";
 import { Auth } from "../../services/auth/auth";
+import { useNavigate } from "react-router-dom";
 
 // Étape 1 : Définir les types des données
 interface FormData {
@@ -73,31 +74,33 @@ function RegisterComponent() {
     const value = event.target.value;
     setShowCustomGender(value === "custom");
   };
-
+  const navigate = useNavigate();
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    const date = new Date(
-      data.anniversaire.year,
-      data.anniversaire.month,
-      data.anniversaire.day
-    );
+    const date =
+      data.anniversaire.day.toString() +
+      "-" +
+      (data.anniversaire.month + 1).toString() +
+      "-" +
+      data.anniversaire.year.toString();
 
     const dataSend = {
-      email: data.email,
       firstname: data.firstname,
       lastname: data.lastname,
+      email: data.email,
       telephone: "064716613",
       genre: data.gender,
-      anniversaire: date,
+      anniversaire: date.toString(),
       profilePic: "",
       profilCoverPic: "",
-      type_account: "PUBLIC",
+      password: data.password,
     };
 
     const register = await Auth.createAccount(dataSend);
-    if (register) {
-      
+    if (register && register.access_token) {
+      localStorage.setItem("token", register.access_token);
+      localStorage.setItem("from", "");
+      navigate("/home");
     }
-    console.log("Données du formulaire engéristré : ", register);
   };
 
   return (
