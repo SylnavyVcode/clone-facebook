@@ -1,4 +1,9 @@
-// import React from "react";
+/**
+ * Created by Sylnavy Valmy MABIKA
+ * Auth Class
+ */
+
+
 import axios from "axios";
 import { config } from "../config";
 
