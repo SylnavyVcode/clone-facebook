@@ -35,7 +35,10 @@ const ThePostCreate = () => {
                 Your story
               </span>
               <div className="w-10 h-10 rounded-full overflow-hidden absolute top-2 left-2 border-4 border-blue-500">
-                <img src="src/assets/images/tuat.jpg" alt="Profile picture"></img>
+                <img
+                  src="src/assets/images/tuat.jpg"
+                  alt="Profile picture"
+                ></img>
               </div>
             </div>
           </div>
@@ -51,7 +54,10 @@ const ThePostCreate = () => {
                 Lorem
               </span>
               <div className="w-10 h-10 rounded-full overflow-hidden absolute top-2 left-2 border-4 border-blue-500">
-                <img src="src/assets/images/avt-7.jpg" alt="Profile picture"></img>
+                <img
+                  src="src/assets/images/avt-7.jpg"
+                  alt="Profile picture"
+                ></img>
               </div>
             </div>
           </div>
@@ -64,10 +70,13 @@ const ThePostCreate = () => {
               ></img>
               <div className="w-full h-full bg-black absolute top-0 left-0 bg-opacity-10"></div>
               <span className="absolute bottom-0 left-2 pb-2 font-semibold text-white">
-                John Doe
+                Valmy M.
               </span>
               <div className="w-10 h-10 rounded-full overflow-hidden absolute top-2 left-2 border-4 border-blue-500">
-                <img src="src/assets/images/avt-6.png" alt="Profile picture"></img>
+                <img
+                  src="src/assets/images/avt-6.png"
+                  alt="Profile picture"
+                ></img>
               </div>
             </div>
           </div>
@@ -80,10 +89,13 @@ const ThePostCreate = () => {
               ></img>
               <div className="w-full h-full bg-black absolute top-0 left-0 bg-opacity-10"></div>
               <span className="absolute bottom-0 left-2 pb-2 font-semibold text-white">
-                John Doe
+                Valmy M.
               </span>
               <div className="w-10 h-10 rounded-full overflow-hidden absolute top-2 left-2 border-4 border-blue-500">
-                <img src="src/assets/images/avt-6.png" alt="Profile picture"></img>
+                <img
+                  src="src/assets/images/avt-6.png"
+                  alt="Profile picture"
+                ></img>
               </div>
             </div>
           </div>
@@ -99,7 +111,10 @@ const ThePostCreate = () => {
                 Valmy MABIKA
               </span>
               <div className="w-10 h-10 rounded-full overflow-hidden absolute top-2 left-2 border-4 border-blue-500">
-                <img src="src/assets/images/avt-5.jpg" alt="Profile picture"></img>
+                <img
+                  src="src/assets/images/avt-5.jpg"
+                  alt="Profile picture"
+                ></img>
               </div>
             </div>
           </div>
@@ -249,7 +264,7 @@ const ThePostCreate = () => {
                   <span className="bg-green-500 w-3 h-3 rounded-full absolute right-0 top-3/4 border-white border-2"></span>
                 </div>
                 <div>
-                  <div className="font-semibold">John Doe</div>
+                  <div className="font-semibold">Valmy M.</div>
                   <span className="text-sm text-gray-500">38m</span>
                 </div>
               </div>
@@ -331,7 +346,7 @@ const ThePostCreate = () => {
                 ></img>
                 <div>
                   <div className="bg-gray-100 dark:bg-dark-third p-2 rounded-2xl text-sm">
-                    <span className="font-semibold block">John Doe</span>
+                    <span className="font-semibold block">Valmy M.</span>
                     <span>
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     </span>
@@ -352,7 +367,7 @@ const ThePostCreate = () => {
                     ></img>
                     <div>
                       <div className="bg-gray-100 dark:bg-dark-third p-2 rounded-2xl text-sm">
-                        <span className="font-semibold block">John Doe</span>
+                        <span className="font-semibold block">Valmy M.</span>
                         <span>
                           Lorem ipsum dolor sit amet consectetur adipisicing
                           elit.
@@ -384,7 +399,7 @@ const ThePostCreate = () => {
                 ></img>
                 <div>
                   <div className="bg-gray-100 dark:bg-dark-third p-2 rounded-2xl text-sm">
-                    <span className="font-semibold block">John Doe</span>
+                    <span className="font-semibold block">Valmy M.</span>
                     <span>
                       Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                       In voluptate ipsa animi corrupti unde, voluptatibus
@@ -409,7 +424,7 @@ const ThePostCreate = () => {
                     ></img>
                     <div>
                       <div className="bg-gray-100 dark:bg-dark-third p-2 rounded-2xl text-sm">
-                        <span className="font-semibold block">John Doe</span>
+                        <span className="font-semibold block">Valmy M.</span>
                         <span>
                           Lorem ipsum dolor sit amet consectetur adipisicing
                           elit.
@@ -484,7 +499,7 @@ const ThePostCreate = () => {
                   <span className="bg-green-500 w-3 h-3 rounded-full absolute right-0 top-3/4 border-white border-2"></span>
                 </div>
                 <div>
-                  <div className="font-semibold">John Doe</div>
+                  <div className="font-semibold">Valmy M.</div>
                   <span className="text-sm text-gray-500">38m</span>
                 </div>
               </div>
@@ -506,10 +521,22 @@ const ThePostCreate = () => {
             {/* <!-- POST IMAGE --> */}
             <div className="py-2">
               <div className="grid grid-cols-2 gap-1">
-                <img src="src/assets/images/post-2 (1).jpg" alt="Post image"></img>
-                <img src="src/assets/images/post-2 (2).jpg" alt="Post image"></img>
-                <img src="src/assets/images/post-2 (3).jpg" alt="Post image"></img>
-                <img src="src/assets/images/post-2 (4).jpg" alt="Post image"></img>
+                <img
+                  src="src/assets/images/post-2 (1).jpg"
+                  alt="Post image"
+                ></img>
+                <img
+                  src="src/assets/images/post-2 (2).jpg"
+                  alt="Post image"
+                ></img>
+                <img
+                  src="src/assets/images/post-2 (3).jpg"
+                  alt="Post image"
+                ></img>
+                <img
+                  src="src/assets/images/post-2 (4).jpg"
+                  alt="Post image"
+                ></img>
               </div>
             </div>
             {/* <!-- END POST IMAGE --> */}
@@ -571,7 +598,7 @@ const ThePostCreate = () => {
                 ></img>
                 <div>
                   <div className="bg-gray-100 dark:bg-dark-third p-2 rounded-2xl text-sm">
-                    <span className="font-semibold block">John Doe</span>
+                    <span className="font-semibold block">Valmy M.</span>
                     <span>
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     </span>
@@ -592,7 +619,7 @@ const ThePostCreate = () => {
                     ></img>
                     <div>
                       <div className="bg-gray-100 dark:bg-dark-third p-2 rounded-2xl text-sm">
-                        <span className="font-semibold block">John Doe</span>
+                        <span className="font-semibold block">Valmy M.</span>
                         <span>
                           Lorem ipsum dolor sit amet consectetur adipisicing
                           elit.
@@ -624,7 +651,7 @@ const ThePostCreate = () => {
                 ></img>
                 <div>
                   <div className="bg-gray-100 dark:bg-dark-third p-2 rounded-2xl text-sm">
-                    <span className="font-semibold block">John Doe</span>
+                    <span className="font-semibold block">Valmy M.</span>
                     <span>
                       Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                       In voluptate ipsa animi corrupti unde, voluptatibus
@@ -649,7 +676,7 @@ const ThePostCreate = () => {
                     ></img>
                     <div>
                       <div className="bg-gray-100 dark:bg-dark-third p-2 rounded-2xl text-sm">
-                        <span className="font-semibold block">John Doe</span>
+                        <span className="font-semibold block">Valmy M.</span>
                         <span>
                           Lorem ipsum dolor sit amet consectetur adipisicing
                           elit.

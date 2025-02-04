@@ -4,6 +4,9 @@ import Register from "../pages/Auth/RegisterPage";
 import Home from "../pages/home/HomePage";
 import Login from "../pages/Auth/LoginPage";
 import User from "../pages/user/UserPage";
+import Reset from "../pages/Auth/ResetPage";
+import ResetPassword from "../pages/Auth/ResetPasswordPage";
+import ValidatePassword from "../pages/Auth/ValidatePage";
 
 export const routeur = createBrowserRouter([
   // Redirection par défaut vers la page de login
@@ -19,6 +22,9 @@ export const routeur = createBrowserRouter([
       { index: true, element: <Navigate to="login" replace /> },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
+      { path: "reset", element: <Reset /> },
+      { path: "reset-password", element: <ResetPassword /> },
+      { path: "validate", element: <ValidatePassword /> },
     ],
   },
 

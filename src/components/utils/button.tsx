@@ -14,7 +14,8 @@ const ButtonElement = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ id="", type="submit", className, title }) => {
     return (
       <>
-        <div className="pt-2 my-2 flex justify-center">
+        {/* <div className="pt-2 my-2 flex justify-center"> */}
+        <div className=" flex justify-center">
           <button
             id={id}
             type={type}

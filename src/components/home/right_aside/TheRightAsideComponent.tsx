@@ -92,7 +92,7 @@ const TheRightAside = () => {
                   <span className="bg-green-500 w-2 h-2 rounded-full absolute right-0 top-3/4 border-gray-500 border"></span>
                 </div>
                 <div>
-                  <span className="font-semibold">John Doe</span>
+                  <span className="font-semibold">Valmy M.</span>
                 </div>
               </div>
             </li>
@@ -137,7 +137,7 @@ const TheRightAside = () => {
                   <span className="bg-green-500 w-2 h-2 rounded-full absolute right-0 top-3/4 border-gray-500 border"></span>
                 </div>
                 <div>
-                  <span className="font-semibold">John Doe</span>
+                  <span className="font-semibold">Valmy M.</span>
                 </div>
               </div>
             </li>
@@ -182,7 +182,7 @@ const TheRightAside = () => {
                   <span className="bg-green-500 w-2 h-2 rounded-full absolute right-0 top-3/4 border-gray-500 border"></span>
                 </div>
                 <div>
-                  <span className="font-semibold">John Doe</span>
+                  <span className="font-semibold">Valmy M.</span>
                 </div>
               </div>
             </li>
@@ -227,7 +227,7 @@ const TheRightAside = () => {
                   <span className="bg-green-500 w-2 h-2 rounded-full absolute right-0 top-3/4 border-gray-500 border"></span>
                 </div>
                 <div>
-                  <span className="font-semibold">John Doe</span>
+                  <span className="font-semibold">Valmy M.</span>
                 </div>
               </div>
             </li>
