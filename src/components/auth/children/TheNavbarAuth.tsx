@@ -62,17 +62,17 @@ function TheNavbarAuthComponent() {
             <div className="w-full">
               <form
                 role="form"
-                className="flex justify-between text-sm items-center w-full "
+                className="flex justify-between text-sm items-center w-full m-1 mx-2"
                 onSubmit={handleSubmit(onSubmit)}
               >
                 <h1 className="text-blue-500 text-center flex justify-start items-center font-semibold  max-md:hidden ">
                   <img
-                    className="w-[20vh]"
+                    className="w-[24vh]"
                     src={facebook}
                     alt="logo de facebook"
                   />
                 </h1>
-                <div className=" flex justify-center items-center gap-x-4 mx-2">
+                <div className=" flex justify-center items-center gap-x-2 mx-2">
                   {/* <!-- Partie email  --> */}
                   <div className="my-1">
                     <Input
@@ -82,7 +82,7 @@ function TheNavbarAuthComponent() {
                       {...register("email")}
                       errorMessage={errors.email?.message}
                       className={
-                        "w-full p-3 transition  duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
+                        "w-full px-3 py-2 transition  duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded-md"
                       }
                     ></Input>
                   </div>
@@ -96,7 +96,7 @@ function TheNavbarAuthComponent() {
                       {...register("password")}
                       errorMessage={errors.password?.message}
                       className={
-                        "w-full p-3 transition  duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
+                        "w-full px-3 py-2 transition  duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded-md"
                       }
                     ></Input>
                   </div>
@@ -105,7 +105,7 @@ function TheNavbarAuthComponent() {
                     id="btn_navbar_login"
                     title="Se connecter"
                     type="submit"
-                    className="bg-[#1877f2] text-white rounded-lg w-full text-center  shadow-sm px-4 py-3 font-semibold"
+                    className="bg-[#1877f2] text-white rounded-md w-full text-center  shadow-sm px-4 py-2 font-semibold"
                   ></ButtonElement>
 
                   <FooterForm

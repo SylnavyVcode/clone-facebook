@@ -44,7 +44,12 @@ const schema = yup.object({
     .required("Saisissez votre Email"),
   password: yup
     .string()
-    .min(6, "Le mot de passe doit contenir au moins 6 caractères")
+    .min(8, "Le mot de passe doit contenir au moins 8 caractères.")
+    .max(16, "Le mot de passe doit contenir au plus 16 caractères.")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
+      "Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial."
+    )
     .matches(/[A-Z]/, "Le mot de passe doit contenir une majuscule")
     .matches(/[0-9]/, "Le mot de passe doit contenir un chiffre")
     .required("Mot de passe obligatoire"),

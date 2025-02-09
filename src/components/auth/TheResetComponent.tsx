@@ -11,7 +11,7 @@ import ButtonElement from "../utils/button";
 import { Auth } from "../../services/auth/auth";
 import { useNavigate } from "react-router-dom";
 import TheNavbarAuthComponent from "./children/TheNavbarAuth";
-
+import FooterForm from "../utils/footerForm";
 
 interface FormData {
   email: string;
@@ -37,24 +37,27 @@ function ResetComponent() {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log("Données du formulaire : ", data);
-    const response = await Auth.login(data);
-    if (response && response.access_token) {
-      localStorage.setItem("token", response.access_token);
-      localStorage.setItem("from", "");
-      navigate("/home");
+    const response = await Auth.reset(data);
+    if (response!.code === 200) {
+      // console.log(">>>>>>>>> response data", response!.data);
+      await navigate("/auth/validate");
     }
-    console.log(">>>>>>>>>", response);
   };
+  // const onGoToLogin = async () => {
+  //   console.log("j'arrive ici");
+
+  //   // navigate("/auth/login");
+  // };
 
   return (
     <>
       {/* <!-- Premiere Section --> */}
-        <TheNavbarAuthComponent></TheNavbarAuthComponent>
+      <TheNavbarAuthComponent></TheNavbarAuthComponent>
       <section className="flex justify-center items-center w-full h-full font-sans bg-[#f2f4f7]">
         {/* <!-- Partie Principale --> */}
         <main className="justify-center m-4 p-4">
           <div
-            className="px-4 flex justify-center py-3  w-[396px] items-center border border-[#dddfe2] bg-white rounded-xl mb-20"
+            className="px-4 flex justify-center py-3  w-[500px] items-center border border-[#dddfe2] bg-white rounded-xl my-12"
             style={{
               boxShadow:
                 "0px 2px 4px rgba(0, 0, 0, 0.1), 0px 8px 16px rgba(0, 0, 0, 0.1)",
@@ -62,16 +65,13 @@ function ResetComponent() {
           >
             <div className="w-full">
               <div>
-                <p className="text-xl py-2 ">
-                  Trouver votre compte
-                </p>
+                <p className="text-xl py-2 ">Trouver votre compte</p>
               </div>
               <form
                 role="form"
                 className=" w-full "
                 onSubmit={handleSubmit(onSubmit)}
               >
-
                 <hr />
                 <div className="w-full ">
                   <p className="py-2">
@@ -90,17 +90,18 @@ function ResetComponent() {
                         "w-full p-3 transition text-[17px] duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
                       }
                     ></Input>
-                  
                   </div>
                 </div>
                 <hr />
                 <div className="flex justify-end items-center gap-4">
-                  <ButtonElement
+                  <FooterForm
                     id="btn_reset_cancel"
                     title="Annuler"
-                    type="submit"
                     className="bg-white hover:bg-slate-200 text-black rounded-lg w-full text-center border my-2 shadow-sm px-4 py-1 font-semibold"
-                  ></ButtonElement>
+                    orElement={false}
+                    to={"/auth/login"}
+                  ></FooterForm>
+
                   <ButtonElement
                     id="btn_reset_search"
                     title="Chercher"
@@ -108,10 +109,7 @@ function ResetComponent() {
                     className="bg-[#1877f2] hover:bg-[#1840f2] text-white rounded-lg w-full text-center my-2 shadow-sm px-4 py-1  font-semibold"
                   ></ButtonElement>
                 </div>
-
-              
               </form>
-       
             </div>
           </div>
         </main>
