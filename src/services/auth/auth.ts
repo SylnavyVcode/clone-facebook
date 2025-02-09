@@ -44,4 +44,50 @@ export class Auth {
       console.error("Erreur lors de la création du compte :", error);
     }
   }
+
+  static async reset(data: any) {
+    console.log(data);
+
+    try {
+      const response = await axios.post(`${config.base_url}/auth/reset`, data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log("response", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erreur lors de la vérification du compte :", error);
+    }
+  }
+  static async resetPassword(data: any) {
+    console.log(data);
+
+    try {
+      const response = await axios.post(`${config.base_url}/auth/reset-password`, data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log("response", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erreur lors de la vérification du compte :", error);
+    }
+  }
+
+  static async validateReset(data: string) {
+    console.log(data);
+  
+    try {
+      const response = await axios.get(`${config.base_url}/auth/validate-reset-password`, {
+        params: { token: data }  // Ajoutez les données dans "params"
+      });
+      console.log("response", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erreur lors de la vérification du compte :", error);
+    }
+  }
+  
 }

@@ -121,7 +121,7 @@ function LoginComponent() {
                   title="Informations de compte oubliées ?"
                   className="text-sm text-[#1877f2]  cursor-pointer focus:text-[#1877f2] hover:underline  pointer mt-2 text-center"
                   orElement={false}
-                  to={"/auth/login"}
+                  to={"/auth/reset"}
                 ></FooterForm>
               </form>
               <FooterForm
