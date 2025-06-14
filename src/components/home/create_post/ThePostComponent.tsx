@@ -3,10 +3,10 @@
 const ThePostCreate = () => {
   return (
     <>
-      <div className="max-w-[540px] pt-32 lg:pt-16 px-2">
+      <div className=" pt-12 lg:pt-8 px-16">
         {/* <!-- STORY --> */}
         <div className="relative flex space-x-2 pt-4">
-          <div className="w-1/4 sm:w-1/6 h-44 rounded-xl shadow overflow-hidden flex flex-col group cursor-pointer">
+          <div className="w-1/4 lg:w-1/6 h-44 rounded-xl shadow overflow-hidden flex flex-col group cursor-pointer">
             <div className="h-3/5 overflow-hidden">
               <img
                 src="src/assets/images/profile.jpg"
@@ -23,7 +23,7 @@ const ThePostCreate = () => {
               </div>
             </div>
           </div>
-          <div className="w-1/4 sm:w-1/6 h-44 rounded-xl overflow-hidden">
+          <div className="w-1/4 lg:w-1/6 h-44 rounded-xl overflow-hidden">
             <div className="relative h-full group cursor-pointer">
               <img
                 src="src/assets/images/story.jpg"
@@ -42,7 +42,7 @@ const ThePostCreate = () => {
               </div>
             </div>
           </div>
-          <div className="w-1/4 sm:w-1/6 h-44 rounded-xl overflow-hidden">
+          <div className="w-1/4 lg:w-1/6 h-44 rounded-xl overflow-hidden">
             <div className="relative h-full group cursor-pointer">
               <img
                 src="src/assets/images/story-1.jpg"
@@ -61,7 +61,7 @@ const ThePostCreate = () => {
               </div>
             </div>
           </div>
-          <div className="w-1/4 sm:w-1/6 h-44 rounded-xl overflow-hidden">
+          <div className="w-1/4 lg:w-1/6 h-44 rounded-xl overflow-hidden">
             <div className="relative h-full group cursor-pointer">
               <img
                 src="src/assets/images/story-2.jpg"
@@ -80,7 +80,7 @@ const ThePostCreate = () => {
               </div>
             </div>
           </div>
-          <div className="hidden sm:inline-block w-1/4 sm:w-1/6 h-44 rounded-xl overflow-hidden">
+          <div className="hidden lg:inline-block w-1/4 lg:w-1/6 h-44 rounded-xl overflow-hidden">
             <div className="relative h-full group cursor-pointer">
               <img
                 src="src/assets/images/story-3.jpg"
@@ -99,7 +99,7 @@ const ThePostCreate = () => {
               </div>
             </div>
           </div>
-          <div className="hidden sm:inline-block w-1/4 sm:w-1/6 h-44 rounded-xl overflow-hidden">
+          <div className="hidden lg:inline-block w-1/4 lg:w-1/6 h-44 rounded-xl overflow-hidden">
             <div className="relative h-full group cursor-pointer">
               <img
                 src="src/assets/images/story-4.jpg"
@@ -118,7 +118,7 @@ const ThePostCreate = () => {
               </div>
             </div>
           </div>
-          <div className="w-12 h-12 rounded-full hidden lg:grid place-items-center text-2xl bg-white absolute -right-6 top-1/2 transform -translate-y-1/2 border border-gray-200 cursor-pointer hover:bg-gray-100 shadow text-gray-500 dark:bg-dark-third dark:border-dark-third dark:text-dark-txt">
+          <div className="w-12 h-12 rounded-full  lg:grid place-items-center text-2xl bg-white absolute -right-6 top-1/2 transform -translate-y-1/2 border border-gray-200 cursor-pointer hover:bg-gray-100 shadow text-gray-500 dark:bg-dark-third dark:border-dark-third dark:text-dark-txt">
             <i className="bx bx-right-arrow-alt"></i>
           </div>
         </div>

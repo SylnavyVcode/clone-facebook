@@ -21,9 +21,7 @@ interface FormData {
 const schema = yup.object({
   new_password: yup
     .string()
-    .min(
-     8, "Le mot de passe doit contenir au moins 8 caractères."
-    )
+    .min(8, "Le mot de passe doit contenir au moins 8 caractères.")
     .max(16, "Le mot de passe doit contenir au plus 16 caractères.")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
@@ -42,10 +40,10 @@ function ResetPasswordComponent() {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log("Données du formulaire : ", data);
-    const response = await Auth.reset(data);
+    const response = await Auth.resetPassword(data);
     if (response && response.code === 200) {
       console.log(">>>>>>>>> response data", response);
-      
+
       // navigate("/home");
     }
     console.log(">>>>>>>>>", response);
@@ -95,7 +93,7 @@ function ResetPasswordComponent() {
             <div className="w-full">
               <div>
                 <p className="text-xl pb-2 mb-1 font-bold">
-                Choisissez votre nouveau mot de passe
+                  Choisissez votre nouveau mot de passe
                 </p>
               </div>
               <form
@@ -110,7 +108,9 @@ function ResetPasswordComponent() {
                 >
                   <div>
                     <p className="py-2">
-                    Create a new password that is at least 6 characters long. A strong password is combination of letters, numbers, and punctuation marks.
+                      Create a new password that is at least 6 characters long.
+                      A strong password is combination of letters, numbers, and
+                      punctuation marks.
                     </p>
                     {/* <!-- Partie new_password  --> */}
                     <div className="my-3">
@@ -124,10 +124,8 @@ function ResetPasswordComponent() {
                           "w-full p-3 transition text-[17px] duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
                         }
                       ></Input>
-                      
                     </div>
                   </div>
-                
                 </div>
                 <hr />
                 <div className="flex justify-end items-center gap-4">

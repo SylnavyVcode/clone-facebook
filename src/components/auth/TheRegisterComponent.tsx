@@ -104,7 +104,7 @@ function RegisterComponent() {
     if (register && register.access_token) {
       localStorage.setItem("token", register.access_token);
       localStorage.setItem("from", "");
-      navigate("/home");
+      navigate("/auth/login");
     }
   };
 
