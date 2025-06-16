@@ -95,4 +95,19 @@ export class Auth {
       console.error("Erreur lors de la vérification du compte :", error);
     }
   }
+
+  static async getUserData(token:string){
+    try {
+      const response = await axios.get(
+        `${config.base_url}/auth/validate-reset-password`,
+        {
+          params: { token: token }, // Ajoutez les données dans "params"
+        }
+      );
+      console.log("response", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erreur lors de la vérification du compte :", error);
+    }
+  }
 }

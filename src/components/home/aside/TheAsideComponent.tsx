@@ -1,7 +1,7 @@
 const TheAside = () => {
   return (
     <>
-      <div className="pt-6 pb-12 min-h-screen hidden md:block xl:block  max-w-[280px] ">
+      <div className="pt-6 pb-12 w-full h-screen hidden md:block xl:block max-w-[280px] overflow-hidden group-hover:overflow-y-auto hover:overflow-y-auto">
         <ul className="text-[14px]">
           <li>
             <a
