@@ -3,13 +3,12 @@
  * Session Class
  */
 import axios from "axios";
-import { config } from "../config";
+import { config } from "../config/config";
 
 export class Session {
   static async getSession() {
-    const session = localStorage.getItem('cookie')
+    const session = localStorage.getItem("cookie");
     console.log(session);
-    
   }
 
   static async login(data: any) {

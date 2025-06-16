@@ -11,6 +11,7 @@ import ButtonElement from "../utils/button";
 import FooterForm from "../utils/footerForm";
 import { Auth } from "../../services/auth/auth";
 import { useNavigate } from "react-router-dom";
+import { Users } from "../../services/user";
 
 interface FormData {
   email: string;
@@ -40,9 +41,15 @@ function LoginComponent() {
     console.log("Données du formulaire : ", data);
     const response = await Auth.login(data);
     if (response && response.access_token) {
+      console.log("response ====>>>> token===", response);
+
       localStorage.setItem("token", response.access_token);
       localStorage.setItem("from", "");
-      navigate("/home");
+      const user = await Users.getUser();
+      console.log(">>>>>>>>user======", user);
+      if (user[0].id.length > 0 && user[0].email) {
+        navigate("/home");
+      }
     }
     console.log(">>>>>>>>>", response);
   };

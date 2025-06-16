@@ -1,7 +1,7 @@
 const TheRightAside = () => {
   return (
     <>
-      <div className="pt-6 min-h-screen hidden md:flex md:justify-end  md:items-end hover:overflow-y-scroll  ">
+      <div className="pt-6  h-screen  hidden md:flex md:justify-end  md:items-end pb-12  xl:block overflow-hidden group-hover:overflow-y-auto hover:overflow-y-auto">
         <div className="h-full">
           <div className="flex justify-between items-center px-4 pt-4">
             <span className="font-semibold text-gray-500 text-md dark:text-dark-txt">
