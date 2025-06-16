@@ -3,7 +3,7 @@
 const ThePostCreate = () => {
   return (
     <>
-      <div className=" pt-12 lg:pt-8 px-16 h-screen overflow-hidden group-hover:overflow-y-auto">
+      <div className=" pt-12 lg:pt-8 px-16 h-screen overflow-y-auto">
         {/* <!-- STORY --> */}
         <div className="relative flex space-x-2 pt-4">
           <div className="w-1/4 lg:w-1/6 h-44 rounded-xl shadow overflow-hidden flex flex-col group cursor-pointer">

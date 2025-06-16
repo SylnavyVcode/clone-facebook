@@ -26,3 +26,32 @@ body {
     transform: rotate(360deg);
   }
 }
+
+/* Scrollbar style comme Facebook */
+.scrollbar-thin-fb::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin-fb::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin-fb::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.scrollbar-thin-fb:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.group .scrollbar-thin-fb::-webkit-scrollbar {
+  width: 0px;
+}
+
+.group:hover .scrollbar-thin-fb::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 20px;
+}

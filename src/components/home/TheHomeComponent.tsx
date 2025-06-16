@@ -29,7 +29,7 @@ const HomeComponent = () => {
           {/* <div className="flex justify-between items-start w-full mx-auto max-w-[1600px] mt-[56px] h-[calc(100%-56px)] px-4"> */}
           <div className="w-full shadow flex  justify-between dark:border-dark-third ">
             {/* <div className="grid grid-rows-3 grid-flow-col w-full mx-auto max-w-[1600px] mt-[56px] h-[calc(100%-56px)] px-4"> */}
-            <div className="w-full md:w-[22%] hidden md:block overflow-auto">
+            <div className="w-full md:w-[22%] hidden  md:flex justify-start overflow-auto">
               <TheAside></TheAside>
             </div>
 
@@ -39,7 +39,7 @@ const HomeComponent = () => {
             >
               <ThePostCreate></ThePostCreate>
             </div>
-            <div className="w-full md:w-[22%] hidden md:block">
+            <div className="w-full md:w-[22%] hidden md:flex justify-center">
               <TheRightAside></TheRightAside>
             </div>
           </div>
