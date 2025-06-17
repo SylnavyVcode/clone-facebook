@@ -7,7 +7,7 @@ const TheLeftNavBar = () => {
             <img
               src="src/assets/images/fb-logo.png"
               alt="Facebook logo"
-              className="w-[50px]"
+              className="w-[40px]"
             ></img>
           </a>
           <div className="flex items-center justify-between space-x-1">

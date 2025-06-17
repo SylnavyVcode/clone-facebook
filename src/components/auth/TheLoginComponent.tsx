@@ -47,7 +47,7 @@ function LoginComponent() {
       localStorage.setItem("from", "");
       const user = await Users.getUser();
       console.log(">>>>>>>>user======", user);
-      if (user[0].id.length > 0 && user[0].email) {
+      if (user.length > 0) {
         navigate("/home");
       }
     }

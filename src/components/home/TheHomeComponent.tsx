@@ -25,11 +25,9 @@ const HomeComponent = () => {
     return (
       <>
         <TheNavBar></TheNavBar>
-        <div className=" w-full h-[100%] bg-[#F1F2F5]">
-          {/* <div className="flex justify-between items-start w-full mx-auto max-w-[1600px] mt-[56px] h-[calc(100%-56px)] px-4"> */}
+        <div className=" w-full flex h-screen bg-[#F1F2F5] ">
           <div className="w-full shadow flex  justify-between dark:border-dark-third ">
-            {/* <div className="grid grid-rows-3 grid-flow-col w-full mx-auto max-w-[1600px] mt-[56px] h-[calc(100%-56px)] px-4"> */}
-            <div className="w-full md:w-[22%] hidden  md:flex justify-start overflow-auto">
+            <div className="w-full md:w-[22%] hidden  md:flex justify-start  h-screen  overflow-auto ">
               <TheAside></TheAside>
             </div>
 
@@ -37,9 +35,11 @@ const HomeComponent = () => {
               id="fb_posts_section"
               className="w-full md:w-[56%] flex justify-center "
             >
-              <ThePostCreate></ThePostCreate>
+              <div className="mt-4 px-8 sm:px-0 sm:w-[500px]  h-screen ">
+                <ThePostCreate></ThePostCreate>
+              </div>
             </div>
-            <div className="w-full md:w-[22%] hidden md:flex justify-center">
+            <div className="w-full md:w-[22%] mt-8 hidden md:flex justify-center  h-screen ">
               <TheRightAside></TheRightAside>
             </div>
           </div>
@@ -51,6 +51,7 @@ const HomeComponent = () => {
       <>
         <div className="w-screen h-screen flex justify-center items-center">
           <div className="m-auto text-center">
+            <span className="loader"></span>
             <p>Nous n'avons pas pu vous connecter, veuillez réessayer.</p>
             <button className="border px-4 p-2 text-center text-md bg-blue-600 text-gray-100 font-bold">
               Reessayez
