@@ -5,7 +5,7 @@ import TheRightNavBar from "./contents/TheRightNavbar";
 const TheNavBar = () => {
   return (
     <>
-      <nav className="bg-white dark:bg-dark-second  h-16 w-full shadow flex items-center justify-between fixed top-0 z-10 border-b dark:border-dark-third px-4">
+      <nav className="bg-white dark:bg-dark-second  h-14 w-full shadow flex items-center justify-between fixed top-0 z-10 border-b dark:border-dark-third px-4">
         <div className="w-full md:w-[25%]">
           <TheLeftNavBar></TheLeftNavBar>
         </div>

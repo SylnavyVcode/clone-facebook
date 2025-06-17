@@ -1,8 +1,8 @@
 const TheRightAside = () => {
   return (
     <>
-      <div className="pt-6  h-screen  hidden md:flex md:justify-end  md:items-end pb-12  xl:block overflow-hidden group-hover:overflow-y-auto hover:overflow-y-auto">
-        <div className="h-full">
+      <div className="group pt-6 pb-12 hidden md:flex items-end  xl:block w-full">
+        <div className="h-full overflow-hidden group-hover:overflow-y-auto pr-2 scrollbar-thin-fb">
           <div className="flex justify-between items-center px-4 pt-4">
             <span className="font-semibold text-gray-500 text-md dark:text-dark-txt">
               Firend requests

@@ -3,10 +3,10 @@ const TheMainNavBar = () => {
     <>
       <section id="main_nav_bar" className="max-md:invisible w-full">
         <ul className=" w-full h-full max-md:w-full flex min-md:w-50% min-md:flex items-center justify-center gap-8">
-          <li className=" md:w-max text-center h-full">
+          <li className="flex items-center pb-1 md:w-max text-center h-full border-b-4 border-blue-500">
             <a
               href="#"
-              className="w-full text-3xl py-2 px-3 xl:px-6 cursor-pointer text-center inline-block text-blue-500 border-b-4 border-blue-500"
+              className="w-full text-3xl py-2 px-3 xl:px-6 cursor-pointer text-center inline-block text-blue-500 "
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -24,10 +24,10 @@ const TheMainNavBar = () => {
               </svg>
             </a>
           </li>
-          <li className="md:w-max text-center  h-full">
+            <li className="flex items-center pb-1 md:w-max text-center  h-full  border-b-4 border-blue-500">
             <a
               href="#"
-              className="w-full text-3xl py-2 px-3 xl:px-6 cursor-pointer text-center inline-block rounded text-gray-600 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative"
+              className="w-full text-3xl py-2 px-3 xl:px-6 cursor-pointer text-center inline-block rounded text-gray-500 hover:text-blue-500 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -49,31 +49,11 @@ const TheMainNavBar = () => {
               </span>
             </a>
           </li>
-          <li className="md:w-max text-center  h-full">
+
+          <li className="flex items-center pb-1 md:w-max text-center  h-full  border-b-4 border-blue-500">
             <a
               href="#"
-              className="w-full text-3xl py-2 px-3 xl:px-6 cursor-pointer text-center inline-block rounded text-gray-600 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="size-8"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z"
-                />
-              </svg>
-            </a>
-          </li>
-          <li className="md:w-max text-center  h-full">
-            <a
-              href="#"
-              className="w-full text-3xl py-2 px-3 xl:px-6 cursor-pointer text-center inline-block rounded text-gray-600 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative"
+              className="w-full text-3xl py-2 px-3 xl:px-6 cursor-pointer text-center inline-block rounded text-gray-500 hover:text-blue-500 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -91,10 +71,10 @@ const TheMainNavBar = () => {
               </svg>
             </a>
           </li>
-          <li className="md:w-max text-center hidden md:inline-block  h-full">
+          <li className="flex items-center pb-1 md:w-max text-center  h-full  border-b-4 border-blue-500">
             <a
               href="#"
-              className="w-full text-3xl py-2 px-3 xl:px-6 cursor-pointer text-center inline-block rounded text-gray-600 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative"
+              className="w-full text-3xl py-2 px-3 xl:px-6 cursor-pointer text-center inline-block rounded text-gray-500 hover:text-blue-500 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -116,14 +96,6 @@ const TheMainNavBar = () => {
               </span>
             </a>
           </li>
-          {/* <li className="w-1/5 md:w-max text-center inline-block md:hidden">
-            <a
-              href="#"
-              className="w-full text-3xl py-2 px-3 xl:px-6 cursor-pointer text-center inline-block rounded text-gray-600 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative"
-            >
-              <i className="bx bx-menu"></i>
-            </a>
-          </li> */}
         </ul>
       </section>
     </>
