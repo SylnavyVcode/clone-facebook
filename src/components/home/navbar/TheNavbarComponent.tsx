@@ -9,7 +9,7 @@ const TheNavBar = () => {
         <div className="w-full md:w-[25%]">
           <TheLeftNavBar></TheLeftNavBar>
         </div>
-        <div className="md:w-[50%]">
+        <div className="hidden md:w-[50%]">
           <TheMainNavBar></TheMainNavBar>
         </div>
         <div className="w-full md:w-[25%]">
