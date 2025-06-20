@@ -33,15 +33,6 @@ const TheLeftNavBar = () => {
                 className="outline-none bg-transparent hidden xl:inline-block"
               ></input>
             </div>
-            {/* <div className="text-2xl grid place-items-center md:hidden bg-gray-200 dark:bg-dark-third rounded-full w-10 h-10 cursor-pointer hover:bg-gray-300 dark:text-dark-txt">
-              <i className="bx bxl-messenger"></i>
-            </div> */}
-            {/* <div
-              className="text-2xl grid place-items-center md:hidden bg-gray-200 dark:bg-dark-third rounded-full w-10 h-10 cursor-pointer hover:bg-gray-300 dark:text-dark-txt"
-              id="dark-mode-toggle-mb"
-            >
-              <i className="bx bxs-moon"></i>
-            </div> */}
           </div>
         </div>
       </section>

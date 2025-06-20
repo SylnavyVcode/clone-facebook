@@ -1,27 +1,57 @@
+import TheModalMenuComponent from "./modals/TheModalMenu";
 import TheModalProfilComponent from "./modals/TheModalProfil";
 
 const TheRightNavBar = () => {
-  const handleClick = () => {
-    const dropdown = document.getElementById("dropdownInformation");
-    if (dropdown) {
-      dropdown.classList.toggle("hidden");
+  const handleClickProfil = () => {
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    const dropdownProfil = document.getElementById("dropdownInformation");
+    if (dropdownProfil) {
+      dropdownProfil.classList.toggle("hidden");
+    }
+    if (dropdownMenu && !dropdownMenu.classList.contains("hidden")) {
+      dropdownMenu.classList.add("hidden");
+    }
+  };
+  const handleClickMenu = () => {
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    const dropdownProfil = document.getElementById("dropdownInformation");
+    if (dropdownMenu) {
+      dropdownMenu.classList.toggle("hidden");
+    }
+    if (dropdownProfil && !dropdownProfil.classList.contains("hidden")) {
+      dropdownProfil.classList.add("hidden");
     }
   };
   return (
     <>
       <section id="TheRightNavBar" className="w-full">
         <ul className="w-full flex mx-4 md:items-center justify-end">
-          <li className="m-auto place-items-center bg-gray-200 dark:bg-dark-third dark:text-dark-txt rounded-full mx-1 p-2 cursor-pointer hover:bg-gray-300 relative">
-            <svg
-              viewBox="0 0 24 24"
-              width="25"
-              height="25"
-              fill="currentColor"
-              aria-hidden="true"
-              className="xfx01vb x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq"
+          <li className="flex justify-end relative">
+            <button
+              type="button"
+              id="dropdownMenuButton"
+              onClick={handleClickMenu}
+              data-dropdown-toggle="dropdownInformation"
+              className="m-auto place-items-center bg-gray-200 dark:bg-dark-third dark:text-dark-txt rounded-full mx-1 p-2 cursor-pointer hover:bg-gray-300 relative"
             >
-              <path d="M18.5 1A1.5 1.5 0 0 0 17 2.5v3A1.5 1.5 0 0 0 18.5 7h3A1.5 1.5 0 0 0 23 5.5v-3A1.5 1.5 0 0 0 21.5 1h-3zm0 8a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3A1.5 1.5 0 0 0 21.5 9h-3zm-16 8A1.5 1.5 0 0 0 1 18.5v3A1.5 1.5 0 0 0 2.5 23h3A1.5 1.5 0 0 0 7 21.5v-3A1.5 1.5 0 0 0 5.5 17h-3zm8 0A1.5 1.5 0 0 0 9 18.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5h-3zm8 0a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5h-3zm-16-8A1.5 1.5 0 0 0 1 10.5v3A1.5 1.5 0 0 0 2.5 15h3A1.5 1.5 0 0 0 7 13.5v-3A1.5 1.5 0 0 0 5.5 9h-3zm0-8A1.5 1.5 0 0 0 1 2.5v3A1.5 1.5 0 0 0 2.5 7h3A1.5 1.5 0 0 0 7 5.5v-3A1.5 1.5 0 0 0 5.5 1h-3zm8 0A1.5 1.5 0 0 0 9 2.5v3A1.5 1.5 0 0 0 10.5 7h3A1.5 1.5 0 0 0 15 5.5v-3A1.5 1.5 0 0 0 13.5 1h-3zm0 8A1.5 1.5 0 0 0 9 10.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3A1.5 1.5 0 0 0 13.5 9h-3z"></path>
-            </svg>
+              <svg
+                viewBox="0 0 24 24"
+                width="25"
+                height="25"
+                fill="currentColor"
+                aria-hidden="true"
+                className="xfx01vb x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq"
+              >
+                <path d="M18.5 1A1.5 1.5 0 0 0 17 2.5v3A1.5 1.5 0 0 0 18.5 7h3A1.5 1.5 0 0 0 23 5.5v-3A1.5 1.5 0 0 0 21.5 1h-3zm0 8a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3A1.5 1.5 0 0 0 21.5 9h-3zm-16 8A1.5 1.5 0 0 0 1 18.5v3A1.5 1.5 0 0 0 2.5 23h3A1.5 1.5 0 0 0 7 21.5v-3A1.5 1.5 0 0 0 5.5 17h-3zm8 0A1.5 1.5 0 0 0 9 18.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5h-3zm8 0a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5h-3zm-16-8A1.5 1.5 0 0 0 1 10.5v3A1.5 1.5 0 0 0 2.5 15h3A1.5 1.5 0 0 0 7 13.5v-3A1.5 1.5 0 0 0 5.5 9h-3zm0-8A1.5 1.5 0 0 0 1 2.5v3A1.5 1.5 0 0 0 2.5 7h3A1.5 1.5 0 0 0 7 5.5v-3A1.5 1.5 0 0 0 5.5 1h-3zm8 0A1.5 1.5 0 0 0 9 2.5v3A1.5 1.5 0 0 0 10.5 7h3A1.5 1.5 0 0 0 15 5.5v-3A1.5 1.5 0 0 0 13.5 1h-3zm0 8A1.5 1.5 0 0 0 9 10.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3A1.5 1.5 0 0 0 13.5 9h-3z"></path>
+              </svg>
+            </button>
+
+            <div
+              id="dropdownMenu"
+              className="absolute hidden right-[-142px] top-12 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm  dark:bg-gray-900 dark:divide-gray-800 w-[370px]"
+            >
+              <TheModalMenuComponent></TheModalMenuComponent>
+            </div>
           </li>
           <li className="m-auto place-items-center bg-gray-200 dark:bg-dark-third dark:text-dark-txt rounded-full mx-1 p-2 cursor-pointer hover:bg-gray-300 relative">
             <svg
@@ -59,7 +89,7 @@ const TheRightNavBar = () => {
             <button
               type="button"
               id="dropdownInformationButton"
-              onClick={handleClick}
+              onClick={handleClickProfil}
               data-dropdown-toggle="dropdownInformation"
               className="m-auto rounded-full hover:bg-gray-200 dark:hover:bg-dark-third relative"
             >
@@ -88,7 +118,7 @@ const TheRightNavBar = () => {
             </button>
             <div
               id="dropdownInformation"
-              className="absolute hidden right-2 top-12 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm  dark:bg-gray-700 dark:divide-gray-600 w-[370px]"
+              className="absolute hidden right-2 top-12 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm  dark:bg-gray-900 dark:divide-gray-800 w-[370px]"
             >
               <TheModalProfilComponent></TheModalProfilComponent>
             </div>
