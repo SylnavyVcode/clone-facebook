@@ -88,7 +88,7 @@ const TheRightNavBar = () => {
             </button>
             <div
               id="dropdownInformation"
-              className="absolute hidden right-2 top-12 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600"
+              className="absolute hidden right-2 top-12 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm  dark:bg-gray-700 dark:divide-gray-600 w-[370px]"
             >
               <TheModalProfilComponent></TheModalProfilComponent>
             </div>
