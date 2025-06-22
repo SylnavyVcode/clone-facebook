@@ -1,7 +1,7 @@
 const TheModalMenuComponent = () => {
   return (
     <>
-      <div className="px-4 py-2 text-white w-full">
+      <div className="px-4 py-2 text-white w-full ">
         <h2 className="my-1 font-semibold text-2xl">Menu</h2>
         <div className="w-full dark:bg-gray-800 rounded-lg  dark:border-gray-700 ">
           <div className="px-4 py-3 w-full">

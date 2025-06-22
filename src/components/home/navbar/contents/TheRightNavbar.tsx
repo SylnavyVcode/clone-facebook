@@ -48,7 +48,7 @@ const TheRightNavBar = () => {
 
             <div
               id="dropdownMenu"
-              className="absolute hidden right-[-142px] top-12 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm  dark:bg-gray-900 dark:divide-gray-800 w-[370px]"
+              className="absolute hidden right-[-142px] top-12 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm  dark:bg-gray-900 dark:divide-gray-800 w-[370px] h-[600px] overflow-y-auto"
             >
               <TheModalMenuComponent></TheModalMenuComponent>
             </div>
