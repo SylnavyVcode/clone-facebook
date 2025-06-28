@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Input from "../utils/input";
 import ErrorInput from "../utils/errorInput";
-import ButtonElement from "../utils/button";
+import {Button} from "../utils/button";
 import FooterForm from "../utils/footerForm";
 import { Auth } from "../../services/auth/auth";
 import { useNavigate } from "react-router-dom";
@@ -116,12 +116,11 @@ function LoginComponent() {
                   ></ErrorInput>
                 </div>
 
-                <ButtonElement
+                <Button
                   id="btn_submit_login"
-                  title="Se connecter"
                   type="submit"
                   className="bg-[#1877f2] text-white rounded-lg w-full text-center text-[20px] shadow-sm px-4 py-3 font-semibold"
-                ></ButtonElement>
+                >Se connecter</Button>
 
                 <FooterForm
                   id="password-forgot"

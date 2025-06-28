@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import * as yup from "yup";
 import Input from "../utils/input";
-import ButtonElement from "../utils/button";
+import {Button} from "../utils/button";
 // import FooterForm from "../utils/footerForm";
 import { Auth } from "../../services/auth/auth";
 import { useNavigate } from "react-router-dom";
@@ -129,18 +129,16 @@ function ResetPasswordComponent() {
                 </div>
                 <hr />
                 <div className="flex justify-end items-center gap-4">
-                  <ButtonElement
+                  <Button
                     id="btn_reset_password_not"
-                    title="Ignorer"
                     type="submit"
                     className="bg-white hover:bg-slate-200 text-black rounded-lg w-full text-center border my-2 shadow-sm px-4 py-1 font-semibold"
-                  ></ButtonElement>
-                  <ButtonElement
+                  >Ignorer</Button>
+                  <Button
                     id="btn_reset_password_continue"
-                    title="Continuer"
                     type="submit"
                     className="bg-[#1877f2] hover:bg-[#1840f2] text-white rounded-lg w-full text-center my-2 shadow-sm px-4 py-1  font-semibold"
-                  ></ButtonElement>
+                  >Continuer</Button>
                 </div>
               </form>
             </div>

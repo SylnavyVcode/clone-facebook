@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import * as yup from "yup";
 import Input from "../utils/input";
-import ButtonElement from "../utils/button";
+import { Button } from "../utils/button";
 // import FooterForm from "../utils/footerForm";
 import { Auth } from "../../services/auth/auth";
 import TheNavbarAuthComponent from "./children/TheNavbarAuth";
@@ -106,13 +106,14 @@ function ValidateComponent() {
                       orElement={false}
                       to={"/auth/login"}
                     ></FooterForm>
-                   
-                    <ButtonElement
+
+                    <Button
                       id="btn_reset_password_continue"
-                      title="Continuer"
                       type="submit"
                       className="bg-[#1877f2] hover:bg-[#1840f2] text-white rounded-lg w-full text-center my-2 shadow-sm px-4 py-1  font-semibold"
-                    ></ButtonElement>
+                    >
+                      Continuer
+                    </Button>
                   </div>
                 </div>
               </form>

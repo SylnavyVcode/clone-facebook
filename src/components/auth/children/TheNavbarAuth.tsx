@@ -7,7 +7,7 @@ import * as yup from "yup";
 
 import { useNavigate } from "react-router-dom";
 import { Auth } from "../../../services/auth/auth";
-import ButtonElement from "../../utils/button";
+import { Button } from "../../utils/button";
 import FooterForm from "../../utils/footerForm";
 import Input from "../../utils/input";
 
@@ -101,12 +101,11 @@ function TheNavbarAuthComponent() {
                     ></Input>
                   </div>
 
-                  <ButtonElement
+                  <Button
                     id="btn_navbar_login"
-                    title="Se connecter"
                     type="submit"
                     className="bg-[#1877f2] text-white rounded-md w-full text-center  shadow-sm px-4 py-2 font-semibold"
-                  ></ButtonElement>
+                  >Se connecter</Button>
 
                   <FooterForm
                     id="password_navbar_forgot"

@@ -13,7 +13,7 @@ import ErrorInput from "../utils/errorInput";
 import InputRadio from "../utils/InputRadio";
 import Input from "../utils/input";
 import HeaderRegister from "../utils/headerRegister";
-import ButtonElement from "../utils/button";
+import { Button } from "../utils/button";
 import FooterForm from "../utils/footerForm";
 import { Auth } from "../../services/auth/auth";
 import { useNavigate } from "react-router-dom";
@@ -329,12 +329,13 @@ function RegisterComponent() {
               {/* <!-- Partie Politique  --> */}
               <Politique></Politique>
 
-              <ButtonElement
-                title="S'inscrire"
+              <Button
                 id="btn_submit_register"
                 type="submit"
                 className="px-24 py-2 text-[20px] font-bold text-white transition-colors duration-300 bg-[#00a400] rounded-lg shadow"
-              ></ButtonElement>
+              >
+                S'inscrire
+              </Button>
 
               <FooterForm
                 id="btn-go-login"
