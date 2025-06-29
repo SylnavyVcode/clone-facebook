@@ -1,12 +1,12 @@
 // import React from "react";
 import { Navigate, createBrowserRouter } from "react-router-dom";
-import Register from "../pages/Auth/RegisterPage";
-import Home from "../pages/home/HomePage";
-import Login from "../pages/Auth/LoginPage";
+import Register from "../pages/Auth/Register";
+import Home from "../pages/home/Home";
+import Login from "../pages/Auth/Login";
 import User from "../pages/user/ProfilePage";
-import Reset from "../pages/Auth/ResetPage";
-import ResetPassword from "../pages/Auth/ResetPasswordPage";
-import ValidatePassword from "../pages/Auth/ValidatePage";
+import Reset from "../pages/Auth/Reset";
+import ResetPassword from "../pages/Auth/ResetPassword";
+import ValidatePassword from "../pages/Auth/Validate";
 
 export const routeur = createBrowserRouter([
   // Redirection par défaut vers la page de login

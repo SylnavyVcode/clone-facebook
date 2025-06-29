@@ -1,6 +1,5 @@
-import ThePostCreate from "../home/create_post/ThePostComponent";
-import TheNavBar from "../home/navbar/TheNavbarComponent";
-
+import ThePostCreate from "../../components/home/create_post/ThePostComponent";
+import TheNavBar from "../../components/home/navbar/TheNavbarComponent";
 
 const UserComponent = () => {
   return (
@@ -9,7 +8,11 @@ const UserComponent = () => {
       <div className="w-full min-h-[100vh] pb-20 bg-[#F1F2F5]">
         <div className="w-full bg-white">
           <div className="max-w-[1100px] pt-[56px] mx-auto pb-1">
-            <img src="https://picsum.photos/id/147/300/300" alt="alt" className="rounded-b-xl" />
+            <img
+              src="https://picsum.photos/id/147/300/300"
+              alt="alt"
+              className="rounded-b-xl"
+            />
             <div
               id="fb_infos_profil"
               className="flex md:flex-row flex-col items-center justify-between px-4"
@@ -172,7 +175,7 @@ const UserComponent = () => {
             </div>
           </div>
           <div id="fb_posts_section" className="w-full md:w-7/12 overflow-auto">
-          <ThePostCreate></ThePostCreate>
+            <ThePostCreate></ThePostCreate>
           </div>
         </div>
       </div>
