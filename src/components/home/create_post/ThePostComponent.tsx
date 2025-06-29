@@ -1,6 +1,6 @@
 import ThePostForm from "./subcomponents/TheFormPostComponent";
 import ThePosterView from "./subcomponents/ThePublicationElement";
-import TheStory from "./subcomponents/TheStoryComponent";
+// import TheStory from "./subcomponents/TheStoryComponent";
 
 const ThePostCreate = () => {
   return (
@@ -10,7 +10,7 @@ const ThePostCreate = () => {
         {/* <!-- POST FORM --> */}
         <ThePostForm></ThePostForm>
         {/* <!-- END POST FORM --> */}
-        <TheStory></TheStory>
+        {/* <TheStory></TheStory> */}
         {/* <!-- END STORY --> */}
         <ThePosterView></ThePosterView>
         {/* <!-- END LIST POST --> */}
