@@ -1,17 +1,15 @@
-// import facebook from "../../assets/facebook-icone.svg";
-import Footer from "../utils/FooterComponent";
-
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import * as yup from "yup";
-import Input from "../utils/input";
-import {Button} from "../utils/button";
 // import FooterForm from "../utils/footerForm";
 import { Auth } from "../../services/auth/auth";
 import { useNavigate } from "react-router-dom";
 import TheNavbarAuthComponent from "./children/TheNavbarAuth";
-import FooterForm from "../utils/footerForm";
+import Input from "../../components/utils/input";
+import { Button } from "../../components/utils/button";
+import Footer from "../../components/utils/FooterComponent";
+import FooterForm from "../../components/utils/footerForm";
 
 interface FormData {
   email: string;

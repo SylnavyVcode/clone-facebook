@@ -1,5 +1,6 @@
 import { Post } from "../../../utils/Post";
 import { Stories } from "../../../stories/Stories";
+import InfiniteScroll from "../../../ui/InfiniteScroll";
 
 // import TheFluxElements from "../flux/TheFluxComponent";
 
@@ -24,6 +25,7 @@ const ThePosterView = () => {
           vel ratione odit molestiae minus ipsa obcaecati quia! Doloribus,
           illum.
         </Post>
+        <InfiniteScroll></InfiniteScroll>
       </div>
     </>
   );

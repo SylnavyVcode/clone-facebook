@@ -7,9 +7,10 @@ import * as yup from "yup";
 
 import { useNavigate } from "react-router-dom";
 import { Auth } from "../../../services/auth/auth";
-import { Button } from "../../utils/button";
-import FooterForm from "../../utils/footerForm";
-import Input from "../../utils/input";
+import Input from "../../../components/utils/input";
+import { Button } from "../../../components/utils/button";
+import FooterForm from "../../../components/utils/footerForm";
+
 
 interface FormData {
   email: string;
