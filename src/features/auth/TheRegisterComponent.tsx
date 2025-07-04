@@ -6,17 +6,17 @@ import * as yup from "yup";
 
 import facebook from "../../assets/facebook-icone.svg";
 
-import Footer from "../utils/FooterComponent";
-import Politique from "../utils/ThePolitiqueComponent";
-import InputSelect from "../utils/InputSelect";
-import ErrorInput from "../utils/errorInput";
-import InputRadio from "../utils/InputRadio";
-import Input from "../utils/input";
-import HeaderRegister from "../utils/headerRegister";
-import { Button } from "../utils/button";
-import FooterForm from "../utils/footerForm";
 import { Auth } from "../../services/auth/auth";
 import { useNavigate } from "react-router-dom";
+import HeaderRegister from "../../components/utils/headerRegister";
+import Input from "../../components/utils/input";
+import ErrorInput from "../../components/utils/errorInput";
+import { Button } from "../../components/utils/button";
+import Footer from "../../components/utils/FooterComponent";
+import FooterForm from "../../components/utils/footerForm";
+import InputRadio from "../../components/utils/InputRadio";
+import InputSelect from "../../components/utils/InputSelect";
+import Politique from "../../components/utils/ThePolitiqueComponent";
 
 // Étape 1 : Définir les types des données
 interface FormData {

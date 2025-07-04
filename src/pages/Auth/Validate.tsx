@@ -1,5 +1,4 @@
-import ValidateComponent from "../../components/auth/TheValidateComponent";
-
+import ValidateComponent from "../../features/auth/TheValidateComponent";
 
 const ValidatePassword= () => {
   return (

@@ -1,7 +1,4 @@
-import ResetComponent from "../../components/auth/TheResetComponent";
-
-
-
+import ResetComponent from "../../features/auth/TheResetComponent";
 
 const Reset= () => {
   return (
