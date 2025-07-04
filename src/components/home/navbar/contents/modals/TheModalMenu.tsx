@@ -1,3 +1,5 @@
+import { EventData } from "../../../../ui/Events";
+
 const TheModalMenuComponent = () => {
   return (
     <>
@@ -57,48 +59,18 @@ const TheModalMenuComponent = () => {
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="w-full  py-1 hover:bg-gray-600  dark:hover:bg-gray-600 dark:hover:text-white flex items-center justify-between rounded-md"
-                >
-                  <div className="flex justify-center items-center gap-4 px-1">
-                    <div className="w-8 m-auto place-items-center dark:bg-dark-third dark:text-dark-txt ">
-                      <img
-                        src="src/assets/images/icons/icons_menu/friend.png"
-                        alt="Profile picture"
-                        className=" h-7 w-7"
-                      ></img>
-                    </div>
-                    <div className="w-full">
-                      <span>Friends</span>
-                      <p className="text-xs  ">
-                        Search for friends or people you may know.
-                      </p>
-                    </div>
-                  </div>
-                </a>
+                <EventData
+                  title="Friends"
+                  description="Search for friends or people you may know."
+                  imgSource="src/assets/images/icons/icons_menu/friend.png"
+                ></EventData>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="w-full py-1 hover:bg-gray-600  dark:hover:bg-gray-600 dark:hover:text-white flex items-center justify-between rounded-md"
-                >
-                  <div className="flex justify-center items-center gap-4 px-1">
-                    <div className="w-8 m-auto place-items-center dark:bg-dark-third dark:text-dark-txt ">
-                      <img
-                        src="src/assets/images/icons/icons_menu/groups.png"
-                        alt="Profile picture"
-                        className=" h-7 w-7"
-                      ></img>
-                    </div>
-                    <div className="w-full">
-                      <span>Groups</span>
-                      <p className="text-xs  ">
-                        Connect with people who share your interests.
-                      </p>
-                    </div>
-                  </div>
-                </a>
+                <EventData
+                  title="Groups"
+                  description="Connect with people who share your interests."
+                  imgSource="src/assets/images/icons/icons_menu/groups.png"
+                ></EventData>
               </li>
               <li>
                 <a
