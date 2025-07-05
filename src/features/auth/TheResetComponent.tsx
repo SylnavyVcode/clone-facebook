@@ -5,9 +5,9 @@ import * as yup from "yup";
 // import FooterForm from "../utils/footerForm";
 import { Auth } from "../../services/auth/auth";
 import { useNavigate } from "react-router-dom";
-import TheNavbarAuthComponent from "./children/TheNavbarAuth";
+import TheNavbarAuthComponent from "./children/TheNavbarLogin";
 import Input from "../../components/utils/input";
-import { Button } from "../../components/utils/button";
+import { Button } from "../../components/ui/Button";
 import Footer from "../../components/utils/FooterComponent";
 import FooterForm from "../../components/utils/footerForm";
 
@@ -104,7 +104,9 @@ function ResetComponent() {
                     id="btn_reset_search"
                     type="submit"
                     className="bg-[#1877f2] hover:bg-[#1840f2] text-white rounded-lg w-full text-center my-2 shadow-sm px-4 py-1  font-semibold"
-                  >Chercher</Button>
+                  >
+                    Chercher
+                  </Button>
                 </div>
               </form>
             </div>

@@ -1,5 +1,3 @@
-
-
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -8,7 +6,7 @@ import { Auth } from "../../services/auth/auth";
 import { useNavigate } from "react-router-dom";
 import facebook from "../../assets/facebook-icone.svg";
 import Input from "../../components/utils/input";
-import { Button } from "../../components/utils/button";
+import { Button } from "../../components/ui/Button";
 import Footer from "../../components/utils/FooterComponent";
 
 interface FormData {
@@ -35,6 +33,7 @@ function ResetPasswordComponent() {
     formState: { errors },
   } = useForm<FormData>({ resolver: yupResolver(schema) });
   const navigate = useNavigate(); // Hook pour la navigation
+  console.log("Données du navigate : ", navigate);
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log("Données du formulaire : ", data);
@@ -131,12 +130,16 @@ function ResetPasswordComponent() {
                     id="btn_reset_password_not"
                     type="submit"
                     className="bg-white hover:bg-slate-200 text-black rounded-lg w-full text-center border my-2 shadow-sm px-4 py-1 font-semibold"
-                  >Ignorer</Button>
+                  >
+                    Ignorer
+                  </Button>
                   <Button
                     id="btn_reset_password_continue"
                     type="submit"
                     className="bg-[#1877f2] hover:bg-[#1840f2] text-white rounded-lg w-full text-center my-2 shadow-sm px-4 py-1  font-semibold"
-                  >Continuer</Button>
+                  >
+                    Continuer
+                  </Button>
                 </div>
               </form>
             </div>

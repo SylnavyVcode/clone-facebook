@@ -1,7 +1,7 @@
 // components/Post.tsx
 import React, { useState } from "react";
 import { ThumbsUp, MessageCircle, Share2, Smile } from "lucide-react";
-import { Button } from "./button";
+import { Button } from "../ui/Button";
 
 type PostProps = {
   children: React.ReactNode;

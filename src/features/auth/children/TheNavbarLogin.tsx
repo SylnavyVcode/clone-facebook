@@ -8,9 +8,8 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { Auth } from "../../../services/auth/auth";
 import Input from "../../../components/utils/input";
-import { Button } from "../../../components/utils/button";
+import { Button } from "../../../components/ui/Button";
 import FooterForm from "../../../components/utils/footerForm";
-
 
 interface FormData {
   email: string;
@@ -106,7 +105,9 @@ function TheNavbarAuthComponent() {
                     id="btn_navbar_login"
                     type="submit"
                     className="bg-[#1877f2] text-white rounded-md w-full text-center  shadow-sm px-4 py-2 font-semibold"
-                  >Se connecter</Button>
+                  >
+                    Se connecter
+                  </Button>
 
                   <FooterForm
                     id="password_navbar_forgot"

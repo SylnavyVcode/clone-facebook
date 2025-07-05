@@ -10,8 +10,7 @@ import { Auth } from "../../services/auth/auth";
 import { useNavigate } from "react-router-dom";
 import HeaderRegister from "../../components/utils/headerRegister";
 import Input from "../../components/utils/input";
-import ErrorInput from "../../components/utils/errorInput";
-import { Button } from "../../components/utils/button";
+import { Button } from "../../components/ui/Button";
 import Footer from "../../components/utils/FooterComponent";
 import FooterForm from "../../components/utils/footerForm";
 import InputRadio from "../../components/utils/InputRadio";
@@ -142,10 +141,6 @@ function RegisterComponent() {
                       "w-full p-2  transition text-[17px] duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded"
                     }
                   ></Input>
-                  <ErrorInput
-                    id="input_firstname_error"
-                    message={errors.firstname?.message}
-                  ></ErrorInput>
                 </div>
                 <div className="w-full">
                   <Input
@@ -157,10 +152,6 @@ function RegisterComponent() {
                       "w-full p-2  transition text-[17px] duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded"
                     }
                   ></Input>
-                  <ErrorInput
-                    id="input_lastname_error"
-                    message={errors.lastname?.message}
-                  ></ErrorInput>
                 </div>
               </div>
 
@@ -196,7 +187,6 @@ function RegisterComponent() {
                       { label: "Octobre", value: 9 },
                       { label: "Novembre", value: 10 },
                       { label: "Décembre", value: 11 },
-                      // Ajouter les autres mois
                     ]}
                     errorMessage={errors.anniversaire?.month?.message}
                     className={
@@ -233,11 +223,6 @@ function RegisterComponent() {
                   ]}
                   errorMessage={errors.gender?.message}
                 ></InputRadio>
-
-                <ErrorInput
-                  id="input_gender_error"
-                  message={errors.gender?.message}
-                ></ErrorInput>
               </div>
 
               {showCustomGender && (
@@ -264,10 +249,6 @@ function RegisterComponent() {
                       },
                     ]}
                   ></InputSelect>
-                  <ErrorInput
-                    id="select_type_gender_error"
-                    message={errors.gender_custom_select?.message}
-                  ></ErrorInput>
 
                   <p className="text-xs">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -284,10 +265,6 @@ function RegisterComponent() {
                         "w-full px-3 py-2 my-2 transition duration-300 border border-gray-300 outline-none hover:border-blue-500 focus:border-blue-600 rounded"
                       }
                     ></Input>
-                    <ErrorInput
-                      id="input_gender_custom"
-                      message={errors.gender_custom?.message}
-                    ></ErrorInput>
                   </div>
                 </div>
               )}
@@ -303,10 +280,6 @@ function RegisterComponent() {
                     "w-full p-2 transition text-[17px] duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded"
                   }
                 ></Input>
-                <ErrorInput
-                  id="input_email"
-                  message={errors.email?.message}
-                ></ErrorInput>
               </div>
               {/* <!-- Partie Password  --> */}
               <div className="mb-6 mt-2">
@@ -320,22 +293,19 @@ function RegisterComponent() {
                     "w-full p-2 transition text-[17px] duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded"
                   }
                 ></Input>
-                <ErrorInput
-                  id="input_password"
-                  message={errors.password?.message}
-                ></ErrorInput>
               </div>
 
               {/* <!-- Partie Politique  --> */}
               <Politique></Politique>
-
-              <Button
-                id="btn_submit_register"
-                type="submit"
-                className="px-24 py-2 text-[20px] font-bold text-white transition-colors duration-300 bg-[#00a400] rounded-lg shadow"
-              >
-                S'inscrire
-              </Button>
+              <div className="w-full flex justify-center items-center">
+                <Button
+                  id="btn_submit_register"
+                  type="submit"
+                  className="px-24 py-2 text-[20px] font-bold text-white transition-colors duration-300 bg-[#00a400] rounded-lg shadow"
+                >
+                  S'inscrire
+                </Button>
+              </div>
 
               <FooterForm
                 id="btn-go-login"

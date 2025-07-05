@@ -6,10 +6,8 @@ import InputRadio from "./InputRadio";
 import Input from "./input";
 import HeaderRegister from "./headerRegister";
 import FooterForm from "./footerForm";
-import ButtonElement from "./button";
 
 export default {
-  ButtonElement,
   Footer,
   Politique,
   InputSelect,
