@@ -25,21 +25,20 @@ const HomeComponent = () => {
     return (
       <>
         <TheNavBar></TheNavBar>
-        <div className=" w-full flex h-screen bg-[#F1F2F5] ">
-          <div className="w-full shadow flex  justify-between dark:border-dark-third ">
-            <div className="w-full md:w-[22%] hidden  md:flex justify-start  h-screen  overflow-auto ">
+        <div className=" w-full h-full bg-[#F1F2F5]">
+          <div className="w-full shadow flex justify-between dark:border-dark-third ">
+            <div className="w-full md:w-[22%] hidden fixed md:flex justify-start h-screen overflow-auto ">
               <TheAside></TheAside>
             </div>
-
             <div
               id="fb_posts_section"
-              className="w-full md:w-[56%] flex justify-center "
+              className="w-full md:w-[56%] flex justify-center m-auto  bg-[#F1F2F5] "
             >
-              <div className="mt-4 px-8 sm:px-0 sm:w-[500px]  h-screen ">
+              <div className="mt-4 px-8 sm:px-0 sm:w-[500px] h-full ">
                 <ThePostCreate></ThePostCreate>
               </div>
             </div>
-            <div className="w-full md:w-[22%] mt-8 hidden md:flex justify-center  h-screen ">
+            <div className="w-full md:w-[22%] right-0 fixed mt-8 hidden md:flex justify-center h-screen ">
               <TheRightAside></TheRightAside>
             </div>
           </div>

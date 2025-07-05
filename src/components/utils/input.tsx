@@ -2,6 +2,7 @@
  * Created by Sylnavy V. Mabika M.
  */
 import React from "react";
+import ErrorInput from "./errorInput";
 
 interface InputProps {
   id: string;
@@ -46,6 +47,7 @@ const Input = React.forwardRef<
           }`}
           {...rest}
         />
+        <ErrorInput id={id + "_error"} message={errorMessage}></ErrorInput>
       </>
     );
   }

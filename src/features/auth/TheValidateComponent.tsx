@@ -1,16 +1,15 @@
-
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import * as yup from "yup";
 // import FooterForm from "../utils/footerForm";
 import { Auth } from "../../services/auth/auth";
-import TheNavbarAuthComponent from "./children/TheNavbarAuth";
-import { useNavigate } from "react-router-dom";
-import Input from "../../components/utils/input";
-import { Button } from "../../components/utils/button";
+import { Button } from "../../components/ui/Button";
 import Footer from "../../components/utils/FooterComponent";
 import FooterForm from "../../components/utils/footerForm";
+import { useNavigate } from "react-router";
+import Input from "../../components/utils/input";
+import TheNavbarAuthComponent from "./children/TheNavbarLogin";
 
 interface FormData {
   token: string;

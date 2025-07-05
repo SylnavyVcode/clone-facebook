@@ -8,11 +8,10 @@ import * as yup from "yup";
 import { Auth } from "../../services/auth/auth";
 import { useNavigate } from "react-router-dom";
 import { Users } from "../../services/user";
-import Input from "../../components/utils/input";
-import ErrorInput from "../../components/utils/errorInput";
-import { Button } from "../../components/utils/button";
+import { Button } from "../../components/ui/Button";
 import Footer from "../../components/utils/FooterComponent";
 import FooterForm from "../../components/utils/footerForm";
+import Input from "../../components/utils/input";
 
 interface FormData {
   email: string;
@@ -93,10 +92,6 @@ function LoginComponent() {
                       "w-full p-3 transition text-[17px] duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
                     }
                   ></Input>
-                  <ErrorInput
-                    id="input_email"
-                    message={errors.email?.message}
-                  ></ErrorInput>
                 </div>
 
                 {/* <!-- Partie Password  --> */}
@@ -111,17 +106,15 @@ function LoginComponent() {
                       "w-full p-3 transition text-[17px] duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
                     }
                   ></Input>
-                  <ErrorInput
-                    id="input_password"
-                    message={errors.password?.message}
-                  ></ErrorInput>
                 </div>
 
                 <Button
                   id="btn_submit_login"
                   type="submit"
                   className="bg-[#1877f2] text-white rounded-lg w-full text-center text-[20px] shadow-sm px-4 py-3 font-semibold"
-                >Se connecter</Button>
+                >
+                  Se connecter
+                </Button>
 
                 <FooterForm
                   id="password-forgot"

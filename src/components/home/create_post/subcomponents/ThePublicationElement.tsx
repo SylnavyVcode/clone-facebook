@@ -1,8 +1,8 @@
 import { Post } from "../../../utils/Post";
 import { Stories } from "../../../stories/Stories";
 import InfiniteScroll from "../../../ui/InfiniteScroll";
-
-// import TheFluxElements from "../flux/TheFluxComponent";
+import { mockPosts } from "../../../../data/postsDataTest";
+import PostTest from "../../../utils/postTest";
 
 const ThePosterView = () => {
   return (
@@ -10,6 +10,11 @@ const ThePosterView = () => {
       <div>
         <div className="max-w-5xl mx-auto mt-4">
           <Stories />
+        </div>
+        <div>
+          {mockPosts.map((post_test) => (
+            <PostTest key={post_test.id} post={post_test} />
+          ))}
         </div>
         <Post
           user={{ name: "Valmy M.", avatarUrl: "src/assets/images/tuat.jpg" }}

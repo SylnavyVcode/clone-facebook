@@ -1,6 +1,6 @@
 // import TheFluxElements from "../flux/TheFluxComponent";
 
-import { Button } from "../../../utils/button";
+import { Button } from "../../../ui/Button";
 
 const ThePostForm = () => {
   return (
