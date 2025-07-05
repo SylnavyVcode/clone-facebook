@@ -5,10 +5,10 @@ import { Avatar } from "../ui/Avatar";
 import { Button } from "../ui/Button";
 import PostMediaGrid from "./PostMediaGrid";
 
-type Media = {
-  type: "image" | "video";
-  url: string;
-};
+// type Media = {
+//   type: "image" | "video";
+//   url: string;
+// };
 
 type PostProps = {
   post: {
