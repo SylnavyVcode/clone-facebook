@@ -1,5 +1,8 @@
-// components/CreateStoryCard.tsx
-import React from 'react';
+/**
+ * Created by Sylnavy V. Mabika M.
+ * 
+ */
+
 import { Plus } from 'lucide-react';
 
 export const CreateStoryCard = () => {

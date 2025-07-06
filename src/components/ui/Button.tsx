@@ -2,7 +2,6 @@
  * Created by Sylnavy V. Mabika M.
  */
 
-// components/ui/Button.tsx
 import React from "react";
 import clsx from "clsx"; // pour gérer les classes conditionnelles (optionnel mais très utile)
 

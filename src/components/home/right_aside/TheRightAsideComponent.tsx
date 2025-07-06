@@ -1,3 +1,5 @@
+import { ListsFriends } from "../../../data/listFriends";
+
 const TheRightAside = () => {
   return (
     <>
@@ -50,203 +52,27 @@ const TheRightAside = () => {
               </div>
             </div>
           </div>
-          <ul className="h-full p-2 text-[14px]">
-            <li>
-              <div className="flex items-center space-x-4 p-2 hover:bg-gray-200 dark:hover:bg-dark-third dark:text-dark-txt rounded-lg cursor-pointer">
-                <div className="relative">
-                  <img
-                    src="src/assets/images/avt-3.jpg"
-                    alt="Friends profile picture"
-                    className="rounded-full w-7 h-7"
-                  ></img>
-                  <span className="bg-green-500 w-2 h-2 rounded-full absolute right-0 top-3/4 border-gray-500 border"></span>
-                </div>
-                <div>
-                  <span className="font-semibold">Chin Chin</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="flex items-center space-x-4 p-2 hover:bg-gray-200 dark:hover:bg-dark-third dark:text-dark-txt rounded-lg cursor-pointer">
-                <div className="relative">
-                  <img
-                    src="src/assets/images/avt-2.jpg"
-                    alt="Friends profile picture"
-                    className="rounded-full w-7 h-7"
-                  ></img>
-                  <span className="bg-green-500 w-2 h-2 rounded-full absolute right-0 top-3/4 border-gray-500 border"></span>
-                </div>
-                <div>
-                  <span className="font-semibold">Tuat TA</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="flex items-center space-x-4 p-2 hover:bg-gray-200 dark:hover:bg-dark-third dark:text-dark-txt rounded-lg cursor-pointer">
-                <div className="relative">
-                  <img
-                    src="src/assets/images/avt-4.jpg"
-                    alt="Friends profile picture"
-                    className="rounded-full w-7 h-7"
-                  ></img>
-                  <span className="bg-green-500 w-2 h-2 rounded-full absolute right-0 top-3/4 border-gray-500 border"></span>
-                </div>
-                <div>
-                  <span className="font-semibold">Valmy M.</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="flex items-center space-x-4 p-2 hover:bg-gray-200 dark:hover:bg-dark-third dark:text-dark-txt rounded-lg cursor-pointer">
-                <div className="relative">
-                  <img
-                    src="src/assets/images/avt-5.jpg"
-                    alt="Friends profile picture"
-                    className="rounded-full w-7 h-7"
-                  ></img>
-                  <span className="bg-green-500 w-2 h-2 rounded-full absolute right-0 top-3/4 border-gray-500 border"></span>
-                </div>
-                <div>
-                  <span className="font-semibold">Ivan Lorem</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="flex items-center space-x-4 p-2 hover:bg-gray-200 dark:hover:bg-dark-third dark:text-dark-txt rounded-lg cursor-pointer">
-                <div className="relative">
-                  <img
-                    src="src/assets/images/avt-6.png"
-                    alt="Friends profile picture"
-                    className="rounded-full w-7 h-7"
-                  ></img>
-                  <span className="bg-green-500 w-2 h-2 rounded-full absolute right-0 top-3/4 border-gray-500 border"></span>
-                </div>
-                <div>
-                  <span className="font-semibold">Shiba san</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="flex items-center space-x-4 p-2 hover:bg-gray-200 dark:hover:bg-dark-third dark:text-dark-txt rounded-lg cursor-pointer">
-                <div className="relative">
-                  <img
-                    src="src/assets/images/avt-4.jpg"
-                    alt="Friends profile picture"
-                    className="rounded-full w-7 h-7"
-                  ></img>
-                  <span className="bg-green-500 w-2 h-2 rounded-full absolute right-0 top-3/4 border-gray-500 border"></span>
-                </div>
-                <div>
-                  <span className="font-semibold">Valmy M.</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="flex items-center space-x-4 p-2 hover:bg-gray-200 dark:hover:bg-dark-third dark:text-dark-txt rounded-lg cursor-pointer">
-                <div className="relative">
-                  <img
-                    src="src/assets/images/avt-5.jpg"
-                    alt="Friends profile picture"
-                    className="rounded-full w-7 h-7"
-                  ></img>
-                  <span className="bg-green-500 w-2 h-2 rounded-full absolute right-0 top-3/4 border-gray-500 border"></span>
-                </div>
-                <div>
-                  <span className="font-semibold">Ivan Lorem</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="flex items-center space-x-4 p-2 hover:bg-gray-200 dark:hover:bg-dark-third dark:text-dark-txt rounded-lg cursor-pointer">
-                <div className="relative">
-                  <img
-                    src="src/assets/images/avt-6.png"
-                    alt="Friends profile picture"
-                    className="rounded-full w-7 h-7"
-                  ></img>
-                  <span className="bg-green-500 w-2 h-2 rounded-full absolute right-0 top-3/4 border-gray-500 border"></span>
-                </div>
-                <div>
-                  <span className="font-semibold">Shiba san</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="flex items-center space-x-4 p-2 hover:bg-gray-200 dark:hover:bg-dark-third dark:text-dark-txt rounded-lg cursor-pointer">
-                <div className="relative">
-                  <img
-                    src="src/assets/images/avt-4.jpg"
-                    alt="Friends profile picture"
-                    className="rounded-full w-7 h-7"
-                  ></img>
-                  <span className="bg-green-500 w-2 h-2 rounded-full absolute right-0 top-3/4 border-gray-500 border"></span>
-                </div>
-                <div>
-                  <span className="font-semibold">Valmy M.</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="flex items-center space-x-4 p-2 hover:bg-gray-200 dark:hover:bg-dark-third dark:text-dark-txt rounded-lg cursor-pointer">
-                <div className="relative">
-                  <img
-                    src="src/assets/images/avt-5.jpg"
-                    alt="Friends profile picture"
-                    className="rounded-full w-7 h-7"
-                  ></img>
-                  <span className="bg-green-500 w-2 h-2 rounded-full absolute right-0 top-3/4 border-gray-500 border"></span>
-                </div>
-                <div>
-                  <span className="font-semibold">Ivan Lorem</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="flex items-center space-x-4 p-2 hover:bg-gray-200 dark:hover:bg-dark-third dark:text-dark-txt rounded-lg cursor-pointer">
-                <div className="relative">
-                  <img
-                    src="src/assets/images/avt-6.png"
-                    alt="Friends profile picture"
-                    className="rounded-full w-7 h-7"
-                  ></img>
-                  <span className="bg-green-500 w-2 h-2 rounded-full absolute right-0 top-3/4 border-gray-500 border"></span>
-                </div>
-                <div>
-                  <span className="font-semibold">Shiba san</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="flex items-center space-x-4 p-2 hover:bg-gray-200 dark:hover:bg-dark-third dark:text-dark-txt rounded-lg cursor-pointer">
-                <div className="relative">
-                  <img
-                    src="src/assets/images/avt-4.jpg"
-                    alt="Friends profile picture"
-                    className="rounded-full w-7 h-7"
-                  ></img>
-                  <span className="bg-green-500 w-2 h-2 rounded-full absolute right-0 top-3/4 border-gray-500 border"></span>
-                </div>
-                <div>
-                  <span className="font-semibold">Valmy M.</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="flex items-center space-x-4 p-2 hover:bg-gray-200 dark:hover:bg-dark-third dark:text-dark-txt rounded-lg cursor-pointer">
-                <div className="relative">
-                  <img
-                    src="src/assets/images/avt-5.jpg"
-                    alt="Friends profile picture"
-                    className="rounded-full w-7 h-7"
-                  ></img>
-                  <span className="bg-green-500 w-2 h-2 rounded-full absolute right-0 top-3/4 border-gray-500 border"></span>
-                </div>
-                <div>
-                  <span className="font-semibold">Valmy MABIKA</span>
-                </div>
-              </div>
-            </li>
-          </ul>
+           <ul className="h-full p-2 text-[14px]">
+                {ListsFriends.map((friend) => (
+                  <li key={friend.id}>
+                    <div className="flex items-center space-x-4 p-2 hover:bg-gray-200 dark:hover:bg-dark-third dark:text-dark-txt rounded-lg cursor-pointer">
+                      <div className="relative">
+                        <img
+                          src={friend.avatarUrl}
+                          alt={`${friend.name} profile`}
+                          className="rounded-full w-7 h-7 object-cover"
+                        />
+                        {friend.online && (
+                          <span className="bg-green-500 w-2 h-2 rounded-full absolute right-0 top-3/4 border-gray-500 border"></span>
+                        )}
+                      </div>
+                      <div>
+                        <span className="font-semibold">{friend.name}</span>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
           {/* <!-- END CONTACTS --> */}
         </div>
       </div>
