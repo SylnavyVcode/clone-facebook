@@ -1,4 +1,6 @@
-// components/PostMediaGrid.tsx
+/**
+ * Created by Sylnavy V. Mabika M.
+ */
 import React from "react";
 
 // type Media = {
@@ -44,7 +46,10 @@ const PostMediaGrid: React.FC<Props> = ({ media }) => {
           <img
             src={media[0].url}
             alt=""
-            className="col-span-1 row-span-2 object-cover  h-full w-full"
+            className={
+              "col-span-1 object-cover  h-full w-full row-span-" +
+              (media.length - 1)
+            }
           />
           <div
             className={
@@ -74,6 +79,7 @@ const PostMediaGrid: React.FC<Props> = ({ media }) => {
       {imagesToShow.map((item, index) => {
         const isLast = index === 4;
         return (
+          
           <div key={index} className="relative">
             <img src={item.url} alt="" className="w-full h-48 object-cover" />
             {isLast && remaining > 0 && (

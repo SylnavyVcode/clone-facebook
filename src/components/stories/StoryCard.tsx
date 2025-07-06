@@ -1,4 +1,7 @@
-// components/StoryCard.tsx
+/**
+ * Created by Sylnavy V. Mabika M.
+ */
+
 import React from 'react';
 
 type StoryCardProps = {

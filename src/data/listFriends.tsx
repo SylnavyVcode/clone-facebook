@@ -1,0 +1,80 @@
+export const ListsFriends = [
+  {
+    id: 1,
+    name: "Chin Chin",
+    avatarUrl: "src/assets/images/avt-3.jpg",
+    online: true,
+  },
+  {
+    id: 2,
+    name: "Tuat TA",
+    avatarUrl: "src/assets/images/avt-2.jpg",
+    online: true,
+  },
+  {
+    id: 3,
+    name: "Valmy M.",
+    avatarUrl: "src/assets/images/avt-4.jpg",
+    online: true,
+  },
+  {
+    id: 4,
+    name: "Ivan Lorem",
+    avatarUrl: "src/assets/images/avt-5.jpg",
+    online: true,
+  },
+  {
+    id: 5,
+    name: "Shiba san",
+    avatarUrl: "src/assets/images/avt-6.png",
+    online: true,
+  },
+  {
+    id: 6,
+    name: "Valmy M.",
+    avatarUrl: "src/assets/images/avt-4.jpg",
+    online: true,
+  },
+  {
+    id: 7,
+    name: "Ivan Lorem",
+    avatarUrl: "src/assets/images/avt-5.jpg",
+    online: true,
+  },
+  {
+    id: 8,
+    name: "Shiba san",
+    avatarUrl: "src/assets/images/avt-6.png",
+    online: true,
+  },
+  {
+    id: 9,
+    name: "Valmy M.",
+    avatarUrl: "src/assets/images/avt-4.jpg",
+    online: true,
+  },
+  {
+    id: 10,
+    name: "Ivan Lorem",
+    avatarUrl: "src/assets/images/avt-5.jpg",
+    online: true,
+  },
+  {
+    id: 11,
+    name: "Shiba san",
+    avatarUrl: "src/assets/images/avt-6.png",
+    online: true,
+  },
+  {
+    id: 12,
+    name: "Valmy M.",
+    avatarUrl: "src/assets/images/avt-4.jpg",
+    online: true,
+  },
+  {
+    id: 13,
+    name: "Valmy MABIKA",
+    avatarUrl: "src/assets/images/avt-5.jpg",
+    online: true,
+  },
+];

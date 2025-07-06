@@ -1,4 +1,7 @@
 // data/posts.ts (mock API)
+/**
+ * Created by Sylnavy V. Mabika M.
+ */
 export const mockPosts = [
   {
     id: "1",
@@ -15,6 +18,10 @@ export const mockPosts = [
       {
         type: "image",
         url: "src/assets/images/post-1.jpg",
+      },
+      {
+        type: "image",
+        url: "src/assets/images/post.png",
       },
       {
         type: "image",
