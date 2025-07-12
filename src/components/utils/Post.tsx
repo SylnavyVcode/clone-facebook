@@ -7,7 +7,7 @@ type PostProps = {
   children: React.ReactNode;
   user: {
     name: string;
-    avatarUrl: string;
+    profilePic: string;
   };
   date: string;
   images?: string[]; // supporte plusieurs images
@@ -36,7 +36,7 @@ export const Post: React.FC<PostProps> = ({
       {/* Header */}
       <div className="flex items-center gap-3 p-4">
         <img
-          src={user.avatarUrl}
+          src={user.profilePic}
           alt={user.name}
           className="w-10 h-10 rounded-full object-cover"
         />

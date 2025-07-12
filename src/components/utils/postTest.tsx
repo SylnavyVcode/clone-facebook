@@ -15,7 +15,7 @@ type PostProps = {
     id: string;
     user: {
       name: string;
-      avatarUrl: string;
+      profilePic: string;
     };
     content: string;
     media: any[];
@@ -49,7 +49,7 @@ const PostTest: React.FC<{ post: PostProps["post"] }> = ({ post }) => {
     <div className="bg-white rounded-xl shadow-sm  mb-3">
       {/* Header */}
       <div className="flex items-center gap-3 py-2 px-4">
-        <Avatar src={post.user.avatarUrl} size="md" />
+        <Avatar src={post.user.profilePic} size="md" />
         <div>
           <h4 className="font-semibold text-sm">{post.user.name}</h4>
           <span className="text-xs text-gray-500">

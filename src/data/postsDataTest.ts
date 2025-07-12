@@ -7,7 +7,7 @@ export const mockPosts = [
     id: "1",
     user: {
       name: "Mark Zuckerberg",
-      avatarUrl: "https://i.pravatar.cc/150?img=3",
+      profilePic: "https://i.pravatar.cc/150?img=3",
     },
     content: "Hello world! 👋 First post from my MetaQuest headset.",
     media: [
@@ -34,7 +34,7 @@ export const mockPosts = [
     id: "2",
     user: {
       name: "Jane Doe",
-      avatarUrl: "https://i.pravatar.cc/150?img=5",
+      profilePic: "https://i.pravatar.cc/150?img=5",
     },
     content: "Beautiful views from our last trip 🌍✈️",
     media: [
@@ -49,7 +49,7 @@ export const mockPosts = [
     id: "3",
     user: {
       name: "Lucas Martin",
-      avatarUrl: "https://i.pravatar.cc/150?img=7",
+      profilePic: "https://i.pravatar.cc/150?img=7",
     },
     content: "Check this out! 🎥🔥",
     media: [
@@ -61,7 +61,7 @@ export const mockPosts = [
     id: "4",
     user: {
       name: "Lucas Martin",
-      avatarUrl: "https://i.pravatar.cc/150?img=7",
+      profilePic: "https://i.pravatar.cc/150?img=7",
     },
     content: "Check this out! 🎥🔥",
     media: [

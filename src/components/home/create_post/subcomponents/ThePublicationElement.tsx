@@ -17,7 +17,7 @@ const ThePosterView = () => {
           ))}
         </div>
         <Post
-          user={{ name: "Valmy M.", avatarUrl: "src/assets/images/tuat.jpg" }}
+          user={{ name: "Valmy M.", profilePic: "src/assets/images/tuat.jpg" }}
           images={[
             "src/assets/images/tuat.jpg",
             "src/assets/images/tuat.jpg",
