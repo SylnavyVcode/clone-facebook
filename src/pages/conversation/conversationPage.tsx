@@ -17,7 +17,14 @@ export default function ConversationPage() {
 
   useEffect(() => {
     getConversations()
-      .then(setConversations)
+      .then((data) => {
+        // Map API response to Conversation type
+        const mappedConversations: Conversation[] = data.map((conv: any) => ({
+          id: conv.id,
+          title: conv.title ?? (conv.users?.map((u: any) => u.firstname).join(', ') || 'Conversation'),
+        }));
+        setConversations(mappedConversations);
+      })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);
