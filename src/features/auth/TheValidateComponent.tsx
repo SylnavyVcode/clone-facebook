@@ -8,8 +8,8 @@ import { Button } from "../../components/ui/Button";
 import Footer from "../../components/utils/FooterComponent";
 import FooterForm from "../../components/utils/footerForm";
 import { useNavigate } from "react-router";
-import Input from "../../components/utils/input";
 import TheNavbarAuthComponent from "./children/TheNavbarLogin";
+import Input from "../../components/ui/Input";
 
 interface FormData {
   token: string;
@@ -80,7 +80,6 @@ function ValidateComponent() {
                         type="text"
                         placeholder="Entrer votre token."
                         {...register("token")}
-                        errorMessage={errors.token?.message}
                         className={
                           "w-full p-3 transition text-[17px] duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
                         }

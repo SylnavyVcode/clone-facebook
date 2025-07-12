@@ -11,7 +11,7 @@ import { Users } from "../../services/user";
 import { Button } from "../../components/ui/Button";
 import Footer from "../../components/utils/FooterComponent";
 import FooterForm from "../../components/utils/footerForm";
-import Input from "../../components/utils/input";
+import Input from "../../components/ui/Input";
 
 interface FormData {
   email: string;

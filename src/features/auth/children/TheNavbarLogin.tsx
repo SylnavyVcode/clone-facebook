@@ -7,9 +7,10 @@ import * as yup from "yup";
 
 import { useNavigate } from "react-router-dom";
 import { Auth } from "../../../services/auth/auth";
-import Input from "../../../components/utils/input";
+// import Input from "../../../components/utils/input";
 import { Button } from "../../../components/ui/Button";
 import FooterForm from "../../../components/utils/footerForm";
+import Input from "../../../components/ui/Input";
 
 interface FormData {
   email: string;
@@ -72,50 +73,55 @@ function TheNavbarAuthComponent() {
                     alt="logo de facebook"
                   />
                 </h1>
-                <div className=" flex justify-center items-center gap-x-2 mx-2">
+                <div className=" flex justify-center items-center m-auto gap-x-2 mx-2">
                   {/* <!-- Partie email  --> */}
-                  <div className="my-1">
-                    <Input
-                      id="input_email"
-                      type="text"
-                      placeholder="Adresse e-mail ou numéro de tél."
-                      {...register("email")}
-                      errorMessage={errors.email?.message}
-                      className={
-                        "w-full px-3 py-2 transition  duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded-md"
-                      }
-                    ></Input>
-                  </div>
+
+                  <Input
+                    id="input_email"
+                    type="text"
+                    placeholder="Adresse e-mail ou numéro de tél."
+                    {...register("email")}
+                    errorMessage={errors.email?.message}
+                    className={
+                      "w-full px-3 py-2 transition  duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded-md"
+                    }
+                  ></Input>
 
                   {/* <!-- Partie Password  --> */}
-                  <div className="my-1 ">
-                    <Input
-                      id="input_password"
-                      type="password"
-                      placeholder="Mot de passe"
-                      {...register("password")}
-                      errorMessage={errors.password?.message}
-                      className={
-                        "w-full px-3 py-2 transition  duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded-md"
-                      }
-                    ></Input>
-                  </div>
+
+                  <Input
+                    id="input_password"
+                    type="password"
+                    placeholder="Mot de passe"
+                    {...register("password")}
+                    errorMessage={errors.password?.message}
+                    className={
+                      "w-full px-3 py-2 transition  duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded-md"
+                    }
+                  ></Input>
 
                   <Button
                     id="btn_navbar_login"
                     type="submit"
-                    className="bg-[#1877f2] text-white rounded-md w-full text-center  shadow-sm px-4 py-2 font-semibold"
+                    className="bg-[#1877f2] text-white rounded-md w-max-[200px] text-center  shadow-sm px-4 py-2 font-semibold"
                   >
                     Se connecter
                   </Button>
 
-                  <FooterForm
+                  <Button
+                    id="password_navbar_forgot"
+                    className="text-sm text-[#1877f2]  cursor-pointer focus:text-[#1877f2] hover:underline  pointer mt-2 text-center"
+                  >
+                    <a href="/auth/login">Informations de compte oubliées ?</a>
+                  </Button>
+
+                  {/* <FooterForm
                     id="password_navbar_forgot"
                     title="Informations de compte oubliées ?"
                     className="text-sm text-[#1877f2]  cursor-pointer focus:text-[#1877f2] hover:underline  pointer mt-2 text-center"
                     orElement={false}
                     to={"/auth/login"}
-                  ></FooterForm>
+                  ></FooterForm> */}
                 </div>
               </form>
             </div>

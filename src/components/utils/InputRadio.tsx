@@ -2,7 +2,7 @@
  * Created by Sylnavy V. Mabika M.
  */
 import React from "react";
-import ErrorInput from "./errorInput";
+import ErrorInput from "../ui/errorInput";
 
 interface Option {
   label: string;
@@ -60,7 +60,7 @@ const InputRadio = React.forwardRef<
             </div>
           ))}
       </div>
-       <ErrorInput id={name  + "_error"} message={errorMessage}></ErrorInput>
+      <ErrorInput id={name + "_error"} message={errorMessage}></ErrorInput>
     </>
   );
 });
