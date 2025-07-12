@@ -5,9 +5,9 @@ import * as yup from "yup";
 import { Auth } from "../../services/auth/auth";
 import { useNavigate } from "react-router-dom";
 import facebook from "../../assets/facebook-icone.svg";
-import Input from "../../components/utils/input";
 import { Button } from "../../components/ui/Button";
 import Footer from "../../components/utils/FooterComponent";
+import Input from "../../components/ui/Input";
 
 interface FormData {
   new_password: string;

@@ -6,10 +6,10 @@ import * as yup from "yup";
 import { Auth } from "../../services/auth/auth";
 import { useNavigate } from "react-router-dom";
 import TheNavbarAuthComponent from "./children/TheNavbarLogin";
-import Input from "../../components/utils/input";
 import { Button } from "../../components/ui/Button";
 import Footer from "../../components/utils/FooterComponent";
 import FooterForm from "../../components/utils/footerForm";
+import Input from "../../components/ui/Input";
 
 interface FormData {
   email: string;

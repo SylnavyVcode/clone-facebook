@@ -7,7 +7,7 @@ import { ListsFriends } from "../../data/listFriends";
 // type Friend = {
 //   id: number;
 //   name: string;
-//   avatarUrl: string;
+//   profilePic: string;
 //   online: boolean;
 // };
 
@@ -27,7 +27,7 @@ const FriendList: React.FC = () => {
           <div className="flex items-center space-x-4 p-2 hover:bg-gray-200 dark:hover:bg-dark-third dark:text-dark-txt rounded-lg cursor-pointer">
             <div className="relative">
               <img
-                src={friend.avatarUrl}
+                src={friend.profilePic}
                 alt={`${friend.name} profile`}
                 className="rounded-full w-7 h-7 object-cover"
               />

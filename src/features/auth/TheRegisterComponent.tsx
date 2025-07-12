@@ -9,13 +9,13 @@ import facebook from "../../assets/facebook-icone.svg";
 import { Auth } from "../../services/auth/auth";
 import { useNavigate } from "react-router-dom";
 import HeaderRegister from "../../components/utils/headerRegister";
-import Input from "../../components/utils/input";
 import { Button } from "../../components/ui/Button";
 import Footer from "../../components/utils/FooterComponent";
 import FooterForm from "../../components/utils/footerForm";
 import InputRadio from "../../components/utils/InputRadio";
 import InputSelect from "../../components/utils/InputSelect";
 import Politique from "../../components/utils/ThePolitiqueComponent";
+import Input from "../../components/ui/Input";
 
 // Étape 1 : Définir les types des données
 interface FormData {
