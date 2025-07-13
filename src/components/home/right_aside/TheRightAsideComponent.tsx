@@ -1,4 +1,5 @@
 import { ListsFriends } from "../../../data/listFriends";
+import { Button } from "../../ui/Button";
 
 const TheRightAside = () => {
   return (
@@ -29,12 +30,18 @@ const TheRightAside = () => {
                   <span className="float-right">6d</span>
                 </div>
                 <div className="lg:flex items-center justify-center gap-3 mt-2">
-                  <div className="w-full lg:w-1/2 bg-blue-500 cursor-pointer py-1 mb-1 text-center font-semibold text-white rounded-lg">
+                  <Button
+                    id="btn-confirm-friendship"
+                    className="w-full lg:w-1/2 bg-blue-500 cursor-pointer py-1 mb-1 text-center font-semibold text-white rounded-lg"
+                  >
                     Confirm
-                  </div>
-                  <div className="w-full lg:w-1/2 bg-gray-300 cursor-pointer py-1 mb-1 text-center font-semibold text-black rounded-lg">
+                  </Button>
+                  <Button
+                    id="btn-confirm-friendship"
+                    className="w-full lg:w-1/2 bg-gray-300 cursor-pointer py-1 mb-1 text-center font-semibold text-black rounded-lg"
+                  >
                     Delete
-                  </div>
+                  </Button>
                 </div>
               </div>
             </a>
@@ -42,15 +49,7 @@ const TheRightAside = () => {
 
           {/* <!-- CONTACTS --> */}
           <div className=" flex justify-between items-center px-4 pt-4 text-gray-500 dark:text-dark-txt">
-            <span className="font-semibold text-md">Contacts</span>
-            <div className="flex space-x-1">
-              <div className="w-8 h-8 grid place-items-center text-xl hover:bg-gray-200 dark:hover:bg-dark-third rounded-full cursor-pointer">
-                <i className="bx bx-search-alt-2"></i>
-              </div>
-              <div className="w-8 h-8 grid place-items-center text-xl hover:bg-gray-200 dark:hover:bg-dark-third rounded-full cursor-pointer">
-                <i className="bx bx-dots-horizontal-rounded"></i>
-              </div>
-            </div>
+            <h2 className="font-semibold text-md">Contacts</h2>
           </div>
           <ul className="h-full p-2 text-[14px]">
             {ListsFriends.map((friend) => (

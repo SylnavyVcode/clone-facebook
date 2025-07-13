@@ -1,7 +1,7 @@
 import TheModalMenuComponent from "./modals/TheModalMenu";
 import TheModalProfilComponent from "./modals/TheModalProfil";
 
-const TheRightNavBar = () => {
+const Right = () => {
   const handleClickProfil = () => {
     const dropdownMenu = document.getElementById("dropdownMenu");
     const dropdownProfil = document.getElementById("dropdownInformation");
@@ -48,7 +48,7 @@ const TheRightNavBar = () => {
 
             <div
               id="dropdownMenu"
-              className="absolute hidden right-[-142px] top-12 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm  dark:bg-gray-900 dark:divide-gray-800 w-[370px] h-[600px] overflow-y-auto"
+              className="absolute hidden right-[-142px] top-12 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm  dark:bg-gray-900 dark:divide-gray-800 w-[570px] h-[600px] overflow-y-auto"
             >
               <TheModalMenuComponent></TheModalMenuComponent>
             </div>
@@ -129,4 +129,4 @@ const TheRightNavBar = () => {
   );
 };
 
-export default TheRightNavBar;
+export default Right;

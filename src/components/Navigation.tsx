@@ -1,6 +1,6 @@
 import { Form, NavLink, useLocation } from '@remix-run/react';
 import { useOptionalUser } from '~/root.tsx';
-import { Button } from './ui/button.tsx';
+import { Button } from './ui/Button.tsx';
 
 type RouteItemType = { url: string; name: string };
 export const loggedOutRoutes: RouteItemType[] = [

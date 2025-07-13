@@ -2,7 +2,7 @@ import { Form, Link } from '@remix-run/react';
 import { useOptionalUser } from '~/root.tsx';
 import type { getConversations } from '~/server/chat.server.ts';
 import type { getUsers } from '~/server/user.server.ts';
-import { Button } from './ui/button.tsx';
+import { Button } from './ui/Button';
 
 export const Conversations = ({
 	conversations,

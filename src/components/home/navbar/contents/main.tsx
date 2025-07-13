@@ -1,4 +1,4 @@
-const TheMainNavBar = () => {
+const Main = () => {
   return (
     <>
       <section id="main_nav_bar" className="max-md:invisible w-full">
@@ -102,4 +102,4 @@ const TheMainNavBar = () => {
   );
 };
 
-export default TheMainNavBar;
+export default Main;

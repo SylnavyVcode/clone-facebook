@@ -1,6 +1,7 @@
-import Button from "./utils/TheButtonComponent";
+import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react";
+import { Button } from "../ui/Button";
 
-export default function CardBox(props) {
+export default function CardBox(props: { image: string; image_alt: string; title: string | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; description: string; }) {
   return (
     <div className="card bg-base-100 w-96 shadow-sm">
       <figure>

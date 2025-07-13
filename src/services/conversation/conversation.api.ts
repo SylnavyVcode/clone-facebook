@@ -2,6 +2,7 @@
 import { z } from 'zod';
 import { getConversationsSchema, getConversationSchema } from '../../types/chat/chatForm';
 import { api } from '../../libs/axios';
+import { feedbackSchema } from '../../routes/forgot-password';
 
 export const getConversations = async () => {
   const { data } = await api.get('/chat');
