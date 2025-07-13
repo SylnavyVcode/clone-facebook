@@ -6,8 +6,8 @@ const TheModalMenuComponent = () => {
     <>
       <div className="px-4 py-2 text-white w-full ">
         <h2 className="my-1 font-semibold text-2xl">Menu</h2>
-        <div className="flex justify-center items-center gap-8 w-full  ">
-          <div className="px-4 py-3 w-[60%] dark:bg-gray-800 rounded-lg  dark:border-gray-700">
+        <div className="flex justify-center items-start gap-4 w-full  ">
+          <div className="px-4 py-3 w-[60%] dark:bg-gray-800 rounded-lg dark:border-gray-700">
             <div className="w-full flex items-center space-x-1 bg-gray-700 dark:bg-dark-third rounded-full">
               <div className="relative  dark:bg-dark-third px-2 py-2 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer">
                 <svg
@@ -100,8 +100,22 @@ const TheModalMenuComponent = () => {
               ))}
             </ul>
           </div>
-          <div className="px-4 py-3 w-[35%] dark:bg-gray-800 rounded-lg  dark:border-gray-700">
-            JE SUIS ENTRAIN DE TESTER LE MENU RIGHT
+          <div className="relative px-4 py-3 w-[35%] dark:bg-gray-800 rounded-lg dark:border-gray-700 h-screen">
+            <ul
+              className="w-full text-sm text-gray-700 dark:text-gray-200 absolute top-0 right-0"
+              aria-labelledby="dropdownInformationButton"
+            >
+              {MenuLeftData.personnal.map((value) => (
+                <li>
+                  <EventLink
+                    title={value.title}
+                    image={value.image}
+                    description={value.description}
+                    className="w-full py-1 hover:bg-gray-600  dark:hover:bg-gray-600 dark:hover:text-white flex items-center justify-between rounded-md"
+                  ></EventLink>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
