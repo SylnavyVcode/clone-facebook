@@ -1,6 +1,6 @@
 import TheAside from "./aside/TheAsideComponent";
 import ThePostCreate from "./create_post/ThePostComponent";
-import TheNavBar from "./navbar/TheNavbarComponent";
+import TheNavBar from "./navbar/navbar";
 import TheRightAside from "./right_aside/TheRightAsideComponent";
 
 import { useState, useEffect } from "react";

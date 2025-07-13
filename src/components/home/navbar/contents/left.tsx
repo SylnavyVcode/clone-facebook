@@ -1,4 +1,4 @@
-const TheLeftNavBar = () => {
+const Left = () => {
   return (
     <>
       <section id="TheLeftNavBar" className="w-full">
@@ -40,4 +40,4 @@ const TheLeftNavBar = () => {
   );
 };
 
-export default TheLeftNavBar;
+export default Left;

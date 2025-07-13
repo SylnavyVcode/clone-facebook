@@ -1,5 +1,5 @@
 import ThePostCreate from "../../components/home/create_post/ThePostComponent";
-import TheNavBar from "../../components/home/navbar/TheNavbarComponent";
+import TheNavBar from "../../components/home/navbar/navbar";
 
 const UserComponent = () => {
   return (
