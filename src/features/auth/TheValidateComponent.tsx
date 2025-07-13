@@ -26,12 +26,11 @@ const schema = yup.object({
 });
 
 function ValidateComponent() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData | any>({ resolver: yupResolver(schema) });
-  const navigate = useNavigate(); // Hook pour la navigation
+  const { register, handleSubmit } = useForm<FormData | any>({
+    resolver: yupResolver(schema),
+  });
+  // const navigate = useNavigate(); // Hook pour la navigation
+  useNavigate();
   const [switchToResetPassword, setSwitchToResetPassword] = useState(false);
   const [code, setCode] = useState("");
 
@@ -102,6 +101,13 @@ function ValidateComponent() {
                     <div className="flex justify-between items-center">
                       <div>Vous navez pas obtenu un code?</div>
                       <div className="flex justify-end items-center gap-4">
+                        {/* <Button
+                          id="btn_reset_password_not"
+                          type="submit"
+                          className="bg-white hover:bg-slate-200 text-black rounded-lg w-full text-center border my-2 shadow-sm px-4 py-1 font-semibold"
+                        >
+                          Not you?
+                        </Button> */}
                         <FooterForm
                           id="btn_reset_password_not"
                           title="Not you?"

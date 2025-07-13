@@ -5,8 +5,8 @@ import { useUser } from '~/root.tsx';
 import type { MessagesType } from '~/routes/conversations_.$conversationId.tsx';
 import type { getConversation } from '~/server/chat.server.ts';
 import type { ActionFeedback } from './FeedbackComponent.tsx';
-import { Button } from './ui/button.tsx';
-import { Input } from './ui/input.tsx';
+import { Button } from './ui/Button.tsx';
+import Input from './ui/Input.tsx';
 
 export const Chatbox = ({
 	conversation,
@@ -70,7 +70,7 @@ export const Chatbox = ({
 						) : null}
 					</div>
 					<Form method='POST' action={`/donate/${recipientUser.id}`}>
-						<Button variant={'outline'}>Faire un don</Button>
+						<Button variant={'secondary'}>Faire un don</Button>
 					</Form>
 					<ul className='text-xs flex flex-col gap-1'>
 						<span>Dons envoyés</span>

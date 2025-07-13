@@ -72,7 +72,7 @@ export class Auth {
     try {
       const response = await axios.post(
         `${config.base_url}/auth/reset-password`,
-        { newPassword, OTP },
+        { new_password: newPassword, OTP: OTP },
         this.getAuthHeaders()
       );
       console.log("response", response.data);

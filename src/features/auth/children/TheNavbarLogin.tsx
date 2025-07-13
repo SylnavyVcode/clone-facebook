@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { Auth } from "../../../services/auth/auth";
 // import Input from "../../../components/utils/input";
 import { Button } from "../../../components/ui/Button";
-import FooterForm from "../../../components/utils/footerForm";
+// import FooterForm from "../../../components/utils/footerForm";
 import Input from "../../../components/ui/Input";
 
 interface FormData {
@@ -37,14 +37,12 @@ function TheNavbarAuthComponent() {
   const navigate = useNavigate(); // Hook pour la navigation
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    console.log("Données du formulaire : ", data);
     const response = await Auth.login(data);
     if (response && response.access_token) {
       localStorage.setItem("token", response.access_token);
       localStorage.setItem("from", "");
       navigate("/home");
     }
-    console.log(">>>>>>>>>", response);
   };
 
   return (
@@ -114,14 +112,6 @@ function TheNavbarAuthComponent() {
                   >
                     <a href="/auth/login">Informations de compte oubliées ?</a>
                   </Button>
-
-                  {/* <FooterForm
-                    id="password_navbar_forgot"
-                    title="Informations de compte oubliées ?"
-                    className="text-sm text-[#1877f2]  cursor-pointer focus:text-[#1877f2] hover:underline  pointer mt-2 text-center"
-                    orElement={false}
-                    to={"/auth/login"}
-                  ></FooterForm> */}
                 </div>
               </form>
             </div>

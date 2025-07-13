@@ -1,4 +1,4 @@
-import { Alert, AlertDescription } from '~/components/ui/alert.tsx';
+import { Alert, AlertDescription } from "./ui/alert";
 
 export type ActionFeedback = {
 	error: boolean;

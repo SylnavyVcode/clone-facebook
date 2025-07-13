@@ -91,7 +91,7 @@ function RegisterComponent() {
       firstname: data.firstname,
       lastname: data.lastname,
       email: data.email,
-      telephone: "064716613",
+      telephone: "",
       genre: data.gender,
       anniversaire: date.toString(),
       profilePic: "",

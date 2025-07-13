@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import TheNavbarAuthComponent from "./children/TheNavbarLogin";
 import { Button } from "../../components/ui/Button";
 import Footer from "../../components/utils/FooterComponent";
-import FooterForm from "../../components/utils/footerForm";
 import Input from "../../components/ui/Input";
 import TheValidateComponent from "./TheValidateComponent";
 import { useState } from "react";
