@@ -5,19 +5,17 @@ import { ActionFeedback, AlertFeedback } from '../components/FeedbackComponent';
 import { Button } from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import { Label } from '../components/ui/label';
-import { Icons } from '../components/icons';
+import { Icons } from '../components/ui/icons';
 
-const feedbackSchema = z.object({
+export const feedbackSchema = z.object({
   message: z.string(),
   error: z.boolean(),
 });
 
 const forgotPasswordSchema = z.object({
   email: z
-    .string({
-      required_error: 'Votre adresse email est requise.',
-      invalid_type_error: 'Vous devez fournir une adresse email valide',
-    })
+    .string()
+    .min(1, { message: 'Votre adresse email est requise.' })
     .email({ message: 'Vous devez fournir une adresse email valide' }),
 });
 
@@ -32,7 +30,7 @@ const resetPasswordSchema = z.object({
 
 export default function ForgotPasswordForm() {
   const [searchParams] = useSearchParams(); // récupère le token de l’URL
-  const [feedback, setFeedback] = useState<ActionFeedback | null>(null);
+  const [feedback, setFeedback] = useState<ActionFeedback | undefined>(undefined);
   const [loading, setLoading] = useState(false);
   const [tokenStatus, setTokenStatus] = useState<{
     error: boolean;
@@ -73,7 +71,7 @@ export default function ForgotPasswordForm() {
     if (!parsed.success) {
       setFeedback({
         error: true,
-        message: parsed.error.errors.map((e) => e.message).join(', '),
+        message: parsed.error.issues.map((e) => e.message).join(', '),
       });
       return;
     }
@@ -118,7 +116,7 @@ export default function ForgotPasswordForm() {
     if (!parsed.success) {
       setFeedback({
         error: true,
-        message: parsed.error.errors.map((e) => e.message).join(', '),
+        message: parsed.error.issues.map((e) => e.message).join(', '),
       });
       return;
     }

@@ -10,6 +10,8 @@ import { Button } from "../../components/ui/Button";
 import Footer from "../../components/utils/FooterComponent";
 import FooterForm from "../../components/utils/footerForm";
 import Input from "../../components/ui/Input";
+import TheValidateComponent from "./TheValidateComponent";
+import { useState } from "react";
 
 interface FormData {
   email: string;
@@ -32,89 +34,99 @@ function ResetComponent() {
     formState: { errors },
   } = useForm<FormData>({ resolver: yupResolver(schema) });
   const navigate = useNavigate(); // Hook pour la navigation
-
+  const [showValidate, setShowValidate] = useState(false);
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log("Données du formulaire : ", data);
     const response = await Auth.reset(data);
     if (response!.code === 200) {
+      setShowValidate(true);
       // console.log(">>>>>>>>> response data", response!.data);
-      await navigate("/auth/validate");
+      // await navigate("/auth/validate");
     }
   };
-  // const onGoToLogin = async () => {
-  //   console.log("j'arrive ici");
-
-  //   // navigate("/auth/login");
-  // };
+  const goToLogin = async () => {
+    navigate("/auth/login");
+  };
 
   return (
     <>
-      {/* <!-- Premiere Section --> */}
-      <TheNavbarAuthComponent></TheNavbarAuthComponent>
-      <section className="flex justify-center items-center w-full h-full font-sans bg-[#f2f4f7]">
-        {/* <!-- Partie Principale --> */}
-        <main className="justify-center m-4 p-4">
-          <div
-            className="px-4 flex justify-center py-3  w-[500px] items-center border border-[#dddfe2] bg-white rounded-xl my-12"
-            style={{
-              boxShadow:
-                "0px 2px 4px rgba(0, 0, 0, 0.1), 0px 8px 16px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <div className="w-full">
-              <div>
-                <p className="text-xl py-2 ">Trouver votre compte</p>
-              </div>
-              <form
-                role="form"
-                className=" w-full "
-                onSubmit={handleSubmit(onSubmit)}
+      {!showValidate && (
+        <div>
+          <TheNavbarAuthComponent></TheNavbarAuthComponent>
+          <section className="flex justify-center items-center w-full h-full font-sans bg-[#f2f4f7]">
+            {/* <!-- Partie Principale --> */}
+            <main className="justify-center m-4 p-4">
+              <div
+                className="px-4 flex justify-center py-3  w-[500px] items-center border border-[#dddfe2] bg-white rounded-xl my-12"
+                style={{
+                  boxShadow:
+                    "0px 2px 4px rgba(0, 0, 0, 0.1), 0px 8px 16px rgba(0, 0, 0, 0.1)",
+                }}
               >
-                <hr />
-                <div className="w-full ">
-                  <p className="py-2">
-                    S'il vous plait entrer votre email ou numéro de téléphone
-                    pour chercher votre compte.
-                  </p>
-                  {/* <!-- Partie email  --> */}
-                  <div className="my-3">
-                    <Input
-                      id="input_email"
-                      type="text"
-                      placeholder="Adresse e-mail ou numéro de tél."
-                      {...register("email")}
-                      errorMessage={errors.email?.message}
-                      className={
-                        "w-full p-3 transition text-[17px] duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
-                      }
-                    ></Input>
+                <div className="w-full">
+                  <div>
+                    <p className="text-xl py-2 ">Trouver votre compte</p>
                   </div>
-                </div>
-                <hr />
-                <div className="flex justify-end items-center gap-4">
-                  <FooterForm
+                  <form
+                    role="form"
+                    className=" w-full "
+                    onSubmit={handleSubmit(onSubmit)}
+                  >
+                    <hr />
+                    <div className="w-full ">
+                      <p className="py-2">
+                        S'il vous plait entrer votre email ou numéro de
+                        téléphone pour chercher votre compte.
+                      </p>
+                      {/* <!-- Partie email  --> */}
+                      <div className="my-3">
+                        <Input
+                          id="input_email"
+                          type="text"
+                          placeholder="Adresse e-mail ou numéro de tél."
+                          {...register("email")}
+                          errorMessage={errors.email?.message}
+                          className={
+                            "w-full p-3 transition text-[17px] duration-300  outline-none border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
+                          }
+                        ></Input>
+                      </div>
+                    </div>
+                    <hr />
+                    <div className="flex justify-end items-center gap-4">
+                      <Button
+                        type="button"
+                        onClick={goToLogin}
+                        id="btn_reset_cancel"
+                        className="bg-white hover:bg-slate-200 text-black rounded-lg w-full text-center border my-2 shadow-sm px-4 py-1 font-semibold"
+                      >
+                        Annuler
+                      </Button>
+                      {/* <FooterForm
                     id="btn_reset_cancel"
                     title="Annuler"
                     className="bg-white hover:bg-slate-200 text-black rounded-lg w-full text-center border my-2 shadow-sm px-4 py-1 font-semibold"
                     orElement={false}
                     to={"/auth/login"}
-                  ></FooterForm>
+                  ></FooterForm> */}
 
-                  <Button
-                    id="btn_reset_search"
-                    type="submit"
-                    className="bg-[#1877f2] hover:bg-[#1840f2] text-white rounded-lg w-full text-center my-2 shadow-sm px-4 py-1  font-semibold"
-                  >
-                    Chercher
-                  </Button>
+                      <Button
+                        id="btn_reset_search"
+                        type="submit"
+                        className="bg-[#1877f2] hover:bg-[#1840f2] text-white rounded-lg w-full text-center my-2 shadow-sm px-4 py-1  font-semibold"
+                      >
+                        Chercher
+                      </Button>
+                    </div>
+                  </form>
                 </div>
-              </form>
-            </div>
-          </div>
-        </main>
-      </section>
-
-      <Footer></Footer>
+              </div>
+            </main>
+          </section>
+          <Footer></Footer>
+        </div>
+      )}
+      {showValidate && <TheValidateComponent></TheValidateComponent>}
     </>
   );
 }

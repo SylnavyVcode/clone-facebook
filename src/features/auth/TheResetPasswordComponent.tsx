@@ -8,9 +8,14 @@ import facebook from "../../assets/facebook-icone.svg";
 import { Button } from "../../components/ui/Button";
 import Footer from "../../components/utils/FooterComponent";
 import Input from "../../components/ui/Input";
+import { useState } from "react";
+
 
 interface FormData {
   new_password: string;
+}
+interface ResetPasswordProps {
+  CODE: string;
 }
 
 // Étape 2 : Définir les règles de validation
@@ -26,22 +31,23 @@ const schema = yup.object({
     .required("Saisissez votre nouveau mot de passe"),
 });
 
-function ResetPasswordComponent() {
+function ResetPasswordComponent({ CODE }: ResetPasswordProps) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({ resolver: yupResolver(schema) });
+   const [OTP, setOTP] = useState("");
   const navigate = useNavigate(); // Hook pour la navigation
   console.log("Données du navigate : ", navigate);
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log("Données du formulaire : ", data);
-    const response = await Auth.resetPassword(data);
+    setOTP(CODE);
+    const response = await Auth.resetPassword(data, OTP);
     if (response && response.code === 200) {
-      console.log(">>>>>>>>> response data", response);
-
-      // navigate("/home");
+      console.log(">>>>>>>>>", response);
+      navigate("/home");
     }
     console.log(">>>>>>>>>", response);
   };

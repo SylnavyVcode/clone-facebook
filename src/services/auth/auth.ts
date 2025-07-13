@@ -7,6 +7,16 @@ import axios from "axios";
 import { config } from "../config/config";
 
 export class Auth {
+  static getAuthHeaders() {
+    const token = localStorage.getItem("token"); // Récupération du token
+    return {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    };
+  }
+
   static async createAccount(accountData: any) {
     console.log(">>>>>>ACCOUNT>>>>>", accountData);
 
@@ -48,29 +58,22 @@ export class Auth {
     console.log(data);
 
     try {
-      const response = await axios.post(`${config.base_url}/auth/reset`, data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      console.log("response", response.data);
+      const response = await axios.post(
+        `${config.base_url}/auth/reset`,
+        { data },
+        this.getAuthHeaders()
+      );
       return response.data;
     } catch (error) {
       console.error("Erreur lors de la vérification du compte :", error);
     }
   }
-  static async resetPassword(data: any) {
-    console.log("data password ====>", data);
-
+  static async resetPassword(newPassword: any, OTP?: any) {
     try {
       const response = await axios.post(
         `${config.base_url}/auth/reset-password`,
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        { newPassword, OTP },
+        this.getAuthHeaders()
       );
       console.log("response", response.data);
       return response.data;
@@ -80,12 +83,11 @@ export class Auth {
   }
 
   static async validateReset(data: string) {
-    console.log("validation reset =====>>>>", data);
-
     try {
       const response = await axios.get(
         `${config.base_url}/auth/validate-reset-password`,
         {
+          ...this.getAuthHeaders(),
           params: { token: data }, // Ajoutez les données dans "params"
         }
       );
@@ -96,11 +98,12 @@ export class Auth {
     }
   }
 
-  static async getUserData(token:string){
+  static async getUserData(token: string) {
     try {
       const response = await axios.get(
         `${config.base_url}/auth/validate-reset-password`,
         {
+          ...this.getAuthHeaders(),
           params: { token: token }, // Ajoutez les données dans "params"
         }
       );
