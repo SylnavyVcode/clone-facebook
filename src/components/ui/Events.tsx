@@ -22,7 +22,7 @@ export const EventLink: React.FC<EventProps> = ({
           <img src={image} alt="Profile picture" className="h-7 w-7"></img>
         </div>
         <div className="w-full">
-          <span>{title}</span>
+          <span className="font-semibold">{title}</span>
           <p className="text-xs  ">{description}</p>
         </div>
       </div>

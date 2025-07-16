@@ -1,13 +1,15 @@
 import { MenuLeftData } from "../../../../../data/modal_menu_left";
+import { MenuRightData } from "../../../../../data/modal_menu_right";
 import { EventLink } from "../../../../ui/Events";
+import { EventProfil } from "../../../../ui/EventsProfil";
 
 const TheModalMenuComponent = () => {
   return (
     <>
       <div className="px-4 py-2 text-white w-full ">
-        <h2 className="my-1 font-semibold text-2xl">Menu</h2>
-        <div className="flex justify-center items-start gap-4 w-full  ">
-          <div className="px-4 py-3 w-[60%] dark:bg-gray-800 rounded-lg dark:border-gray-700">
+        <h2 className="my-1 px-2 font-semibold text-2xl">Menu</h2>
+        <div className="flex justify-center items-start gap-4 w-full ">
+          <div className="px-2 py-3 w-[60%] dark:bg-gray-800 rounded-lg dark:border-gray-700">
             <div className="w-full flex items-center space-x-1 bg-gray-700 dark:bg-dark-third rounded-full">
               <div className="relative  dark:bg-dark-third px-2 py-2 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer">
                 <svg
@@ -31,9 +33,9 @@ const TheModalMenuComponent = () => {
                 className="outline-none bg-transparent inline-block"
               ></input>
             </div>
-            <h3>Social</h3>
+            <h3 className="font-bold mt-2">Social</h3>
             <ul
-              className="w-full mt-2 pb-2 text-sm text-gray-700 dark:text-gray-200"
+              className="w-full pb-2 text-sm text-gray-700 dark:text-gray-200"
               aria-labelledby="dropdownInformationButton"
             >
               {/* {MenuLeftData} */}
@@ -49,9 +51,9 @@ const TheModalMenuComponent = () => {
               ))}
             </ul>
             <div className="border-b border-gray-400  my-2"></div>
-            <h3>Shopping</h3>
+            <h3 className="font-bold">Shopping</h3>
             <ul
-              className="w-full mt-2 pb-2 text-sm text-gray-700 dark:text-gray-200"
+              className="w-full pb-2 text-sm text-gray-700 dark:text-gray-200"
               aria-labelledby="dropdownInformationButton"
             >
               {MenuLeftData.shopping.map((value) => (
@@ -66,9 +68,9 @@ const TheModalMenuComponent = () => {
               ))}
             </ul>
             <div className="border-b border-gray-400  my-2"></div>
-            <h3>Gaming</h3>
+            <h3 className="font-bold">Gaming</h3>
             <ul
-              className="w-full mt-2 pb-2 text-sm text-gray-700 dark:text-gray-200"
+              className="w-full pb-2 text-sm text-gray-700 dark:text-gray-200"
               aria-labelledby="dropdownInformationButton"
             >
               {MenuLeftData.gaming.map((value) => (
@@ -85,7 +87,7 @@ const TheModalMenuComponent = () => {
             <div className="border-b border-gray-400  my-2"></div>
             <h3>Personnal</h3>
             <ul
-              className="w-full mt-2 pb-2 text-sm text-gray-700 dark:text-gray-200"
+              className="w-full pb-2 text-sm text-gray-700 dark:text-gray-200"
               aria-labelledby="dropdownInformationButton"
             >
               {MenuLeftData.personnal.map((value) => (
@@ -100,19 +102,18 @@ const TheModalMenuComponent = () => {
               ))}
             </ul>
           </div>
-          <div className="relative px-4 py-3 w-[35%] dark:bg-gray-800 rounded-lg dark:border-gray-700 h-screen">
+          <div className="relative w-[35%] dark:bg-gray-800 rounded-lg dark:border-gray-700 h-[400px]">
             <ul
-              className="w-full text-sm text-gray-700 dark:text-gray-200 absolute top-0 right-0"
+              className="w-full p-2 text-sm text-gray-700 dark:text-gray-200 absolute  h-full"
               aria-labelledby="dropdownInformationButton"
             >
-              {MenuLeftData.personnal.map((value) => (
+              {MenuRightData.map((value) => (
                 <li>
-                  <EventLink
+                  <EventProfil
                     title={value.title}
-                    image={value.image}
-                    description={value.description}
+                    image={value.icon}
                     className="w-full py-1 hover:bg-gray-600  dark:hover:bg-gray-600 dark:hover:text-white flex items-center justify-between rounded-md"
-                  ></EventLink>
+                  ></EventProfil>
                 </li>
               ))}
             </ul>
