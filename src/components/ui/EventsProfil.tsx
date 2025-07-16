@@ -7,7 +7,7 @@ type EventProps = {
   image?: string;
   addDirection?: boolean;
 };
-export const EventLink: React.FC<EventProps> = ({
+export const EventProfil: React.FC<EventProps> = ({
   title,
   className,
   image,
@@ -19,7 +19,7 @@ export const EventLink: React.FC<EventProps> = ({
       <a {...props} href="#" className={className}>
         <div className="flex justify-center items-center gap-4 px-1">
           <div className="m-auto place-items-center bg-gray-700 dark:bg-dark-third dark:text-dark-txt rounded-full p-2 cursor-pointer">
-            <img src={image} alt="Profile picture" className="h-7 w-7"></img>
+            <img src={image} alt="Profile picture" className="h-6 w-6"></img>
           </div>
           <span>{title}</span>
         </div>
