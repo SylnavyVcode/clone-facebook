@@ -8,7 +8,9 @@ import { config } from "../config/config";
 
 export class PostService {
   static getpostHeaders() {
-    const token = localStorage.getItem("token"); // Récupération du token
+    const token = localStorage.getItem("token");
+    console.log("token", token);
+    // Récupération du token
     return {
       headers: {
         authorization: `Bearer ${token}`,
@@ -19,21 +21,17 @@ export class PostService {
 
   /**
    * Create Post to Facebook
-   * @param postData 
-   * @returns 
+   * @param postData
+   * @returns
    */
   static async createPost(postData: any) {
     console.log(">>>>>>post>>>>>", postData);
 
     try {
       const response = await axios.post(
-        `${config.base_url}/post`,
+        `${config.base_url}/post/message`,
         postData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        this.getpostHeaders()
       );
       console.log(response);
 
@@ -43,21 +41,17 @@ export class PostService {
     }
   }
 
-  
   /**
    * GET Posts
-   * @param token 
-   * @returns 
+   * @param token
+   * @returns
    */
   static async getAllPostData(token: string) {
     try {
-      const response = await axios.get(
-        `${config.base_url}/post/`,
-        {
-          ...this.getpostHeaders(),
-          params: { token: token }, // Ajoutez les données dans "params"
-        }
-      );
+      const response = await axios.get(`${config.base_url}/post/`, {
+        ...this.getpostHeaders(),
+        params: { token: token }, // Ajoutez les données dans "params"
+      });
       console.log("response", response.data);
       return response.data;
     } catch (error) {
