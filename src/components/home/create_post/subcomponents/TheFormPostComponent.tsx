@@ -1,8 +1,14 @@
 // import TheFluxElements from "../flux/TheFluxComponent";
 
+import { useState } from "react";
 import { Button } from "../../../ui/Button";
+import { PostModal } from "../../../../features/post/PostForm";
 
 const ThePostForm = () => {
+  const [showModalPost, setShowModalPost] = useState<boolean>(false);
+  const hundlePost = () => {
+    setShowModalPost(true);
+  };
   return (
     <>
       {/* <!-- POST FORM --> */}
@@ -14,7 +20,7 @@ const ThePostForm = () => {
             className="w-12 h-12 rounded-full"
           ></img>
           <div className="flex-1 bg-gray-100 rounded-full flex items-center justify-start pl-4 cursor-pointer dark:bg-dark-third text-gray-500 text-lg dark:text-dark-txt">
-            <Button className="bg-transparent w-full">
+            <Button onClick={hundlePost} className="bg-transparent w-full">
               What's on your mind, Tuat?
             </Button>
           </div>
@@ -53,6 +59,7 @@ const ThePostForm = () => {
         </div>
       </div>
       {/* <!-- END POST FORM --> */}
+      {showModalPost && <PostModal showModal={showModalPost}></PostModal>}
     </>
   );
 };

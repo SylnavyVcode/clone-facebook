@@ -1,17 +1,21 @@
 import { Button } from "../../components/ui/Button";
 import Input from "../../components/ui/Input";
 
-export const PostModal = (showModal: boolean) => {
-  return (
-    <>
-      {showModal && (
+export const PostModal = ({ showModal = false }) => {
+  if (showModal) {
+    return (
+      <>
         <section
           id="Section_modal_post"
-          className="w-screen h-screen bg-slate-400/40 flex justify-center items-center"
+          className="w-screen h-screen bg-slate-400/40 flex justify-center items-center z-20 fixed top-0 right-0"
         >
           <div className="w-[500px]">
             BONJOUR LE MONDE
-            <Input id="text_post" name="contentPost" placeholder="What's on you mind Valmy"></Input>
+            <Input
+              id="text_post"
+              name="contentPost"
+              placeholder="What's on you mind Valmy"
+            ></Input>
             <Button
               type="submit"
               className="bg-[#1877f2] text-white rounded-lg w-full text-center text-[20px] shadow-sm px-4 py-3 font-semibold"
@@ -21,7 +25,7 @@ export const PostModal = (showModal: boolean) => {
             </Button>
           </div>
         </section>
-      )}
-    </>
-  );
+      </>
+    );
+  }
 };
