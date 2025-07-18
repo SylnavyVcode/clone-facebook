@@ -1,19 +1,13 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
+import { PostService } from "../../services/post/post";
+import { Post } from "../utils/Post";
 
 type Post = {
-  id: number;
-  title: string;
-  body: string;
-};
-
-const fetchPosts = async (
-  page: number
-): Promise<{ data: Post[]; hasMore: boolean }> => {
-  const res = await fetch(
-    `https://jsonplaceholder.typicode.com/posts?_limit=10&_page=${page}`
-  );
-  const data: Post[] = await res.json();
-  return { data, hasMore: data.length > 0 };
+  id: string;
+  content: string;
+  image?: string;
+  video?: string;
+  author_id?: string;
 };
 
 const InfiniteScroll: React.FC = () => {
@@ -26,11 +20,23 @@ const InfiniteScroll: React.FC = () => {
   const loadMore = useCallback(async () => {
     if (loading || !hasMore) return;
     setLoading(true);
+
     try {
-      const res = await fetchPosts(page);
-      setItems((prev) => [...prev, ...res.data]);
-      setHasMore(res.hasMore);
-      setPage((prev) => prev + 1);
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.error("Token non trouvé !");
+        setLoading(false);
+        return;
+      }
+
+      const response = await PostService.getAllPostDataWithPagination(page, 10); // <- à créer
+      if (response) {
+        setItems((prev) => [...prev, ...response.data]);
+
+        console.log(">>>>items", items);
+        setHasMore(response.hasMore);
+        setPage((prev) => prev + 1);
+      }
     } catch (err) {
       console.error("Erreur lors du chargement :", err);
     } finally {
@@ -39,22 +45,19 @@ const InfiniteScroll: React.FC = () => {
   }, [page, loading, hasMore]);
 
   useEffect(() => {
-    loadMore();
-  }, []); // initial load
+    loadMore(); // chargement initial
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
+
         if (entry.isIntersecting) {
           loadMore();
         }
       },
-      {
-        root: null,
-        rootMargin: "0px",
-        threshold: 1.0,
-      }
+      { threshold: 1 }
     );
 
     if (loader.current) {
@@ -62,9 +65,7 @@ const InfiniteScroll: React.FC = () => {
     }
 
     return () => {
-      if (loader.current) {
-        observer.unobserve(loader.current);
-      }
+      if (loader.current) observer.unobserve(loader.current);
     };
   }, [loader, loadMore]);
 
@@ -73,13 +74,23 @@ const InfiniteScroll: React.FC = () => {
       <h1 className="text-2xl font-bold mb-4">Infinite Scroll</h1>
       <div className="space-y-4">
         {items.map((item) => (
-          <div
-            key={item.id}
-            className="border rounded-lg p-4 shadow-sm hover:shadow-md transition duration-300 bg-white"
+          <Post
+            user={{
+              name: "Valmy M.",
+              profilePic: "src/assets/images/tuat.jpg",
+            }}
+            images={[item.image ? item.image : ""]}
+            date="2h ago"
           >
-            <h2 className="text-lg font-semibold">{item.title}</h2>
-            <p className="text-sm text-gray-700">{item.body}</p>
-          </div>
+            {item.content}
+          </Post>
+          // <div
+          //   key={id}
+          //   className="border rounded-lg p-4 shadow-sm hover:shadow-md transition duration-300 bg-white"
+          // >
+          //   <h2 className="text-lg font-semibold">{item.content}</h2>
+          //   <p className="text-sm text-gray-700">{item.content}</p>
+          // </div>
         ))}
       </div>
 
