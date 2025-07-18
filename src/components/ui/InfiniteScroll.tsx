@@ -1,13 +1,17 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import { PostService } from "../../services/post/post";
 import { Post } from "../utils/Post";
+import PostTest from "../utils/postTest";
 
 type Post = {
   id: string;
+  author: any;
   content: string;
-  image?: string;
-  video?: string;
+  image?: any;
+  comments?: string;
+  video?: any;
   author_id?: string;
+  createdAt: string;
 };
 
 const InfiniteScroll: React.FC = () => {
@@ -16,6 +20,8 @@ const InfiniteScroll: React.FC = () => {
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
   const loader = useRef<HTMLDivElement | null>(null);
+
+  const [dataTemp, setDataTemp] = useState<any[]>([]);
 
   const loadMore = useCallback(async () => {
     if (loading || !hasMore) return;
@@ -33,7 +39,22 @@ const InfiniteScroll: React.FC = () => {
       if (response) {
         setItems((prev) => [...prev, ...response.data]);
 
-        console.log(">>>>items", items);
+        const transformed = response.data.map((element: Post) => ({
+          id: element.id,
+          user: {
+            name: `${element.author.firstname} ${element.author.lastname}`,
+            profilePic: element.author.profilePic,
+          },
+          content: element.content,
+          videos: [...element.video],
+          images: [...element.image],
+          createdAt: element.createdAt,
+        }));
+
+        // Ajoute les nouveaux éléments transformés à ceux déjà existants
+        setDataTemp((prev) => [...prev, ...transformed]);
+        console.log(">>>>erere>", dataTemp);
+
         setHasMore(response.hasMore);
         setPage((prev) => prev + 1);
       }
@@ -72,27 +93,12 @@ const InfiniteScroll: React.FC = () => {
   return (
     <div className="max-w-xl mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Infinite Scroll</h1>
-      <div className="space-y-4">
-        {items.map((item) => (
-          <Post
-            user={{
-              name: "Valmy M.",
-              profilePic: "src/assets/images/tuat.jpg",
-            }}
-            images={[item.image ? item.image : ""]}
-            date="2h ago"
-          >
-            {item.content}
-          </Post>
-          // <div
-          //   key={id}
-          //   className="border rounded-lg p-4 shadow-sm hover:shadow-md transition duration-300 bg-white"
-          // >
-          //   <h2 className="text-lg font-semibold">{item.content}</h2>
-          //   <p className="text-sm text-gray-700">{item.content}</p>
-          // </div>
+      {/* <div className="space-y-4">
+        {dataTemp.map((post_test) => (
+          <PostTest key={post_test.id} post={post_test} />
         ))}
-      </div>
+      
+      </div> */}
 
       {loading && (
         <div className="text-center py-6 text-gray-500">Chargement...</div>

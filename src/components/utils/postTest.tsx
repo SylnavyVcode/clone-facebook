@@ -18,15 +18,16 @@ type PostProps = {
       profilePic: string;
     };
     content: string;
-    media: any[];
+    videos: any[];
+    images: any[];
     createdAt: string;
   };
 };
 
 const PostTest: React.FC<{ post: PostProps["post"] }> = ({ post }) => {
   const renderMedia = () => {
-    const images = post.media.filter((m) => m.type === "image");
-    const videos = post.media.filter((m) => m.type === "video");
+    const images = post.images;
+    const videos = post.videos;
 
     return (
       <>
