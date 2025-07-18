@@ -38,7 +38,7 @@ const PostTest: React.FC<{ post: PostProps["post"] }> = ({ post }) => {
             controls
             className="rounded-lg mt-2 w-full max-h-[500px]"
           >
-            <source src={video.url} type="video/mp4" />
+            <source src={video} type="video/mp4" />
             Votre navigateur ne prend pas en charge la vidéo.
           </video>
         ))}
