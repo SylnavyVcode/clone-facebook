@@ -46,8 +46,8 @@ const InfiniteScroll: React.FC = () => {
             profilePic: element.author.profilePic,
           },
           content: element.content,
-          videos: [...element.video],
-          images: [...element.image],
+          videos: [...(element.video || [])],
+          images: [...(element.image || [])],
           createdAt: element.createdAt,
         }));
 
@@ -93,12 +93,11 @@ const InfiniteScroll: React.FC = () => {
   return (
     <div className="max-w-xl mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Infinite Scroll</h1>
-      {/* <div className="space-y-4">
+      <div className="space-y-4">
         {dataTemp.map((post_test) => (
           <PostTest key={post_test.id} post={post_test} />
         ))}
-      
-      </div> */}
+      </div>
 
       {loading && (
         <div className="text-center py-6 text-gray-500">Chargement...</div>
