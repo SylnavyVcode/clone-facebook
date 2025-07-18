@@ -18,15 +18,16 @@ type PostProps = {
       profilePic: string;
     };
     content: string;
-    media: any[];
+    videos: any[];
+    images: any[];
     createdAt: string;
   };
 };
 
 const PostTest: React.FC<{ post: PostProps["post"] }> = ({ post }) => {
   const renderMedia = () => {
-    const images = post.media.filter((m) => m.type === "image");
-    const videos = post.media.filter((m) => m.type === "video");
+    const images = post.images;
+    const videos = post.videos;
 
     return (
       <>
@@ -37,7 +38,7 @@ const PostTest: React.FC<{ post: PostProps["post"] }> = ({ post }) => {
             controls
             className="rounded-lg mt-2 w-full max-h-[500px]"
           >
-            <source src={video.url} type="video/mp4" />
+            <source src={video} type="video/mp4" />
             Votre navigateur ne prend pas en charge la vidéo.
           </video>
         ))}

@@ -10,24 +10,13 @@ export const mockPosts = [
       profilePic: "https://i.pravatar.cc/150?img=3",
     },
     content: "Hello world! 👋 First post from my MetaQuest headset.",
-    media: [
-      {
-        type: "image",
-        url: "src/assets/images/post-1.jpg",
-      },
-      {
-        type: "image",
-        url: "src/assets/images/post-1.jpg",
-      },
-      {
-        type: "image",
-        url: "src/assets/images/post.png",
-      },
-      {
-        type: "image",
-        url: "src/assets/images/post.png",
-      },
+    images: [
+      "src/assets/images/post-1.jpg",
+      "src/assets/images/post-1.jpg",
+      "src/assets/images/post.png",
+      "src/assets/images/post.png",
     ],
+    videos: [],
     createdAt: new Date().toISOString(),
   },
   {
@@ -37,12 +26,8 @@ export const mockPosts = [
       profilePic: "https://i.pravatar.cc/150?img=5",
     },
     content: "Beautiful views from our last trip 🌍✈️",
-    media: [
-      {
-        type: "image",
-        url: "src/assets/images/post-1.jpg",
-      },
-    ],
+    images: ["src/assets/images/post-1.jpg"],
+    videos: [],
     createdAt: new Date().toISOString(),
   },
   {
@@ -52,9 +37,8 @@ export const mockPosts = [
       profilePic: "https://i.pravatar.cc/150?img=7",
     },
     content: "Check this out! 🎥🔥",
-    media: [
-      { type: "video", url: "https://www.w3schools.com/html/mov_bbb.mp4" },
-    ],
+    videos: ["https://www.w3schools.com/html/mov_bbb.mp4"],
+    images: [],
     createdAt: new Date().toISOString(),
   },
   {
@@ -64,10 +48,8 @@ export const mockPosts = [
       profilePic: "https://i.pravatar.cc/150?img=7",
     },
     content: "Check this out! 🎥🔥",
-    media: [
-      { type: "image", url: "src/assets/images/post-1.jpg" },
-      { type: "image", url: "src/assets/images/post-3.jpg" },
-    ],
+    images: ["src/assets/images/post-1.jpg", "src/assets/images/post-3.jpg"],
+    videos: [],
     createdAt: new Date().toISOString(),
   },
 ];

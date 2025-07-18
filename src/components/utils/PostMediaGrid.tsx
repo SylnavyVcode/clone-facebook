@@ -30,7 +30,7 @@ const PostMediaGrid: React.FC<Props> = ({ media }) => {
         {media.map((item, index) => (
           <img
             key={index}
-            src={item.url}
+            src={item}
             alt=""
             className="object-cover h-full w-full"
           />
@@ -59,7 +59,7 @@ const PostMediaGrid: React.FC<Props> = ({ media }) => {
             {media.slice(1, media.length).map((item, index) => (
               <img
                 key={index}
-                src={item.url}
+                src={item}
                 alt=""
                 className="object-cover h-full w-full"
               />
@@ -81,7 +81,7 @@ const PostMediaGrid: React.FC<Props> = ({ media }) => {
         return (
           
           <div key={index} className="relative">
-            <img src={item.url} alt="" className="w-full h-48 object-cover" />
+            <img src={item} alt="" className="w-full h-48 object-cover" />
             {isLast && remaining > 0 && (
               <div className="absolute inset-0 bg-black/60 flex items-center justify-center rounded">
                 <span className="text-white text-xl font-bold">

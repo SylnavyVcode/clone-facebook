@@ -46,16 +46,17 @@ export class PostService {
    * @param token
    * @returns
    */
-  static async getAllPostData(token: string) {
+  static async getAllPostDataWithPagination(page = 1, limit = 10) {
     try {
-      const response = await axios.get(`${config.base_url}/post/`, {
+      const response = await axios.get(`${config.base_url}/post`, {
         ...this.getpostHeaders(),
-        params: { token: token }, // Ajoutez les données dans "params"
+        params: { page, limit },
       });
-      console.log("response", response.data);
-      return response.data;
+
+      return response.data; // Doit ressembler à { data: [...], hasMore: true }
     } catch (error) {
-      console.error("Erreur lors de la vérification du compte :", error);
+      console.error("Erreur lors de la récupération des posts :", error);
+      return { data: [], hasMore: false };
     }
   }
 }
