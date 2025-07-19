@@ -3,7 +3,7 @@ import React from "react";
 import { ThumbsUp, MessageCircle, Share2 } from "lucide-react";
 import { Avatar } from "../ui/Avatar";
 import { Button } from "../ui/Button";
-import PostMediaGrid from "./PostMediaGrid";
+import ThePostImages from "./PostImages";
 
 // type Media = {
 //   type: "image" | "video";
@@ -26,12 +26,13 @@ type PostProps = {
 
 const PostTest: React.FC<{ post: PostProps["post"] }> = ({ post }) => {
   const renderMedia = () => {
+
     const images = post.images;
     const videos = post.videos;
 
     return (
       <>
-        {images.length > 0 && <PostMediaGrid media={images} />}
+        {images.length > 0 && <ThePostImages media={images} />}
         {videos.map((video, idx) => (
           <video
             key={idx}
