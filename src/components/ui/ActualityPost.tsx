@@ -14,7 +14,7 @@ type Post = {
   createdAt: string;
 };
 
-const InfiniteScroll: React.FC = () => {
+const ActualityPost: React.FC = () => {
   const [items, setItems] = useState<Post[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -38,6 +38,7 @@ const InfiniteScroll: React.FC = () => {
       const response = await PostService.getAllPostDataWithPagination(page, 10); // <- à créer
       if (response) {
         setItems((prev) => [...prev, ...response.data]);
+        console.log(">>>>response.data>", response.data);
 
         const transformed = response.data.map((element: Post) => ({
           id: element.id,
@@ -46,8 +47,8 @@ const InfiniteScroll: React.FC = () => {
             profilePic: element.author.profilePic,
           },
           content: element.content,
-          videos: [...(element.video || [])],
-          images: [...(element.image || [])],
+          videos: element.video ? JSON.parse(element.video) : [],
+          images: element.image ? JSON.parse(element.image) : [],
           createdAt: element.createdAt,
         }));
 
@@ -61,7 +62,10 @@ const InfiniteScroll: React.FC = () => {
     } catch (err) {
       console.error("Erreur lors du chargement :", err);
     } finally {
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+      // setLoading(false);
     }
   }, [page, loading, hasMore]);
 
@@ -91,8 +95,8 @@ const InfiniteScroll: React.FC = () => {
   }, [loader, loadMore]);
 
   return (
-    <div className="max-w-xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Infinite Scroll</h1>
+    <div className="max-w-xl mx-auto">
+      {/* <h1 className="text-2xl font-bold mb-4">Infinite Scroll</h1> */}
       <div className="space-y-4">
         {dataTemp.map((post_test) => (
           <PostTest key={post_test.id} post={post_test} />
@@ -108,4 +112,4 @@ const InfiniteScroll: React.FC = () => {
   );
 };
 
-export default InfiniteScroll;
+export default ActualityPost;

@@ -12,16 +12,12 @@ type Props = {
   media: any[];
 };
 
-const PostMediaGrid: React.FC<Props> = ({ media }) => {
+const ThePostImages: React.FC<Props> = ({ media }) => {
   if (media.length === 0) return null;
 
   if (media.length === 1) {
     return (
-      <img
-        src={media[0].url}
-        alt=""
-        className="w-full h-[300px] object-cover"
-      />
+      <img src={media[0]} alt="" className="w-full h-[300px] object-cover" />
     );
   }
   if (media.length === 2) {
@@ -44,7 +40,7 @@ const PostMediaGrid: React.FC<Props> = ({ media }) => {
       <div className="w-full h-[500px]">
         <div className="w-full h-full grid  grid-cols-2  gap-1 ">
           <img
-            src={media[0].url}
+            src={media[0]}
             alt=""
             className={
               "col-span-1 object-cover  h-full w-full row-span-" +
@@ -79,7 +75,6 @@ const PostMediaGrid: React.FC<Props> = ({ media }) => {
       {imagesToShow.map((item, index) => {
         const isLast = index === 4;
         return (
-          
           <div key={index} className="relative">
             <img src={item} alt="" className="w-full h-48 object-cover" />
             {isLast && remaining > 0 && (
@@ -96,4 +91,4 @@ const PostMediaGrid: React.FC<Props> = ({ media }) => {
   );
 };
 
-export default PostMediaGrid;
+export default ThePostImages;
