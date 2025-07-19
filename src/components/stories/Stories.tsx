@@ -53,7 +53,7 @@ export const Stories = () => {
             <CreateStoryCard key="create" />
           ) : (
             <StoryCard
-              key={story.id}
+              key={index}
               userName={story.userName}
               avatar={story.avatar}
               image={story.image}
@@ -66,7 +66,7 @@ export const Stories = () => {
       {startIndex < maxIndex && (
         <button
           onClick={handleRight}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white p-1 rounded-full shadow hover:bg-gray-200"
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-5 bg-white p-1 rounded-full shadow hover:bg-gray-200"
         >
           <ChevronRight />
         </button>
