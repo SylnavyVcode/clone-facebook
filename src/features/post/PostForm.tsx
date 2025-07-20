@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "../../components/ui/Button";
 import Input from "../../components/ui/Input";
 import * as yup from "yup";
@@ -24,6 +24,8 @@ interface FormData {
   video: Array<string> | null;
 }
 export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
+  const [image, setImage] = useState<File | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   // Étape 2 : Définir les règles de validation
   const schema = yup.object({
     content: yup.string().min(0, "le code doit contenir au moins 0 caractère."),
@@ -31,7 +33,18 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
   const { register, handleSubmit } = useForm<FormData | any>({
     resolver: yupResolver(schema),
   });
-
+  const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImage(file);
+      // Tu peux afficher un aperçu ici si tu veux
+      console.log("Image sélectionnée :", file.name);
+    }
+  };
+  const handleClick = () => {
+    inputRef.current?.click(); // ⬅️ déclenche l'ouverture du sélecteur de fichier
+  };
+  // Étape 3 : Gérer la soumission du formulaire
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log("Données du formulaire : ", data);
 
@@ -124,7 +137,10 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
                 <span>Add to your post</span>
               </p>
               <div className="flex space-x-1">
-                <Button className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                <Button
+                  onClick={handleClick}
+                  className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
                   <ImageIcon className="text-green-500" />
                 </Button>
                 <Button className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -143,6 +159,15 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
                   <MoreHorizontal className="text-gray-600" />
                 </Button>
               </div>
+              <Input
+                type="file"
+                name="profilePic"
+                accept="image/*"
+                id="profilePic"
+                onChange={handleChangeImage}
+                ref={inputRef}
+                className="hidden"
+              ></Input>
             </div>
 
             {/* Post button */}
