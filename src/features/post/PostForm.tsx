@@ -28,6 +28,7 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
   const [image, setImage] = useState<File | null>(null);
   const [images, setImages] = useState<Array<any> | null>(null);
   const [videos, setVideos] = useState<Array<any> | null>(null);
+  const [disabledButton, setDisabledButton] = useState<boolean>(true);
   const inputRef = useRef<HTMLInputElement>(null);
   // Étape 2 : Définir les règles de validation
   const schema = yup.object({
@@ -41,6 +42,7 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
     if (file) {
       setImage(file);
       setImages((prev) => [...(prev || []), file]);
+      setDisabledButton(false);
       // Tu peux afficher un aperçu ici si tu veux
       console.log("Image sélectionnée :", file.name);
     }
@@ -55,9 +57,17 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
       content: data.content,
       image: images || null,
       video: videos || null,
+    };
+    if (
+      (images?.length ?? 0) <= 0 &&
+      (videos?.length ?? 0) <= 0 &&
+      !data.content
+    ) {
+      console.error("Aucune image ou vidéo sélectionnée.");
+      return;
     }
 
-    const response = await PostService.createPost(data);
+    const response = await PostService.createPost(model);
     console.log(response, "resp");
 
     if (
@@ -183,6 +193,7 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
             <Button
               onClick={handleSubmit(onSubmit)}
               type="submit"
+              disabled={disabledButton}
               className="mt-4 w-full py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 disabled:opacity-50 disabled:bg-gray-600 "
             >
               Post
