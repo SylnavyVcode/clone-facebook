@@ -35,7 +35,7 @@ export class PostService {
       );
       console.log(response);
 
-      return response.data;
+      return response;
     } catch (error) {
       console.error("Erreur lors de la création du compte :", error);
     }
