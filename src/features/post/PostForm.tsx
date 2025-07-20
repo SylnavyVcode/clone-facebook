@@ -14,6 +14,7 @@ import {
   MoreHorizontal,
   Gift,
 } from "lucide-react";
+import { set } from "zod";
 interface PostModalProps {
   showModal: boolean;
   onClose: () => void;
@@ -25,6 +26,8 @@ interface FormData {
 }
 export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
   const [image, setImage] = useState<File | null>(null);
+  const [images, setImages] = useState<Array<any> | null>(null);
+  const [videos, setVideos] = useState<Array<any> | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   // Étape 2 : Définir les règles de validation
   const schema = yup.object({
@@ -37,6 +40,7 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
     const file = e.target.files?.[0];
     if (file) {
       setImage(file);
+      setImages((prev) => [...(prev || []), file]);
       // Tu peux afficher un aperçu ici si tu veux
       console.log("Image sélectionnée :", file.name);
     }
@@ -47,6 +51,11 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
   // Étape 3 : Gérer la soumission du formulaire
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log("Données du formulaire : ", data);
+    const model = {
+      content: data.content,
+      image: images || null,
+      video: videos || null,
+    }
 
     const response = await PostService.createPost(data);
     console.log(response, "resp");
