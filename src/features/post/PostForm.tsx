@@ -14,7 +14,6 @@ import {
   MoreHorizontal,
   Gift,
 } from "lucide-react";
-import { set } from "zod";
 interface PostModalProps {
   showModal: boolean;
   onClose: () => void;
@@ -29,6 +28,7 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
   const [images, setImages] = useState<Array<any> | null>(null);
   const [videos, setVideos] = useState<Array<any> | null>(null);
   const [disabledButton, setDisabledButton] = useState<boolean>(true);
+  const [content, setContent] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
   // Étape 2 : Définir les règles de validation
   const schema = yup.object({
@@ -49,6 +49,15 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
   };
   const handleClick = () => {
     inputRef.current?.click(); // ⬅️ déclenche l'ouverture du sélecteur de fichier
+  };
+  const ChangeContent = () => {
+    const contentValue = (
+      document.getElementById("content") as HTMLTextAreaElement
+    ).value;
+    setContent(contentValue);
+    setDisabledButton(
+      !contentValue && !(images?.length ?? 0) && !(videos?.length ?? 0)
+    );
   };
   // Étape 3 : Gérer la soumission du formulaire
   const onSubmit: SubmitHandler<FormData> = async (data) => {
@@ -121,7 +130,10 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
             <h2 className="text-lg font-semibold text-center w-full">
               Create post
             </h2>
-            <button className="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+            <button
+              onClick={onClose}
+              className="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
+            >
               <X className="h-5 w-5" />
             </button>
           </div>
@@ -143,16 +155,19 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
           </div>
 
           {/* Input */}
+
           <div className="w-full px-4 pb-2">
             <textarea
+              id="content"
               {...register("content")}
+              onChange={ChangeContent}
               placeholder="What's on your mind, Valmy?"
               className="w-full mt-2 resize-none border-none outline-none text-white text-xl bg-transparent placeholder-gray-500 min-h-[100px]"
             ></textarea>
 
             {/* Add to your post */}
             <div className="mt-4 flex justify-between items-center border rounded-md p-2 bg-gray-50 dark:bg-gray-800">
-              <p className="text-sm text-gray-600 dark:text-gray-400 m-auto">
+              <p className="text-sm text-gray-600 dark:text-gray-400 m-auto cursor-pointer">
                 <span>Add to your post</span>
               </p>
               <div className="flex space-x-1">
@@ -199,6 +214,42 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
               Post
             </Button>
           </div>
+          {true && (
+            <div className="mt-4 grid grid-cols-2 gap-2 p-4 bg-gray-50 dark:bg-gray-800">
+              <Button
+                onClick={handleClick}
+                className="flex gap-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                <ImageIcon className="text-green-500" /> Image
+              </Button>
+              <Button className="flex gap-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                <Users className="text-blue-500" />
+                Add friends
+              </Button>
+              <Button className="flex gap-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                <Smile className="text-yellow-500" /> Emoji
+              </Button>
+              <Button className="flex gap-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                <MapPin className="text-red-500" /> add location
+              </Button>
+              <Button className="flex gap-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                <Gift className="text-teal-500" /> Gif
+              </Button>
+              <Button className="flex gap-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                <MoreHorizontal className="text-gray-600" />
+              </Button>
+
+              <Input
+                type="file"
+                name="profilePic"
+                accept="image/*"
+                id="profilePic"
+                onChange={handleChangeImage}
+                ref={inputRef}
+                className="hidden"
+              ></Input>
+            </div>
+          )}
         </div>
       </div>
       {/* </div> */}
