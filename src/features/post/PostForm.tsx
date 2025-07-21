@@ -155,6 +155,7 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
           </div>
 
           {/* Input */}
+
           <div className="w-full px-4 pb-2">
             <textarea
               id="content"
@@ -166,7 +167,7 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
 
             {/* Add to your post */}
             <div className="mt-4 flex justify-between items-center border rounded-md p-2 bg-gray-50 dark:bg-gray-800">
-              <p className="text-sm text-gray-600 dark:text-gray-400 m-auto">
+              <p className="text-sm text-gray-600 dark:text-gray-400 m-auto cursor-pointer">
                 <span>Add to your post</span>
               </p>
               <div className="flex space-x-1">
@@ -213,6 +214,42 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
               Post
             </Button>
           </div>
+          {true && (
+            <div className="mt-4 grid grid-cols-2 gap-2 p-4 bg-gray-50 dark:bg-gray-800">
+              <Button
+                onClick={handleClick}
+                className="flex gap-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                <ImageIcon className="text-green-500" /> Image
+              </Button>
+              <Button className="flex gap-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                <Users className="text-blue-500" />
+                Add friends
+              </Button>
+              <Button className="flex gap-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                <Smile className="text-yellow-500" /> Emoji
+              </Button>
+              <Button className="flex gap-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                <MapPin className="text-red-500" /> add location
+              </Button>
+              <Button className="flex gap-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                <Gift className="text-teal-500" /> Gif
+              </Button>
+              <Button className="flex gap-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                <MoreHorizontal className="text-gray-600" />
+              </Button>
+
+              <Input
+                type="file"
+                name="profilePic"
+                accept="image/*"
+                id="profilePic"
+                onChange={handleChangeImage}
+                ref={inputRef}
+                className="hidden"
+              ></Input>
+            </div>
+          )}
         </div>
       </div>
       {/* </div> */}
