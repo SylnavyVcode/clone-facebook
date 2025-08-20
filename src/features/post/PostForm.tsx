@@ -17,14 +17,14 @@ import {
 interface PostModalProps {
   showModal: boolean;
   onClose: () => void;
+  onUpdateDate: () => void;
 }
 interface FormData {
   content: string;
   image: Array<string> | null;
   video: Array<string> | null;
 }
-export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
-  const [image, setImage] = useState<File | null>(null);
+export const PostModal = ({ showModal = false, onClose, onUpdateDate }: PostModalProps) => {
   const [images, setImages] = useState<Array<any> | null>(null);
   const [videos, setVideos] = useState<Array<any> | null>(null);
   const [disabledButton, setDisabledButton] = useState<boolean>(true);
@@ -41,11 +41,11 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
   const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setImage(file);
+      console.log(file);
+
       setImages((prev) => [...(prev || []), file]);
       setDisabledButton(false);
       // Tu peux afficher un aperçu ici si tu veux
-      console.log("Image sélectionnée :", file.name);
     }
   };
   const hundleChangeStep = () => {
@@ -68,9 +68,11 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
     console.log("Données du formulaire : ", data);
     const model = {
       content: data.content,
-      image: images ? URL.createObjectURL(images[0]) : null,
+      image: images ? [URL.createObjectURL(images[0])] : null,
       video: videos || null,
     };
+    console.log("model===", model);
+
     if (
       (images?.length ?? 0) <= 0 &&
       (videos?.length ?? 0) <= 0 &&
@@ -89,7 +91,8 @@ export const PostModal = ({ showModal = false, onClose }: PostModalProps) => {
       response.statusText == "Created"
     ) {
       console.log("response ====>>>> content===", response);
-      onClose(); // Ferme le modal après la soumission
+      // onClose(); // Ferme le modal après la soumission
+      onUpdateDate();
       // Vous pouvez également réinitialiser le formulaire ici si nécessaire
     }
   };

@@ -13,8 +13,15 @@ type Post = {
   author_id?: string;
   createdAt: string;
 };
+// Définis le type des props attendus
+type ViewProps = {
+  updateB: any; // Remplace 'any' par le type réel de ton user si tu l'as
+};
 
-const ActualityPost: React.FC = () => {
+const ActualityPost = (props: ViewProps) => {
+  console.log(props);
+  const updateB = props.updateB;
+  console.log(">>>>updateB>", updateB);
   const [items, setItems] = useState<Post[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -22,7 +29,20 @@ const ActualityPost: React.FC = () => {
   const loader = useRef<HTMLDivElement | null>(null);
 
   const [dataTemp, setDataTemp] = useState<any[]>([]);
+const chargementIfUpdate = () => {
+    if (updateB) {
+      setDataTemp([]);
+      setPage(1);
+      setHasMore(true);
+      setLoading(false);
+      loadMore();
+    }
+  };
 
+  useEffect(() => {
+    chargementIfUpdate();
+  }, [updateB]);
+  
   const loadMore = useCallback(async () => {
     if (loading || !hasMore) return;
     setLoading(true);
