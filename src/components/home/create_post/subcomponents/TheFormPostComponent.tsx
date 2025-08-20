@@ -3,12 +3,18 @@
 import { useState } from "react";
 import { Button } from "../../../ui/Button";
 import { PostModal } from "../../../../features/post/PostForm";
-
-const ThePostForm = () => {
+interface FormPost {
+  onUpdateDateForm: () => void;
+}
+const ThePostForm = ({onUpdateDateForm }: FormPost) => {
   const [showModalPost, setShowModalPost] = useState<boolean>(false);
   const createPost = () => {
     setShowModalPost(true);
   };
+  const updateDataFormHundle = () => {
+    setShowModalPost(false);
+    onUpdateDateForm()
+  }
   return (
     <>
       {/* <!-- POST FORM --> */}
@@ -66,6 +72,7 @@ const ThePostForm = () => {
         <PostModal
           showModal={showModalPost}
           onClose={() => setShowModalPost(false)}
+          onUpdateDate={() => updateDataFormHundle}
         ></PostModal>
       )}
     </>
