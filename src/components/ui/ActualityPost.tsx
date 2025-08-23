@@ -13,36 +13,22 @@ type Post = {
   author_id?: string;
   createdAt: string;
 };
-// Définis le type des props attendus
+
 type ViewProps = {
-  updateB: any; // Remplace 'any' par le type réel de ton user si tu l'as
+  updateB: true | false;
 };
 
 const ActualityPost = (props: ViewProps) => {
   console.log(props);
-  const updateB = props.updateB;
-  console.log(">>>>updateB>", updateB);
+  const updateC = props.updateB;
   const [items, setItems] = useState<Post[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
   const loader = useRef<HTMLDivElement | null>(null);
-
   const [dataTemp, setDataTemp] = useState<any[]>([]);
-const chargementIfUpdate = () => {
-    if (updateB) {
-      setDataTemp([]);
-      setPage(1);
-      setHasMore(true);
-      setLoading(false);
-      loadMore();
-    }
-  };
 
-  useEffect(() => {
-    chargementIfUpdate();
-  }, [updateB]);
-  
+  // Fonction de chargement des données
   const loadMore = useCallback(async () => {
     if (loading || !hasMore) return;
     setLoading(true);
@@ -55,7 +41,7 @@ const chargementIfUpdate = () => {
         return;
       }
 
-      const response = await PostService.getAllPostDataWithPagination(page, 10); // <- à créer
+      const response = await PostService.getAllPostDataWithPagination(page, 10);
       if (response) {
         setItems((prev) => [...prev, ...response.data]);
         console.log(">>>>response.data>", response.data);
@@ -67,15 +53,14 @@ const chargementIfUpdate = () => {
             profilePic: element.author.profilePic,
           },
           content: element.content,
-          videos: element.video ? JSON.parse(element.video) : [],
-          images: element.image ? JSON.parse(element.image) : [],
+          videos: element.video || [],
+          images: element.image || [],
           createdAt: element.createdAt,
         }));
 
-        // Ajoute les nouveaux éléments transformés à ceux déjà existants
+        // Ajoute les nouveaux éléments transformés
         setDataTemp((prev) => [...prev, ...transformed]);
-        console.log(">>>>erere>", dataTemp);
-
+        
         setHasMore(response.hasMore);
         setPage((prev) => prev + 1);
       }
@@ -85,20 +70,33 @@ const chargementIfUpdate = () => {
       setTimeout(() => {
         setLoading(false);
       }, 2000);
-      // setLoading(false);
     }
-  }, [page, loading, hasMore]);
+  }, [page, loading, hasMore]); // Suppression de dataTemp des dépendances
 
+  // Réinitialisation quand updateC change
   useEffect(() => {
-    loadMore(); // chargement initial
-  }, []);
+    if (updateC === true) {
+      setItems([]);        // Réinitialiser items aussi
+      setDataTemp([]);
+      setPage(1);
+      setHasMore(true);
+      setLoading(false);
+    }
+  }, [updateC]);
 
+  // Chargement initial uniquement
+  useEffect(() => {
+    if (page === 1 && dataTemp.length === 0) {
+      loadMore();
+    }
+  }, [page, dataTemp.length]); // Dépendances spécifiques pour éviter les boucles
+
+  // Observer pour l'infinite scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !loading && hasMore) {
           loadMore();
         }
       },
@@ -112,11 +110,10 @@ const chargementIfUpdate = () => {
     return () => {
       if (loader.current) observer.unobserve(loader.current);
     };
-  }, [loader, loadMore]);
+  }, [loadMore, loading, hasMore]); // Dépendances correctes
 
   return (
     <div className="max-w-xl mx-auto">
-      {/* <h1 className="text-2xl font-bold mb-4">Infinite Scroll</h1> */}
       <div className="space-y-4">
         {dataTemp.map((post_test) => (
           <PostTest key={post_test.id} post={post_test} />

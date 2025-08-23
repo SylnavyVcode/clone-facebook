@@ -23,7 +23,7 @@ const ThePostImages: React.FC<Props> = ({ media }) => {
 
   if (media.length === 1) {
     return (
-      <img src={media[0].toString().substring(5, media[0].length)} alt="" className="w-full h-[300px] object-cover" />
+      <img src={media[0].url} alt="" className="w-full h-[300px] object-cover" />
     );
   }
   if (media.length === 2) {
@@ -32,7 +32,7 @@ const ThePostImages: React.FC<Props> = ({ media }) => {
         {media.map((item, index) => (
           <img
             key={index}
-            src={item}
+            src={item.url}
             alt=""
             className="object-cover h-full w-full"
           />
@@ -46,7 +46,7 @@ const ThePostImages: React.FC<Props> = ({ media }) => {
       <div className="w-full h-[500px]">
         <div className="w-full h-full grid  grid-cols-2  gap-1 ">
           <img
-            src={media[0]}
+            src={media[0].url}
             alt=""
             className={
               "col-span-1 object-cover  h-full w-full row-span-" +
@@ -61,7 +61,7 @@ const ThePostImages: React.FC<Props> = ({ media }) => {
             {media.slice(1, media.length).map((item, index) => (
               <img
                 key={index}
-                src={item}
+                src={item.url}
                 alt=""
                 className="object-cover h-full w-full"
               />
@@ -82,7 +82,7 @@ const ThePostImages: React.FC<Props> = ({ media }) => {
         const isLast = index === 4;
         return (
           <div key={index} className="relative">
-            <img src={item} alt="" className="w-full h-48 object-cover" />
+            <img src={item.url} alt="" className="w-full h-48 object-cover" />
             {isLast && remaining > 0 && (
               <div className="absolute inset-0 bg-black/60 flex items-center justify-center rounded">
                 <span className="text-white text-xl font-bold">

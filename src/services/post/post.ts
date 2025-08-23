@@ -25,25 +25,40 @@ export class PostService {
    * @returns
    */
   static async createPost(postData: any) {
-     const formData = new FormData();
-    if (postData.images) {
-      Array.from(postData.images).forEach((file) => formData.append("images", file as File));
-    }
-    console.log(">>>>>>post>>>>>", postData);
-
-    try {
-      const response = await axios.post(
-        `${config.base_url}/post/message`,
-        postData,
-        this.getpostHeaders()
-      );
-      console.log(response);
-
-      return response;
-    } catch (error) {
-      console.error("Erreur lors de la création du compte :", error);
-    }
+  const formData = new FormData();
+  
+  // 1. Ajouter les fichiers
+  if (postData.image && postData.image.length > 0) {
+    Array.from(postData.image).forEach((file) => {
+      formData.append("images", file as File);
+    });
   }
+  
+  // 2. Ajouter les autres données (texte, etc.)
+  if (postData.content) {
+    formData.append("content", postData.content);
+  }
+  // Ajoutez ici tous les autres champs que vous envoyez
+  
+  // 3. Headers sans Content-Type pour FormData
+  const token = localStorage.getItem("token");
+  const headers = {
+    authorization: `Bearer ${token}`,
+    // Ne pas mettre Content-Type, axios le fait automatiquement
+  };
+
+  try {
+    // 4. Envoyer formData au lieu de postData
+    const response = await axios.post(
+      `${config.base_url}/post/message`,
+      formData,  // ← Maintenant on envoie formData
+      { headers }
+    );
+    return response;
+  } catch (error) {
+    console.error("Erreur:", error);
+  }
+}
 
   /**
    * GET Posts
