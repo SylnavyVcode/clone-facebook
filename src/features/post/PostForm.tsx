@@ -68,7 +68,7 @@ export const PostModal = ({ showModal = false, onClose, onUpdateDate }: PostModa
     console.log("Données du formulaire : ", data);
     const model = {
       content: data.content,
-      image: images ? [URL.createObjectURL(images[0])] : null,
+      image: images ? images : null,
       video: videos || null,
     };
     console.log("model===", model);

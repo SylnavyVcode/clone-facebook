@@ -13,11 +13,17 @@ type Props = {
 };
 
 const ThePostImages: React.FC<Props> = ({ media }) => {
+  console.log(">>>>media image===", media);
+  console.log(
+    ">>>>media image===",
+    media[0].toString().substring(5, media[0].length)
+  );
+
   if (media.length === 0) return null;
 
   if (media.length === 1) {
     return (
-      <img src={media[0]} alt="" className="w-full h-[300px] object-cover" />
+      <img src={media[0].toString().substring(5, media[0].length)} alt="" className="w-full h-[300px] object-cover" />
     );
   }
   if (media.length === 2) {

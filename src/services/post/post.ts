@@ -25,6 +25,10 @@ export class PostService {
    * @returns
    */
   static async createPost(postData: any) {
+     const formData = new FormData();
+    if (postData.images) {
+      Array.from(postData.images).forEach((file) => formData.append("images", file as File));
+    }
     console.log(">>>>>>post>>>>>", postData);
 
     try {
