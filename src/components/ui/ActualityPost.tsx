@@ -15,18 +15,28 @@ type Post = {
 };
 
 type ViewProps = {
-  updateB: true | false;
+  updateCounter: number; // ✅ Changé de updateB vers updateCounter
 };
 
-const ActualityPost = (props: ViewProps) => {
-  console.log(props);
-  const updateC = props.updateB;
+const ActualityPost = ({ updateCounter }: ViewProps) => {
+  console.log("ActualityPost - updateCounter reçu:", updateCounter);
+  
   const [items, setItems] = useState<Post[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
   const loader = useRef<HTMLDivElement | null>(null);
   const [dataTemp, setDataTemp] = useState<any[]>([]);
+
+  // ✅ Fonction pour réinitialiser complètement les données
+  const resetData = useCallback(() => {
+    console.log("Réinitialisation des données...");
+    setItems([]);
+    setDataTemp([]);
+    setPage(1);
+    setHasMore(true);
+    setLoading(false);
+  }, []);
 
   // Fonction de chargement des données
   const loadMore = useCallback(async () => {
@@ -41,10 +51,18 @@ const ActualityPost = (props: ViewProps) => {
         return;
       }
 
+      console.log(`Chargement de la page ${page}...`);
       const response = await PostService.getAllPostDataWithPagination(page, 10);
+      
       if (response) {
-        setItems((prev) => [...prev, ...response.data]);
-        console.log(">>>>response.data>", response.data);
+        // ✅ Si c'est la page 1, remplacer les données au lieu d'ajouter
+        if (page === 1) {
+          setItems(response.data);
+          console.log(">>>>Première page - données remplacées>", response.data);
+        } else {
+          setItems((prev) => [...prev, ...response.data]);
+          console.log(">>>>Page suivante - données ajoutées>", response.data);
+        }
 
         const transformed = response.data.map((element: Post) => ({
           id: element.id,
@@ -58,8 +76,12 @@ const ActualityPost = (props: ViewProps) => {
           createdAt: element.createdAt,
         }));
 
-        // Ajoute les nouveaux éléments transformés
-        setDataTemp((prev) => [...prev, ...transformed]);
+        // ✅ Même logique pour les données transformées
+        if (page === 1) {
+          setDataTemp(transformed);
+        } else {
+          setDataTemp((prev) => [...prev, ...transformed]);
+        }
         
         setHasMore(response.hasMore);
         setPage((prev) => prev + 1);
@@ -71,25 +93,24 @@ const ActualityPost = (props: ViewProps) => {
         setLoading(false);
       }, 2000);
     }
-  }, [page, loading, hasMore]); // Suppression de dataTemp des dépendances
+  }, [page, loading, hasMore]);
 
-  // Réinitialisation quand updateC change
+  // ✅ Réinitialisation et rechargement quand updateCounter change
   useEffect(() => {
-    if (updateC === true) {
-      setItems([]);        // Réinitialiser items aussi
-      setDataTemp([]);
-      setPage(1);
-      setHasMore(true);
-      setLoading(false);
+    if (updateCounter > 0) { // Éviter le premier appel inutile
+      console.log("Update détecté - Rechargement des posts...");
+      resetData();
+      // Le rechargement se fera dans l'effect suivant quand page devient 1
     }
-  }, [updateC]);
+  }, [updateCounter, resetData]);
 
-  // Chargement initial uniquement
+  // ✅ Chargement initial et rechargement après reset
   useEffect(() => {
-    if (page === 1 && dataTemp.length === 0) {
+    if (page === 1 && dataTemp.length === 0 && !loading) {
+      console.log("Déclenchement du chargement initial ou après reset");
       loadMore();
     }
-  }, [page, dataTemp.length]); // Dépendances spécifiques pour éviter les boucles
+  }, [page, dataTemp.length, loading, loadMore]);
 
   // Observer pour l'infinite scroll
   useEffect(() => {
@@ -97,6 +118,7 @@ const ActualityPost = (props: ViewProps) => {
       (entries) => {
         const [entry] = entries;
         if (entry.isIntersecting && !loading && hasMore) {
+          console.log("Intersection détectée - Chargement de la page suivante");
           loadMore();
         }
       },
@@ -110,7 +132,7 @@ const ActualityPost = (props: ViewProps) => {
     return () => {
       if (loader.current) observer.unobserve(loader.current);
     };
-  }, [loadMore, loading, hasMore]); // Dépendances correctes
+  }, [loadMore, loading, hasMore]);
 
   return (
     <div className="max-w-xl mx-auto">
@@ -121,7 +143,22 @@ const ActualityPost = (props: ViewProps) => {
       </div>
 
       {loading && (
-        <div className="text-center py-6 text-gray-500">Chargement...</div>
+        <div className="text-center py-6 text-gray-500">
+          Chargement...
+          {/* ✅ Indicateur visuel du rechargement */}
+          {page === 1 && updateCounter > 0 && (
+            <span className="block text-sm text-blue-500">
+              Mise à jour des posts...
+            </span>
+          )}
+        </div>
+      )}
+
+      {/* ✅ Message quand aucun post */}
+      {!loading && dataTemp.length === 0 && (
+        <div className="text-center py-6 text-gray-500">
+          Aucun post à afficher
+        </div>
       )}
 
       <div ref={loader} className="h-10"></div>

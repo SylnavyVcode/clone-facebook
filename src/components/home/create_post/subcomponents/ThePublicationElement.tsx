@@ -1,29 +1,30 @@
-// import { Post } from "../../../utils/Post";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Stories } from "../../../stories/Stories";
 import ActualityPost from "../../../ui/ActualityPost";
-// import { mockPosts } from "../../../../data/postsDataTest";
-// import PostTest from "../../../utils/postTest";
-// Définis le type des props attendus
+// ==========================================
+// 3. MISE À JOUR de ThePosterView
+// ==========================================
 type ThePosterViewProps = {
-  update: boolean; // Remplace 'any' par le type réel de ton user si tu l'as
+  updateCounter: number; // ou lastUpdate: number
 };
-export const ThePosterView = (props: ThePosterViewProps) => {
-  console.log(props);
-  const [updateB, setUpdateB] = useState<boolean>(props.update);
+
+export const ThePosterView = ({ updateCounter }: ThePosterViewProps) => {
+  console.log("ThePosterView - updateCounter reçu:", updateCounter);
+  
   useEffect(() => {
-    setUpdateB(props.update);
-  }, [props.update]);
+    console.log("ThePosterView - Mise à jour déclenchée avec compteur:", updateCounter);
+    // Ici vous pouvez déclencher le rechargement des données
+  }, [updateCounter]); // ✅ Se déclenche à chaque changement du compteur
+
   return (
     <>
       <div>
         <div className="max-w-5xl mx-auto mt-4">
           <Stories />
         </div>
-        <ActualityPost updateB={updateB}></ActualityPost>
+        {/* ✅ Passer le compteur */}
+        <ActualityPost updateCounter={updateCounter} />
       </div>
     </>
   );
 };
-
-

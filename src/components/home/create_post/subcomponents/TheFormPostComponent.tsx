@@ -11,9 +11,13 @@ const ThePostForm = ({onUpdateDateForm }: FormPost) => {
   const createPost = () => {
     setShowModalPost(true);
   };
-  const updateDataFormHundle = () => {
+   const updateDataFormHundle = () => {
     setShowModalPost(false);
-    onUpdateDateForm()
+    console.log("showModalPost", showModalPost);
+    
+    // ✅ CORRECTION: Appeler la fonction au lieu de passer sa référence
+    onUpdateDateForm();
+    console.log("onUpdateDateForm appelée");
   }
   return (
     <>
@@ -72,7 +76,8 @@ const ThePostForm = ({onUpdateDateForm }: FormPost) => {
         <PostModal
           showModal={showModalPost}
           onClose={() => setShowModalPost(false)}
-          onUpdateDate={() => updateDataFormHundle}
+           // ✅ CORRECTION: Appeler la fonction, pas la référence
+          onUpdateDate={updateDataFormHundle}
         ></PostModal>
       )}
     </>

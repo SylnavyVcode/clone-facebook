@@ -1,22 +1,25 @@
+// ==========================================
+// 1. SOLUTION DANS ThePostCreate - Utiliser un compteur
+// ==========================================
 import { useState } from "react";
 import ThePostForm from "./subcomponents/TheFormPostComponent";
 import { ThePosterView } from "./subcomponents/ThePublicationElement";
 
 const ThePostCreate = () => {
-  const [update, setUpdade] = useState<boolean>(false)
+  // ✅ Utiliser un compteur au lieu d'un boolean
+  const [updateCounter, setUpdateCounter] = useState<number>(0);
+
   const updateData = () => {
-    setUpdade(true)
+    // ✅ Incrémenter le compteur à chaque appel
+    setUpdateCounter(prev => prev + 1);
+    console.log("updateData appelée - nouveau compteur:", updateCounter + 1);
   }
+
   return (
     <>
-      <div className="pt-12 lg:pt-12 w-full  bg-[#F1F2F5] h-full">
-   
-        {/* <!-- POST FORM --> */}
-        <ThePostForm  onUpdateDateForm={() => updateData}></ThePostForm>
-        {/* <!-- END POST FORM --> */}
-        {/* <!-- END STORY --> */}
-        <ThePosterView update={update}></ThePosterView>
-        {/* <!-- END LIST POST --> */}
+      <div className="pt-12 lg:pt-12 w-full bg-[#F1F2F5] h-full">
+        <ThePostForm onUpdateDateForm={updateData} />
+        <ThePosterView updateCounter={updateCounter} />
       </div>
     </>
   );

@@ -24,7 +24,7 @@ interface FormData {
   image: Array<string> | null;
   video: Array<string> | null;
 }
-export const PostModal = ({ showModal = false, onClose, onUpdateDate }: PostModalProps) => {
+export const PostModal = ({ showModal = false, onUpdateDate, onClose,  }: PostModalProps) => {
   const [images, setImages] = useState<Array<any> | null>(null);
   const [videos, setVideos] = useState<Array<any> | null>(null);
   const [disabledButton, setDisabledButton] = useState<boolean>(true);
@@ -90,9 +90,8 @@ export const PostModal = ({ showModal = false, onClose, onUpdateDate }: PostModa
       response.status === 201 &&
       response.statusText == "Created"
     ) {
-      console.log("response ====>>>> content===", response);
-      // onClose(); // Ferme le modal après la soumission
       onUpdateDate();
+      console.log("response ====>>>> content===", response);
       // Vous pouvez également réinitialiser le formulaire ici si nécessaire
     }
   };
