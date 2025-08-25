@@ -8,19 +8,19 @@ type Post = {
   author: any;
   content: string;
   image?: any;
-  comments?: string;
+  comments?: any;
   video?: any;
+  likes?: any;
   author_id?: string;
   createdAt: string;
 };
 
 type ViewProps = {
   updateCounter: number; // ✅ Changé de updateB vers updateCounter
+  userReceide: any;
 };
 
-const ActualityPost = ({ updateCounter }: ViewProps) => {
-  console.log("ActualityPost - updateCounter reçu:", updateCounter);
-  
+const ActualityPost = ({ updateCounter, userReceide }: ViewProps) => {
   const [items, setItems] = useState<Post[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -28,9 +28,34 @@ const ActualityPost = ({ updateCounter }: ViewProps) => {
   const loader = useRef<HTMLDivElement | null>(null);
   const [dataTemp, setDataTemp] = useState<any[]>([]);
 
+  const handleLike = async (postId: string) => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    const updatedPosts = [...dataTemp];
+    const index = updatedPosts.findIndex((p) => p.id === postId);
+    if (index === -1) return;
+
+    const post = updatedPosts[index];
+    const alreadyLiked = post.likes.includes(userReceide);
+
+    if (alreadyLiked) {
+      post.likes = post.likes.filter((u: any) => u !== userReceide);
+    } else {
+      post.likes.push(userReceide);
+    }
+
+    try {
+      await PostService.updatePost(post.id, post);
+      updatedPosts[index] = post;
+      setDataTemp(updatedPosts); // 🔁 Mise à jour de l’état
+    } catch (err) {
+      console.error("Erreur lors du like :", err);
+    }
+  };
+
   // ✅ Fonction pour réinitialiser complètement les données
   const resetData = useCallback(() => {
-    console.log("Réinitialisation des données...");
     setItems([]);
     setDataTemp([]);
     setPage(1);
@@ -51,9 +76,8 @@ const ActualityPost = ({ updateCounter }: ViewProps) => {
         return;
       }
 
-      console.log(`Chargement de la page ${page}...`);
       const response = await PostService.getAllPostDataWithPagination(page, 10);
-      
+
       if (response) {
         // ✅ Si c'est la page 1, remplacer les données au lieu d'ajouter
         if (page === 1) {
@@ -73,6 +97,8 @@ const ActualityPost = ({ updateCounter }: ViewProps) => {
           content: element.content,
           videos: element.video || [],
           images: element.image || [],
+          likes: element.likes || [],
+          comments: element.comments || [],
           createdAt: element.createdAt,
         }));
 
@@ -82,7 +108,7 @@ const ActualityPost = ({ updateCounter }: ViewProps) => {
         } else {
           setDataTemp((prev) => [...prev, ...transformed]);
         }
-        
+
         setHasMore(response.hasMore);
         setPage((prev) => prev + 1);
       }
@@ -97,7 +123,8 @@ const ActualityPost = ({ updateCounter }: ViewProps) => {
 
   // ✅ Réinitialisation et rechargement quand updateCounter change
   useEffect(() => {
-    if (updateCounter > 0) { // Éviter le premier appel inutile
+    if (updateCounter > 0) {
+      // Éviter le premier appel inutile
       console.log("Update détecté - Rechargement des posts...");
       resetData();
       // Le rechargement se fera dans l'effect suivant quand page devient 1
@@ -138,7 +165,11 @@ const ActualityPost = ({ updateCounter }: ViewProps) => {
     <div className="max-w-xl mx-auto">
       <div className="space-y-4">
         {dataTemp.map((post_test) => (
-          <PostTest key={post_test.id} post={post_test} />
+          <PostTest
+            key={post_test.id}
+            post={post_test}
+            onLike={() => handleLike(post_test.id)}
+          />
         ))}
       </div>
 

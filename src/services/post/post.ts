@@ -9,7 +9,6 @@ import { config } from "../config/config";
 export class PostService {
   static getpostHeaders() {
     const token = localStorage.getItem("token");
-    console.log("token", token);
     // Récupération du token
     return {
       headers: {
@@ -59,6 +58,24 @@ export class PostService {
     console.error("Erreur:", error);
   }
 }
+
+/**
+ * update Post to Facebook
+ * @param postData
+ * @returns
+ */
+  static async updatePost(postId: string, postData: any) {
+    try {
+      const response = await axios.put(
+        `${config.base_url}/post/${postId}`,
+        postData,
+        this.getpostHeaders()
+      );
+      return response;
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour du post :", error);
+    }
+  }
 
   /**
    * GET Posts

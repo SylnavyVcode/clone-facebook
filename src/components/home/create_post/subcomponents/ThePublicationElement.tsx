@@ -6,9 +6,10 @@ import ActualityPost from "../../../ui/ActualityPost";
 // ==========================================
 type ThePosterViewProps = {
   updateCounter: number; // ou lastUpdate: number
+  userData:any
 };
 
-export const ThePosterView = ({ updateCounter }: ThePosterViewProps) => {
+export const ThePosterView = ({ updateCounter, userData }: ThePosterViewProps) => {
   console.log("ThePosterView - updateCounter reçu:", updateCounter);
   
   useEffect(() => {
@@ -23,7 +24,7 @@ export const ThePosterView = ({ updateCounter }: ThePosterViewProps) => {
           <Stories />
         </div>
         {/* ✅ Passer le compteur */}
-        <ActualityPost updateCounter={updateCounter} />
+        <ActualityPost updateCounter={updateCounter} userReceide={userData}/>
       </div>
     </>
   );
