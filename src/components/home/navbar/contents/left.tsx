@@ -1,4 +1,9 @@
-const Left = () => {
+interface LeftProps {
+  userReceive: any;
+}
+const Left = ({userReceive}:LeftProps) => {
+  console.log("userReceive dans Left =====>>>", userReceive);
+  
   return (
     <>
       <section id="TheLeftNavBar" className="w-full">

@@ -5,28 +5,13 @@ import { Avatar } from "../ui/Avatar";
 import { Button } from "../ui/Button";
 import ThePostImages from "./PostImages";
 
-// type Media = {
-//   type: "image" | "video";
-//   url: string;
-// };
-
-type PostProps = {
-  post: {
-    id: string;
-    user: {
-      name: string;
-      profilePic: string;
-    };
-    content: string;
-    videos: any[];
-    images: any[];
-    createdAt: string;
-  };
+type PostTestProps = {
+  post: any;
+  onLike: () => void;
 };
 
-const PostTest: React.FC<{ post: PostProps["post"] }> = ({ post }) => {
+const PostTest: React.FC<PostTestProps> = ({ post, onLike }) => {
   const renderMedia = () => {
-
     const images = post.images;
     const videos = post.videos;
 
@@ -34,11 +19,7 @@ const PostTest: React.FC<{ post: PostProps["post"] }> = ({ post }) => {
       <>
         {images.length > 0 && <ThePostImages media={images} />}
         {videos.map((video, idx) => (
-          <video
-            key={idx}
-            controls
-            className="rounded-lg mt-2 w-full max-h-[500px]"
-          >
+          <video key={idx} controls className="rounded-lg mt-2 w-full max-h-[500px]">
             <source src={video} type="video/mp4" />
             Votre navigateur ne prend pas en charge la vidéo.
           </video>
@@ -48,7 +29,7 @@ const PostTest: React.FC<{ post: PostProps["post"] }> = ({ post }) => {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-sm  mb-3">
+    <div className="bg-white rounded-xl shadow-sm mb-3">
       {/* Header */}
       <div className="flex items-center gap-3 py-2 px-4">
         <Avatar src={post.user.profilePic} size="md" />
@@ -70,7 +51,12 @@ const PostTest: React.FC<{ post: PostProps["post"] }> = ({ post }) => {
 
       {/* Actions */}
       <div className="flex justify-between border-t border-gray-200 py-2 px-4 text-sm text-gray-600">
-        <Button variant="ghost" size="sm" className="flex items-center gap-1">
+        <Button
+          onClick={onLike}
+          variant="ghost"
+          size="sm"
+          className="flex items-center gap-1"
+        >
           <ThumbsUp size={16} /> J’aime
         </Button>
         <Button variant="ghost" size="sm" className="flex items-center gap-1">

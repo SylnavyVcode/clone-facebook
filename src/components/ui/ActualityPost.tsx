@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { PostService } from "../../services/post/post";
 import { Post } from "../utils/Post";
 import PostTest from "../utils/postTest";
@@ -8,41 +8,62 @@ type Post = {
   author: any;
   content: string;
   image?: any;
-  comments?: string;
+  comments?: any;
   video?: any;
+  likes?: any;
   author_id?: string;
   createdAt: string;
 };
-// Définis le type des props attendus
+
 type ViewProps = {
-  updateB: any; // Remplace 'any' par le type réel de ton user si tu l'as
+  updateCounter: number; // ✅ Changé de updateB vers updateCounter
+  userReceide: any;
 };
 
-const ActualityPost = (props: ViewProps) => {
-  console.log(props);
-  const updateB = props.updateB;
-  console.log(">>>>updateB>", updateB);
+const ActualityPost = ({ updateCounter, userReceide }: ViewProps) => {
   const [items, setItems] = useState<Post[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
   const loader = useRef<HTMLDivElement | null>(null);
-
   const [dataTemp, setDataTemp] = useState<any[]>([]);
-const chargementIfUpdate = () => {
-    if (updateB) {
-      setDataTemp([]);
-      setPage(1);
-      setHasMore(true);
-      setLoading(false);
-      loadMore();
+
+  const handleLike = async (postId: string) => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    const updatedPosts = [...dataTemp];
+    const index = updatedPosts.findIndex((p) => p.id === postId);
+    if (index === -1) return;
+
+    const post = updatedPosts[index];
+    const alreadyLiked = post.likes.includes(userReceide);
+
+    if (alreadyLiked) {
+      post.likes = post.likes.filter((u: any) => u !== userReceide);
+    } else {
+      post.likes.push(userReceide);
+    }
+
+    try {
+      await PostService.updatePost(post.id, post);
+      updatedPosts[index] = post;
+      setDataTemp(updatedPosts); // 🔁 Mise à jour de l’état
+    } catch (err) {
+      console.error("Erreur lors du like :", err);
     }
   };
 
-  useEffect(() => {
-    chargementIfUpdate();
-  }, [updateB]);
-  
+  // ✅ Fonction pour réinitialiser complètement les données
+  const resetData = useCallback(() => {
+    setItems([]);
+    setDataTemp([]);
+    setPage(1);
+    setHasMore(true);
+    setLoading(false);
+  }, []);
+
+  // Fonction de chargement des données
   const loadMore = useCallback(async () => {
     if (loading || !hasMore) return;
     setLoading(true);
@@ -55,10 +76,17 @@ const chargementIfUpdate = () => {
         return;
       }
 
-      const response = await PostService.getAllPostDataWithPagination(page, 10); // <- à créer
+      const response = await PostService.getAllPostDataWithPagination(page, 10);
+
       if (response) {
-        setItems((prev) => [...prev, ...response.data]);
-        console.log(">>>>response.data>", response.data);
+        // ✅ Si c'est la page 1, remplacer les données au lieu d'ajouter
+        if (page === 1) {
+          setItems(response.data);
+          console.log(">>>>Première page - données remplacées>", response.data);
+        } else {
+          setItems((prev) => [...prev, ...response.data]);
+          console.log(">>>>Page suivante - données ajoutées>", response.data);
+        }
 
         const transformed = response.data.map((element: Post) => ({
           id: element.id,
@@ -67,14 +95,19 @@ const chargementIfUpdate = () => {
             profilePic: element.author.profilePic,
           },
           content: element.content,
-          videos: element.video ? JSON.parse(element.video) : [],
-          images: element.image ? JSON.parse(element.image) : [],
+          videos: element.video || [],
+          images: element.image || [],
+          likes: element.likes || [],
+          comments: element.comments || [],
           createdAt: element.createdAt,
         }));
 
-        // Ajoute les nouveaux éléments transformés à ceux déjà existants
-        setDataTemp((prev) => [...prev, ...transformed]);
-        console.log(">>>>erere>", dataTemp);
+        // ✅ Même logique pour les données transformées
+        if (page === 1) {
+          setDataTemp(transformed);
+        } else {
+          setDataTemp((prev) => [...prev, ...transformed]);
+        }
 
         setHasMore(response.hasMore);
         setPage((prev) => prev + 1);
@@ -85,20 +118,34 @@ const chargementIfUpdate = () => {
       setTimeout(() => {
         setLoading(false);
       }, 2000);
-      // setLoading(false);
     }
   }, [page, loading, hasMore]);
 
+  // ✅ Réinitialisation et rechargement quand updateCounter change
   useEffect(() => {
-    loadMore(); // chargement initial
-  }, []);
+    if (updateCounter > 0) {
+      // Éviter le premier appel inutile
+      console.log("Update détecté - Rechargement des posts...");
+      resetData();
+      // Le rechargement se fera dans l'effect suivant quand page devient 1
+    }
+  }, [updateCounter, resetData]);
 
+  // ✅ Chargement initial et rechargement après reset
+  useEffect(() => {
+    if (page === 1 && dataTemp.length === 0 && !loading) {
+      console.log("Déclenchement du chargement initial ou après reset");
+      loadMore();
+    }
+  }, [page, dataTemp.length, loading, loadMore]);
+
+  // Observer pour l'infinite scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !loading && hasMore) {
+          console.log("Intersection détectée - Chargement de la page suivante");
           loadMore();
         }
       },
@@ -112,19 +159,37 @@ const chargementIfUpdate = () => {
     return () => {
       if (loader.current) observer.unobserve(loader.current);
     };
-  }, [loader, loadMore]);
+  }, [loadMore, loading, hasMore]);
 
   return (
     <div className="max-w-xl mx-auto">
-      {/* <h1 className="text-2xl font-bold mb-4">Infinite Scroll</h1> */}
       <div className="space-y-4">
         {dataTemp.map((post_test) => (
-          <PostTest key={post_test.id} post={post_test} />
+          <PostTest
+            key={post_test.id}
+            post={post_test}
+            onLike={() => handleLike(post_test.id)}
+          />
         ))}
       </div>
 
       {loading && (
-        <div className="text-center py-6 text-gray-500">Chargement...</div>
+        <div className="text-center py-6 text-gray-500">
+          Chargement...
+          {/* ✅ Indicateur visuel du rechargement */}
+          {page === 1 && updateCounter > 0 && (
+            <span className="block text-sm text-blue-500">
+              Mise à jour des posts...
+            </span>
+          )}
+        </div>
+      )}
+
+      {/* ✅ Message quand aucun post */}
+      {!loading && dataTemp.length === 0 && (
+        <div className="text-center py-6 text-gray-500">
+          Aucun post à afficher
+        </div>
       )}
 
       <div ref={loader} className="h-10"></div>

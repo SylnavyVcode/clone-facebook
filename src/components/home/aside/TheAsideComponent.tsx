@@ -1,4 +1,9 @@
-const TheAside = () => {
+interface Props {
+  data?: any;
+}
+const TheAside = ({data}:Props) => {
+  console.log("data dans TheAside =====>>>", data);
+  
   return (
     <>
       <div className="w-full  group mt-10 pt-6 pb-2 hidden md:block xl:block ">

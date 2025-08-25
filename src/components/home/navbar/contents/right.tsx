@@ -1,7 +1,12 @@
+
+
 import TheModalMenuComponent from "./modals/TheModalMenu";
 import TheModalProfilComponent from "./modals/TheModalProfil";
-
-const Right = () => {
+interface RightProps {
+  userReceive: any;
+}
+const Right = ({ userReceive }: RightProps) => {
+ 
   const handleClickProfil = () => {
     const dropdownMenu = document.getElementById("dropdownMenu");
     const dropdownProfil = document.getElementById("dropdownInformation");
@@ -50,7 +55,7 @@ const Right = () => {
               id="dropdownMenu"
               className="absolute hidden right-[-142px] top-12 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm  dark:bg-gray-900 dark:divide-gray-800 w-[570px] h-[600px] overflow-y-auto"
             >
-              <TheModalMenuComponent></TheModalMenuComponent>
+              <TheModalMenuComponent user={userReceive}></TheModalMenuComponent>
             </div>
           </li>
           <li className="m-auto place-items-center bg-gray-200 dark:bg-dark-third dark:text-dark-txt rounded-full mx-1 p-2 cursor-pointer hover:bg-gray-300 relative">
@@ -120,7 +125,7 @@ const Right = () => {
               id="dropdownInformation"
               className="absolute hidden right-2 top-12 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm  dark:bg-gray-900 dark:divide-gray-800 w-[370px]"
             >
-              <TheModalProfilComponent></TheModalProfilComponent>
+              <TheModalProfilComponent user={userReceive}></TheModalProfilComponent>
             </div>
           </li>
         </ul>

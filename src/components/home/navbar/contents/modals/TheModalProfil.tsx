@@ -1,4 +1,11 @@
-const TheModalProfilComponent = () => {
+interface TheModalProfilProps {
+  user: any;
+}
+const TheModalProfilComponent = ({ user }: TheModalProfilProps) => {
+  const logOut = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
   return (
     <>
       <div className="p-4 text-white w-full">
@@ -6,7 +13,9 @@ const TheModalProfilComponent = () => {
           <div className="px-4 py-3 w-full">
             <div className=" flex items-center space-x-3">
               <img src="" alt="" />
-              <span className="font-medium truncate">Valmy MABIKA</span>
+              <span className="font-medium truncate">
+                {user.firstname} {user.lastname}
+              </span>
             </div>
 
             <div className="border-b border-gray-400  my-2"></div>
@@ -182,7 +191,10 @@ const TheModalProfilComponent = () => {
               href="#"
               className="w-full  py-1 hover:bg-gray-600  dark:hover:bg-gray-600 dark:hover:text-white flex items-center justify-between rounded-md"
             >
-              <div className="flex justify-center items-center gap-4 px-1">
+              <div
+                onClick={logOut}
+                className="flex justify-center items-center gap-4 px-1"
+              >
                 <div className="m-auto place-items-center bg-gray-700 dark:bg-dark-third dark:text-dark-txt rounded-full p-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

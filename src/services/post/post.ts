@@ -9,7 +9,6 @@ import { config } from "../config/config";
 export class PostService {
   static getpostHeaders() {
     const token = localStorage.getItem("token");
-    console.log("token", token);
     // Récupération du token
     return {
       headers: {
@@ -25,19 +24,56 @@ export class PostService {
    * @returns
    */
   static async createPost(postData: any) {
-    console.log(">>>>>>post>>>>>", postData);
+  const formData = new FormData();
+  
+  // 1. Ajouter les fichiers
+  if (postData.image && postData.image.length > 0) {
+    Array.from(postData.image).forEach((file) => {
+      formData.append("images", file as File);
+    });
+  }
+  
+  // 2. Ajouter les autres données (texte, etc.)
+  if (postData.content) {
+    formData.append("content", postData.content);
+  }
+  // Ajoutez ici tous les autres champs que vous envoyez
+  
+  // 3. Headers sans Content-Type pour FormData
+  const token = localStorage.getItem("token");
+  const headers = {
+    authorization: `Bearer ${token}`,
+    // Ne pas mettre Content-Type, axios le fait automatiquement
+  };
 
+  try {
+    // 4. Envoyer formData au lieu de postData
+    const response = await axios.post(
+      `${config.base_url}/post/message`,
+      formData,  // ← Maintenant on envoie formData
+      { headers }
+    );
+    return response;
+  } catch (error) {
+    console.error("Erreur:", error);
+  }
+}
+
+/**
+ * update Post to Facebook
+ * @param postData
+ * @returns
+ */
+  static async updatePost(postId: string, postData: any) {
     try {
-      const response = await axios.post(
-        `${config.base_url}/post/message`,
+      const response = await axios.put(
+        `${config.base_url}/post/${postId}`,
         postData,
         this.getpostHeaders()
       );
-      console.log(response);
-
       return response;
     } catch (error) {
-      console.error("Erreur lors de la création du compte :", error);
+      console.error("Erreur lors de la mise à jour du post :", error);
     }
   }
 

@@ -1,7 +1,13 @@
 import { ListsFriends } from "../../../data/listFriends";
 import { Button } from "../../ui/Button";
 
-const TheRightAside = () => {
+interface Props {
+  data?: any;
+}
+
+
+const TheRightAside = ({data}:Props) => {
+  console.log("data dans TheRightAside =====>>>", data);
   return (
     <>
       <div className="group pt-6 pb-12 hidden md:flex items-end  xl:block w-full ">
