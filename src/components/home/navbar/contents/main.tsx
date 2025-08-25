@@ -1,4 +1,8 @@
-const Main = () => {
+interface MainProps {
+  userReceive: any;
+}
+const Main = ({userReceive}:MainProps) => {
+  console.log("userReceive dans Main =====>>>", userReceive);
   return (
     <>
       <section id="main_nav_bar" className="max-md:invisible w-full">

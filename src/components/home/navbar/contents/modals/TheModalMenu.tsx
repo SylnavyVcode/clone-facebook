@@ -2,8 +2,11 @@ import { MenuLeftData } from "../../../../../data/modal_menu_left";
 import { MenuRightData } from "../../../../../data/modal_menu_right";
 import { EventLink } from "../../../../ui/Events";
 import { EventProfil } from "../../../../ui/EventsProfil";
-
-const TheModalMenuComponent = () => {
+interface TheModalMenuProps {
+  user:any;
+}
+const TheModalMenuComponent = ({user}:TheModalMenuProps) => {
+  console.log("user dans TheModalMenuComponent =====>>>", user);
   return (
     <>
       <div className="px-4 py-2 text-white w-full ">
